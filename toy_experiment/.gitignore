@@ -1,0 +1,26 @@
+# Downloaded assets
+offline_assets/
+
+# Python virtual environment
+/nlp/
+venv/
+*.venv
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE specific files
+.vscode/
+.idea/
+
+# Build artifacts
+/build/
+/dist/
+*.egg-info/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
