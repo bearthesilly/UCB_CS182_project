@@ -1,6 +1,6 @@
 # Downloaded assets
-offline_assets/
-
+toy_experiment/offline_assets/
+Llama_1.1B_reproduce/offline_assets/
 # Python virtual environment
 /nlp/
 venv/
