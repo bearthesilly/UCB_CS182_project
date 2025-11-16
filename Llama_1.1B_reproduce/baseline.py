@@ -42,7 +42,7 @@ RESULTS_DIR = "./drive/MyDrive/"
 JOINT_ADAPTER_PATH = os.path.join(RESULTS_DIR, "joint_adapter_llama_fp32")
 
 # 【检查点路径 2 - 实验组 Phase 1 (MATH)】
-TASK_B_ADAPTER_PATH = os.path.join(RESULTS_DIR, "math_adapter_llama_fp32")
+TASK_A_ADAPTER_PATH = os.path.join(RESULTS_DIR, "math_adapter_llama_fp32")
 
 
 # --- VRAM-Saving Config ---
@@ -55,8 +55,8 @@ GRAD_ACC_STEPS = 1 # (有效批量大小仍然是 8 * 4 = 32)
 N_TRAIN_EXAMPLES = 4000
 N_VAL_EXAMPLES = 400
 JOINT_EPOCHS = 2
-TASK_A_EPOCHS = 2 # 用于 Phase 2 (HotpotQA)
-TASK_B_EPOCHS = 1 # 用于 Phase 1 (MATH)
+TASK_A_EPOCHS = 2 # For Math 
+TASK_B_EPOCHS = 2 # For HotpotQA
 
 # --- 2. Utility Functions (Data Formatting - Llama Chat Style) ---
 def format_hotpot_qa(example):
@@ -195,7 +195,7 @@ def main():
     # --- Load and Process Datasets ---
     print(f"\n--- Loading and Preprocessing Datasets (This may take a while) ---")
 
-    # Task A: HotpotQA
+    # Task B: HotpotQA
     raw_hotpot = load_dataset(HOTPOT_DATASET_NAME, HOTPOT_DATASET_CONFIG)
     hotpot_train = raw_hotpot["train"].shuffle(seed=42).select(range(N_TRAIN_EXAMPLES))
     hotpot_val = raw_hotpot["validation"].shuffle(seed=42).select(range(N_VAL_EXAMPLES))
@@ -219,7 +219,7 @@ def main():
 
     print(f"HotpotQA: {len(hotpot_train_tokenized)} train, {len(hotpot_val_tokenized)} val (after filtering)")
 
-    # Task B: MATH
+    # Task A: MATH
     raw_math = load_dataset(MATH_DATASET_NAME)
     total_math_samples_needed = N_TRAIN_EXAMPLES + N_VAL_EXAMPLES
     math_subset = raw_math["train"].shuffle(seed=42).select(range(total_math_samples_needed))
@@ -247,98 +247,98 @@ def main():
 
     print(f"MATH: {len(math_train_tokenized)} train, {len(math_val_tokenized)} val (after filtering)")
 
-    # --- Experiment 1: Joint Training (Control Group) ---
-    print(f"\n--- Starting Experiment 1: Joint Training ---")
+    # # --- Experiment 1: Joint Training (Control Group) ---
+    # print(f"\n--- Starting Experiment 1: Joint Training ---")
 
-    if os.path.exists(os.path.join(JOINT_ADAPTER_PATH, "adapter_model.safetensors")):
-        print(f"--- Found existing Joint adapter. Loading from {JOINT_ADAPTER_PATH} ---")
-        joint_model = PeftModel.from_pretrained(base_model, JOINT_ADAPTER_PATH)
-        print("Adapter loaded successfully.")
+    # if os.path.exists(os.path.join(JOINT_ADAPTER_PATH, "adapter_model.safetensors")):
+    #     print(f"--- Found existing Joint adapter. Loading from {JOINT_ADAPTER_PATH} ---")
+    #     joint_model = PeftModel.from_pretrained(base_model, JOINT_ADAPTER_PATH)
+    #     print("Adapter loaded successfully.")
 
-    else:
-        print(f"--- No Joint adapter found. Starting Joint Training ---")
-        lora_config = get_lora_config()
-        joint_model = get_peft_model(base_model, lora_config)
-        joint_model.print_trainable_parameters()
+    # else:
+    #     print(f"--- No Joint adapter found. Starting Joint Training ---")
+    #     lora_config = get_lora_config()
+    #     joint_model = get_peft_model(base_model, lora_config)
+    #     joint_model.print_trainable_parameters()
 
-        joint_train_dataset = concatenate_datasets([hotpot_train_tokenized, math_train_tokenized]).shuffle(seed=42)
+    #     joint_train_dataset = concatenate_datasets([hotpot_train_tokenized, math_train_tokenized]).shuffle(seed=42)
 
-        joint_training_args = TrainingArguments(
-            output_dir=os.path.join(RESULTS_DIR, "joint_training_temp"),
-            per_device_train_batch_size=PER_DEVICE_BS,
-            gradient_accumulation_steps=GRAD_ACC_STEPS,
-            num_train_epochs=JOINT_EPOCHS,
-            learning_rate=2e-4,
-            # fp16=True, # <-- 【BUG 修复】删除此行
-            logging_steps=50,
-            save_strategy="no",
-            report_to="none",
-            gradient_checkpointing=True,
-        )
+    #     joint_training_args = TrainingArguments(
+    #         output_dir=os.path.join(RESULTS_DIR, "joint_training_temp"),
+    #         per_device_train_batch_size=PER_DEVICE_BS,
+    #         gradient_accumulation_steps=GRAD_ACC_STEPS,
+    #         num_train_epochs=JOINT_EPOCHS,
+    #         learning_rate=2e-4,
+    #         # fp16=True, # <-- 【BUG 修复】删除此行
+    #         logging_steps=50,
+    #         save_strategy="no",
+    #         report_to="none",
+    #         gradient_checkpointing=True,
+    #     )
 
-        joint_trainer = Trainer(
-            model=joint_model,
-            args=joint_training_args,
-            train_dataset=joint_train_dataset,
-            data_collator=data_collator,
-        )
+    #     joint_trainer = Trainer(
+    #         model=joint_model,
+    #         args=joint_training_args,
+    #         train_dataset=joint_train_dataset,
+    #         data_collator=data_collator,
+    #     )
 
-        joint_trainer.train()
+    #     joint_trainer.train()
 
-        print(f"--- Joint training complete. Saving adapter to {JOINT_ADAPTER_PATH} ---")
-        joint_model.save_pretrained(JOINT_ADAPTER_PATH)
-        print("Adapter saved.")
+    #     print(f"--- Joint training complete. Saving adapter to {JOINT_ADAPTER_PATH} ---")
+    #     joint_model.save_pretrained(JOINT_ADAPTER_PATH)
+    #     print("Adapter saved.")
 
-        del joint_trainer
-        torch.cuda.empty_cache()
+    #     del joint_trainer
+    #     torch.cuda.empty_cache()
 
-    # --- Evaluate the "Joint" model (whether trained or loaded) ---
-    print("\n--- Evaluating Joint Model ---")
+    # # --- Evaluate the "Joint" model (whether trained or loaded) ---
+    # print("\n--- Evaluating Joint Model ---")
 
-    eval_args_joint = TrainingArguments(
-        output_dir=os.path.join(RESULTS_DIR, "eval_temp_joint"),
-        per_device_eval_batch_size=PER_DEVICE_BS,
-        # fp16=True, # <-- 【BUG 修复】删除此行
-        report_to="none",
-        gradient_checkpointing=True,
-    )
+    # eval_args_joint = TrainingArguments(
+    #     output_dir=os.path.join(RESULTS_DIR, "eval_temp_joint"),
+    #     per_device_eval_batch_size=PER_DEVICE_BS,
+    #     # fp16=True, # <-- 【BUG 修复】删除此行
+    #     report_to="none",
+    #     gradient_checkpointing=True,
+    # )
 
-    eval_trainer_joint = Trainer(
-        model=joint_model,
-        args=eval_args_joint,
-        data_collator=data_collator,
-    )
+    # eval_trainer_joint = Trainer(
+    #     model=joint_model,
+    #     args=eval_args_joint,
+    #     data_collator=data_collator,
+    # )
 
-    eval_hotpot_joint = eval_trainer_joint.evaluate(eval_dataset=hotpot_val_tokenized)
-    print(f"  > Joint Model - HotpotQA Val Loss: {eval_hotpot_joint['eval_loss']:.4f}")
+    # eval_hotpot_joint = eval_trainer_joint.evaluate(eval_dataset=hotpot_val_tokenized)
+    # print(f"  > Joint Model - HotpotQA Val Loss: {eval_hotpot_joint['eval_loss']:.4f}")
 
-    eval_math_joint = eval_trainer_joint.evaluate(eval_dataset=math_val_tokenized)
-    print(f"  > Joint Model - MATH Val Loss: {eval_math_joint['eval_loss']:.4f}")
+    # eval_math_joint = eval_trainer_joint.evaluate(eval_dataset=math_val_tokenized)
+    # print(f"  > Joint Model - MATH Val Loss: {eval_math_joint['eval_loss']:.4f}")
 
-    del joint_model, eval_trainer_joint, eval_args_joint
-    torch.cuda.empty_cache()
+    # del joint_model, eval_trainer_joint, eval_args_joint
+    # torch.cuda.empty_cache()
 
 
     # --- 【已反转】Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
     print(f"\n--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---")
 
     # --- Phase 1: Train on MATH (or load from checkpoint) ---
-    if os.path.exists(os.path.join(TASK_B_ADAPTER_PATH, "adapter_model.safetensors")):
-        print(f"--- Found existing Task B (MATH) adapter. Loading from {TASK_B_ADAPTER_PATH} ---")
-        seq_model = PeftModel.from_pretrained(base_model, TASK_B_ADAPTER_PATH)
+    if os.path.exists(os.path.join(TASK_A_ADAPTER_PATH, "adapter_model.safetensors")):
+        print(f"--- Found existing Task A (MATH) adapter. Loading from {TASK_A_ADAPTER_PATH} ---")
+        seq_model = PeftModel.from_pretrained(base_model, TASK_A_ADAPTER_PATH)
         print("Adapter loaded successfully.")
 
     else:
-        print(f"--- No adapter found. Starting Phase 1: Training on Task B (MATH) ---")
+        print(f"--- No adapter found. Starting Phase 1: Training on Task A (MATH) ---")
         lora_config = get_lora_config()
         seq_model = get_peft_model(base_model, lora_config)
         seq_model.print_trainable_parameters()
 
-        seq_args_b = TrainingArguments(
-            output_dir=os.path.join(RESULTS_DIR, "seq_training_B_temp"),
+        seq_args_a = TrainingArguments(
+            output_dir=os.path.join(RESULTS_DIR, "seq_training_A"),
             per_device_train_batch_size=PER_DEVICE_BS,
             gradient_accumulation_steps=GRAD_ACC_STEPS,
-            num_train_epochs=TASK_B_EPOCHS,
+            num_train_epochs=TASK_A_EPOCHS,
             learning_rate=2e-4,
             # fp16=True, # <-- 【BUG 修复】删除此行
             logging_steps=10,
@@ -347,25 +347,25 @@ def main():
             gradient_checkpointing=True,
         )
 
-        seq_trainer_b = Trainer(
+        seq_trainer_a = Trainer(
             model=seq_model,
-            args=seq_args_b,
+            args=seq_args_a,
             train_dataset=math_train_tokenized, # <-- 训练 MATH
             eval_dataset=math_val_tokenized,
             data_collator=data_collator,
         )
 
-        seq_trainer_b.train()
+        seq_trainer_a.train()
 
-        print(f"--- Phase 1 (MATH) training complete. Saving adapter to {TASK_B_ADAPTER_PATH} ---")
-        seq_model.save_pretrained(TASK_B_ADAPTER_PATH)
+        print(f"--- Phase 1 (MATH) training complete. Saving adapter to {TASK_A_ADAPTER_PATH} ---")
+        seq_model.save_pretrained(TASK_A_ADAPTER_PATH)
         print("Adapter saved.")
 
-        del seq_trainer_b
+        del seq_trainer_a
         torch.cuda.empty_cache()
 
-     # --- Evaluate the "Task B Expert" model (whether trained or loaded) ---
-    print("\n--- Evaluating Model after Phase 1 (Task B Expert) ---")
+     # --- Evaluate the "Task A Expert" model (whether trained or loaded) ---
+    print("\n--- Evaluating Model after Phase 1 (Task A Expert) ---")
     eval_args = TrainingArguments(
         output_dir=os.path.join(RESULTS_DIR, "eval_temp"),
         per_device_eval_batch_size=PER_DEVICE_BS,
@@ -384,11 +384,11 @@ def main():
     eval_hotpot_phase1 = eval_trainer.evaluate(eval_dataset=hotpot_val_tokenized)
     print(f"  > Task B Expert - HotpotQA Val Loss: {eval_hotpot_phase1['eval_loss']:.4f}")
     eval_math_phase1 = eval_trainer.evaluate(eval_dataset=math_val_tokenized)
-    print(f"  > Task B Expert - MATH Val Loss: {eval_math_phase1['eval_loss']:.4f}")
+    print(f"  > Task A Expert - MATH Val Loss: {eval_math_phase1['eval_loss']:.4f}")
     del eval_trainer, eval_args
     torch.cuda.empty_cache()
     # --- Phase 2: Train on HotpotQA (Forgetting MATH happens here) ---
-    print(f"\n  --- Phase 2: Training on Task A (HotpotQA) ---")
+    print(f"\n  --- Phase 2: Training on Task B (HotpotQA) ---")
     history = {"steps": [], "hotpot_loss": [], "math_loss": []}
     # Custom Trainer to log forgetting
     class ForgettingTrackerCallback(TrainerCallback):
@@ -427,12 +427,12 @@ def main():
               self.is_evaluating = False # <-- 别忘了在这里释放锁
               return
           print(f"\n--- Custom Eval at Step {state.global_step} ---")
-          print("Evaluating on Task A (HotpotQA)...")
+          print("Evaluating on Task B (HotpotQA)...")
           # 使用 trainer 的 evaluate 方法
           hotpot_metrics = self.trainer.evaluate(eval_dataset=self.hotpot_eval_dataset)
           hotpot_loss = hotpot_metrics['eval_loss']
           print(f"  > Step {state.global_step} - HotpotQA Val Loss: {hotpot_loss:.4f} (LEARNING?)")
-          print("Evaluating on Task B (MATH)...")
+          print("Evaluating on Task A (MATH)...")
           math_metrics = self.trainer.evaluate(eval_dataset=self.math_eval_dataset)
           math_loss = math_metrics['eval_loss']
           print(f"  > Step {state.global_step} - MATH Val Loss: {math_loss:.4f} (FORGETTING?)")
@@ -445,11 +445,11 @@ def main():
           self.trainer.model.train()
 
 
-    seq_args_a = TrainingArguments(
-        output_dir=os.path.join(RESULTS_DIR, "seq_training_A"),
+    seq_args_b = TrainingArguments(
+        output_dir=os.path.join(RESULTS_DIR, "seq_training_B"),
         per_device_train_batch_size=PER_DEVICE_BS,
         gradient_accumulation_steps=GRAD_ACC_STEPS,
-        num_train_epochs=TASK_A_EPOCHS,
+        num_train_epochs=TASK_B_EPOCHS,
         learning_rate=7e-5,
         logging_steps=10,
         save_strategy="no",
@@ -469,9 +469,9 @@ def main():
         }
     )
     # 【修复 3】: 实例化一个 *标准* Trainer, 并传入回调
-    seq_trainer_a = Trainer(
+    seq_trainer_b = Trainer(
         model=seq_model,
-        args=seq_args_a,
+        args=seq_args_b,
         train_dataset=hotpot_train_tokenized,
         eval_dataset=hotpot_val_tokenized,
         data_collator=data_collator,
@@ -479,8 +479,8 @@ def main():
     )
     # 【修复 4】: 将 trainer 实例链接回回调
     # (回调需要这个引用来调用 self.trainer.evaluate())
-    tracker_callback.set_trainer(seq_trainer_a)
-    seq_trainer_a.train()
+    tracker_callback.set_trainer(seq_trainer_b)
+    seq_trainer_b.train()
 
     # --- 5. Plot Results ---
     print("\n--- Saving History Data and Generating Plot ---")
@@ -496,11 +496,11 @@ def main():
     # --- [END] ---
 
     plt.figure(figsize=(12, 6))
-    plt.plot(history["steps"], history["hotpot_loss"], 'o-', label="Task A (HotpotQA) Loss", color="blue")
-    plt.plot(history["steps"], history["math_loss"], 'o-', label="Task B (MATH) Loss", color="red")
+    plt.plot(history["steps"], history["hotpot_loss"], 'o-', label="Task B (HotpotQA) Loss", color="blue")
+    plt.plot(history["steps"], history["math_loss"], 'o-', label="Task A (MATH) Loss", color="red")
 
     plt.title(f"Catastrophic Forgetting: MATH -> HotpotQA (Model: {MODEL_NAME} FP32 LoRA)")
-    plt.xlabel(f"Training Steps on Task A (HotpotQA) (Total Epochs: {TASK_A_EPOCHS})")
+    plt.xlabel(f"Training Steps on Task B (HotpotQA) (Total Epochs: {TASK_B_EPOCHS})")
     plt.ylabel("Validation Loss")
     plt.legend()
     plt.grid(True)
