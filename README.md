@@ -1,2 +1,3 @@
 # UCB_CS182_project
-The repository for the project of UCB CS182 deeplearning
+
+Our experimental findings indicate that incorporating mixed data substantially mitigates catastrophic forgetting. Through the figures we can see that the degree of mitigation increases as the proportion of mixed data becomes larger. Notably, when using 90% Math and 10% HotpotQA, the reduction in forgetting is already significant. Increasing the mixing ratio further (e.g., to 80%–20% or 50%–50%) continues to provide additional mitigation, but the improvements become marginal rather than substantial. In contrast, the transition from no mixing to any level of data mixing yields a pronounced reduction in catastrophic forgetting, highlighting that even a small amount of cross-task data substantially stabilizes performance.
