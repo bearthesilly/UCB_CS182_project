@@ -212,46 +212,38 @@ def main():
     # --- Experiment 2: Sequential Training (CF) [MATH -> CodeParrot] ---
     print(f"\n--- Starting Experiment 2: Sequential Training (CF) [MATH -> CodeParrot] ---")
 
-    # --- Phase 1: Train on MATH (or load from checkpoint) ---
-    if os.path.exists(os.path.join(TASK_A_ADAPTER_PATH, "adapter_model.safetensors")):
-        print(f"--- Found existing Task A (MATH) adapter. Loading from {TASK_A_ADAPTER_PATH} ---")
-        seq_model = PeftModel.from_pretrained(base_model, TASK_A_ADAPTER_PATH)
-        print("Adapter loaded successfully.")
+    lora_config = get_lora_config()
+    seq_model = get_peft_model(base_model, lora_config)
+    seq_model.print_trainable_parameters()
 
-    else:
-        print(f"--- No adapter found. Starting Phase 1: Training on Task A (MATH) ---")
-        lora_config = get_lora_config()
-        seq_model = get_peft_model(base_model, lora_config)
-        seq_model.print_trainable_parameters()
+    seq_args_a = TrainingArguments(
+        output_dir=os.path.join(RESULTS_DIR, "seq_training_A"),
+        per_device_train_batch_size=PER_DEVICE_BS,
+        gradient_accumulation_steps=GRAD_ACC_STEPS,
+        num_train_epochs=TASK_A_EPOCHS,
+        learning_rate=2e-4,
+        logging_steps=10,
+        save_strategy="no",
+        report_to="none",
+        gradient_checkpointing=True,
+    )
 
-        seq_args_a = TrainingArguments(
-            output_dir=os.path.join(RESULTS_DIR, "seq_training_A"),
-            per_device_train_batch_size=PER_DEVICE_BS,
-            gradient_accumulation_steps=GRAD_ACC_STEPS,
-            num_train_epochs=TASK_A_EPOCHS,
-            learning_rate=2e-4,
-            logging_steps=10,
-            save_strategy="no",
-            report_to="none",
-            gradient_checkpointing=True,
-        )
+    seq_trainer_a = Trainer(
+        model=seq_model,
+        args=seq_args_a,
+        train_dataset=math_train_tokenized, 
+        eval_dataset=math_val_tokenized,
+        data_collator=data_collator,
+    )
 
-        seq_trainer_a = Trainer(
-            model=seq_model,
-            args=seq_args_a,
-            train_dataset=math_train_tokenized, 
-            eval_dataset=math_val_tokenized,
-            data_collator=data_collator,
-        )
+    seq_trainer_a.train()
 
-        seq_trainer_a.train()
+    print(f"--- Phase 1 (MATH) training complete. Saving adapter to {TASK_A_ADAPTER_PATH} ---")
+    seq_model.save_pretrained(TASK_A_ADAPTER_PATH)
+    print("Adapter saved.")
 
-        print(f"--- Phase 1 (MATH) training complete. Saving adapter to {TASK_A_ADAPTER_PATH} ---")
-        seq_model.save_pretrained(TASK_A_ADAPTER_PATH)
-        print("Adapter saved.")
-
-        del seq_trainer_a
-        torch.cuda.empty_cache()
+    del seq_trainer_a
+    torch.cuda.empty_cache()
 
      # --- Evaluate the "Task A Expert" model ---
     print("\n--- Evaluating Model after Phase 1 (Task A Expert) ---")
