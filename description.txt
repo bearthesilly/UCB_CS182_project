@@ -1,0 +1,12 @@
+experiment setting:
+max_sequence length是2048，per device train batch size是64， gradient accumulation step是1
+使用TinyLlama模型，参数量1.1b，Lora微调
+
+具体训练部分分为两个phase先后训练，先进行phase1训练，训练集样本是4000的math题目，验证集样本400的math题目，训练2个epoch。
+然后进行phase2的训练，训练集样本是4000的hotpotQA题目，验证集样本400的math题目和400的hotpotQA题目。126个step。
+
+接下来我们更改了phase1和phase2的训练集样本，保持训练集总样本数4000不变，在phase1的math题目种中混入一部分hotpotQA题目，在phase2的hotpotQA题目中混入一部分math题目，我们总共进行了三次实验，第一次实验保持混合比为10%，即phase1训练集样本中存在3600math题目和400hotpotQA题目；phase2训练集样本中存在3600hotpotQA题目和400math题目。第二次实验保持混合比为20%，即phase1训练集样本中存在3200math题目和800hotpotQA题目；phase2训练集样本中存在3200hotpotQA题目和800math题目. 第三次实验保持混合比为50%，即phase1训练集样本中存在2000math题目和2000hotpotQA题目；phase2训练集样本中存在2000hotpotQA题目和2000math题目. 最终我们将三次实验和baseline中phase2部分在不同训练step下的 validation loss记录下来，并绘制成图表。
+
+figure:
+
+图表中，无论训练集混合比怎么变，hotpotQA在phase2的validation loss 始终保持在2左右，偏差不超过0.1. 但是math在phase2的的validation loss受混合比影响较大，当混合比为0时（i.e. baseline），math的loss随training step上升很快，并且在step约等于70处超过了hotpotQA的loss，最终达到了2.2的loss。比phase1训练完之后高了1.2。 但是当我们将混合比提升到10%的时候，可以看到虽然math在phase2的初始loss有少量上升（0.03左右），但是整体loss随training step上升较为平缓，总体上升不超过0.3，最终达到了1.34的loss，与0混合比的baseline相比已经是大大减轻了灾难性遗忘的现象。 当我们将混合比提升到20%时，math在phase2的初始loss依旧有0.03的少量上升，训练完的最终loss达到1.23，比10%的混合比实验减轻灾难性遗忘的效果更好。当我们将混合比提升到50%时，math在phase2的初始loss有0.09的上升，训练完的最终loss达到1.21. 比20%混合比实验的最终loss低了0.02，但比20%混合比实验的初始loss高了0.09. 可以得出结论，随着混合比不断上升，math在phase2的初始loss不断变高，最终训练完的loss不断变低。
