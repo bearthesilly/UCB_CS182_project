@@ -126,12 +126,9 @@ def preprocess(example, tokenizer, formatter):
 # --- 3. Model Loading (【重构】) ---
 
 def get_model_and_tokenizer_base():
-    """
-    只加载 FP16 TinyLlama 基础模型和 Tokenizer。
-    """
     model = AutoModelForCausalLM.from_pretrained(
         MODEL_NAME,
-        torch_dtype=torch.float16, # <-- 加载时仍然用 FP16 (节省 RAM)，但训练会是 FP32
+        dtype=torch.bfloat16,
         device_map="auto",
         trust_remote_code=True,
     )
@@ -247,77 +244,6 @@ def main():
 
     print(f"MATH: {len(math_train_tokenized)} train, {len(math_val_tokenized)} val (after filtering)")
 
-    # # --- Experiment 1: Joint Training (Control Group) ---
-    # print(f"\n--- Starting Experiment 1: Joint Training ---")
-
-    # if os.path.exists(os.path.join(JOINT_ADAPTER_PATH, "adapter_model.safetensors")):
-    #     print(f"--- Found existing Joint adapter. Loading from {JOINT_ADAPTER_PATH} ---")
-    #     joint_model = PeftModel.from_pretrained(base_model, JOINT_ADAPTER_PATH)
-    #     print("Adapter loaded successfully.")
-
-    # else:
-    #     print(f"--- No Joint adapter found. Starting Joint Training ---")
-    #     lora_config = get_lora_config()
-    #     joint_model = get_peft_model(base_model, lora_config)
-    #     joint_model.print_trainable_parameters()
-
-    #     joint_train_dataset = concatenate_datasets([hotpot_train_tokenized, math_train_tokenized]).shuffle(seed=42)
-
-    #     joint_training_args = TrainingArguments(
-    #         output_dir=os.path.join(RESULTS_DIR, "joint_training_temp"),
-    #         per_device_train_batch_size=PER_DEVICE_BS,
-    #         gradient_accumulation_steps=GRAD_ACC_STEPS,
-    #         num_train_epochs=JOINT_EPOCHS,
-    #         learning_rate=2e-4,
-    #         # fp16=True, # <-- 【BUG 修复】删除此行
-    #         logging_steps=50,
-    #         save_strategy="no",
-    #         report_to="none",
-    #         gradient_checkpointing=True,
-    #     )
-
-    #     joint_trainer = Trainer(
-    #         model=joint_model,
-    #         args=joint_training_args,
-    #         train_dataset=joint_train_dataset,
-    #         data_collator=data_collator,
-    #     )
-
-    #     joint_trainer.train()
-
-    #     print(f"--- Joint training complete. Saving adapter to {JOINT_ADAPTER_PATH} ---")
-    #     joint_model.save_pretrained(JOINT_ADAPTER_PATH)
-    #     print("Adapter saved.")
-
-    #     del joint_trainer
-    #     torch.cuda.empty_cache()
-
-    # # --- Evaluate the "Joint" model (whether trained or loaded) ---
-    # print("\n--- Evaluating Joint Model ---")
-
-    # eval_args_joint = TrainingArguments(
-    #     output_dir=os.path.join(RESULTS_DIR, "eval_temp_joint"),
-    #     per_device_eval_batch_size=PER_DEVICE_BS,
-    #     # fp16=True, # <-- 【BUG 修复】删除此行
-    #     report_to="none",
-    #     gradient_checkpointing=True,
-    # )
-
-    # eval_trainer_joint = Trainer(
-    #     model=joint_model,
-    #     args=eval_args_joint,
-    #     data_collator=data_collator,
-    # )
-
-    # eval_hotpot_joint = eval_trainer_joint.evaluate(eval_dataset=hotpot_val_tokenized)
-    # print(f"  > Joint Model - HotpotQA Val Loss: {eval_hotpot_joint['eval_loss']:.4f}")
-
-    # eval_math_joint = eval_trainer_joint.evaluate(eval_dataset=math_val_tokenized)
-    # print(f"  > Joint Model - MATH Val Loss: {eval_math_joint['eval_loss']:.4f}")
-
-    # del joint_model, eval_trainer_joint, eval_args_joint
-    # torch.cuda.empty_cache()
-
 
     # --- 【已反转】Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
     print(f"\n--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---")
@@ -325,7 +251,7 @@ def main():
     # --- Phase 1: Train on MATH (or load from checkpoint) ---
     if os.path.exists(os.path.join(TASK_A_ADAPTER_PATH, "adapter_model.safetensors")):
         print(f"--- Found existing Task A (MATH) adapter. Loading from {TASK_A_ADAPTER_PATH} ---")
-        seq_model = PeftModel.from_pretrained(base_model, TASK_A_ADAPTER_PATH)
+        seq_model = PeftModel.from_pretrained(base_model, TASK_A_ADAPTER_PATH, is_trainable=True)
         print("Adapter loaded successfully.")
 
     else:
@@ -340,7 +266,7 @@ def main():
             gradient_accumulation_steps=GRAD_ACC_STEPS,
             num_train_epochs=TASK_A_EPOCHS,
             learning_rate=2e-4,
-            # fp16=True, # <-- 【BUG 修复】删除此行
+            bf16=True, # <-- 【BUG 修复】删除此行
             logging_steps=10,
             save_strategy="no",
             report_to="none",
@@ -369,7 +295,7 @@ def main():
     eval_args = TrainingArguments(
         output_dir=os.path.join(RESULTS_DIR, "eval_temp"),
         per_device_eval_batch_size=PER_DEVICE_BS,
-        # fp16=True, # <-- 【BUG 修复】删除此行
+        bf16=True, # <-- 【BUG 修复】删除此行
         report_to="none",
         gradient_checkpointing=True,
     )
