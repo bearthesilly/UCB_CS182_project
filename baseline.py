@@ -42,7 +42,7 @@ TASK_B_EPOCHS = 8
 
 MAX_SEQ_LENGTH = 512
 PER_DEVICE_BS = 4 # This will be the batch size for *each* task's DataLoader
-GRAD_ACC_STEPS = 4 # Kept for consistency, but manual loop handles 1 step at a time
+GRAD_ACC_STEPS = 1 # Kept for consistency, but manual loop handles 1 step at a time
 
 N_TRAIN_EXAMPLES = 4000
 N_VAL_EXAMPLES = 400
