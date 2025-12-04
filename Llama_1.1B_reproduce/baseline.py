@@ -14,14 +14,13 @@ import matplotlib.pyplot as plt
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
-    # BitsAndBytesConfig, # <-- 已移除
     TrainingArguments,
     Trainer,
     DataCollatorForLanguageModeling,
 )
 from datasets import load_dataset, concatenate_datasets
 from transformers.trainer_callback import TrainerCallback
-# 【已修复】导入 PeftModel
+
 from peft import LoraConfig, get_peft_model, PeftModel
 from tqdm import tqdm
 import warnings
@@ -38,18 +37,16 @@ HOTPOT_DATASET_CONFIG = "distractor"
 MATH_DATASET_NAME = "qwedsacf/competition_math"
 RESULTS_DIR = "./drive/MyDrive/"
 
-# 【检查点路径 1 - 对照组】
-JOINT_ADAPTER_PATH = os.path.join(RESULTS_DIR, "joint_adapter_llama_fp32")
 
-# 【检查点路径 2 - 实验组 Phase 1 (MATH)】
+JOINT_ADAPTER_PATH = os.path.join(RESULTS_DIR, "joint_adapter_llama_fp32")
 TASK_A_ADAPTER_PATH = os.path.join(RESULTS_DIR, "math_adapter_llama_fp32")
 
 
-# --- VRAM-Saving Config ---
+# --- Config ---
 MAX_SEQ_LENGTH = 2048
-# 【BUG 修复】降低 BS 以适应 FP32
+
 PER_DEVICE_BS = 64
-GRAD_ACC_STEPS = 1 # (有效批量大小仍然是 8 * 4 = 32)
+GRAD_ACC_STEPS = 1
 
 # --- Experiment Config ---
 N_TRAIN_EXAMPLES = 4000
@@ -85,25 +82,17 @@ def format_math(example):
     return text
 
 def filter_by_length(example, tokenizer, formatter):
-    """
-    只检查长度。返回 True (保留) 或 False (丢弃)。
-    """
     text = formatter(example)
     tokenized = tokenizer(text, max_length=MAX_SEQ_LENGTH + 1, truncation=False, padding=False)
     return len(tokenized['input_ids']) <= MAX_SEQ_LENGTH
 
-# 【BUG 修复】这是修复了 1.7 Loss 问题 和 ValueError 的 Preprocess 函数
 def preprocess(example, tokenizer, formatter):
-    """
-    【已修正】
-    格式化文本，应用损失掩码，并填充到最大长度。
-    """
     text = formatter(example)
     tokenized = tokenizer(
         text,
         max_length=MAX_SEQ_LENGTH,
         truncation=True,
-        padding="max_length", # 修复 ValueError
+        padding="max_length", 
     )
     labels = tokenized["input_ids"].copy()
     inst_token_id = tokenizer.convert_tokens_to_ids("]")
@@ -123,7 +112,7 @@ def preprocess(example, tokenizer, formatter):
     tokenized["labels"] = labels
     return tokenized
 
-# --- 3. Model Loading (【重构】) ---
+# --- 3. Model Loading ---
 
 def get_model_and_tokenizer_base():
     model = AutoModelForCausalLM.from_pretrained(
@@ -135,16 +124,11 @@ def get_model_and_tokenizer_base():
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "right"
-
-    # 在基础模型上启用梯度检查点
     model.gradient_checkpointing_enable()
 
     return model, tokenizer
 
 def get_lora_config():
-    """
-    只定义 LoRA 配置。
-    """
     return LoraConfig(
         r=8,
         lora_alpha=16,
@@ -159,15 +143,11 @@ def get_lora_config():
         task_type="CAUSAL_LM",
     )
 def manual_evaluate(model, dataloader, device):
-    """
-    在给定 dataloader 上手动运行评估。
-    """
-    model.eval()  # <--- 设置为评估模式
+    model.eval() 
     total_loss = 0
     total_steps = 0
-    with torch.no_grad(): # <--- 禁用梯度计算
+    with torch.no_grad(): 
         for batch in tqdm(dataloader, desc="Evaluating", leave=False):
-            # 将批次移动到模型所在的设备
             batch = {k: v.to(device) for k, v in batch.items() if k in ["input_ids", "attention_mask", "labels"]}
 
             outputs = model(**batch)
@@ -176,7 +156,7 @@ def manual_evaluate(model, dataloader, device):
             total_loss += loss.item()
             total_steps += 1
 
-    model.train() # <--- 【重要】将模型设置回训练模式
+    model.train() 
     return total_loss / total_steps
 
 # --- 4. Main Experiment Logic ---
@@ -245,7 +225,7 @@ def main():
     print(f"MATH: {len(math_train_tokenized)} train, {len(math_val_tokenized)} val (after filtering)")
 
 
-    # --- 【已反转】Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+    # --- Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
     print(f"\n--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---")
 
     # --- Phase 1: Train on MATH (or load from checkpoint) ---
@@ -266,7 +246,7 @@ def main():
             gradient_accumulation_steps=GRAD_ACC_STEPS,
             num_train_epochs=TASK_A_EPOCHS,
             learning_rate=2e-4,
-            bf16=True, # <-- 【BUG 修复】删除此行
+            bf16=True, 
             logging_steps=10,
             save_strategy="no",
             report_to="none",
@@ -276,7 +256,7 @@ def main():
         seq_trainer_a = Trainer(
             model=seq_model,
             args=seq_args_a,
-            train_dataset=math_train_tokenized, # <-- 训练 MATH
+            train_dataset=math_train_tokenized, 
             eval_dataset=math_val_tokenized,
             data_collator=data_collator,
         )
@@ -295,7 +275,7 @@ def main():
     eval_args = TrainingArguments(
         output_dir=os.path.join(RESULTS_DIR, "eval_temp"),
         per_device_eval_batch_size=PER_DEVICE_BS,
-        bf16=True, # <-- 【BUG 修复】删除此行
+        bf16=True, 
         report_to="none",
         gradient_checkpointing=True,
     )
@@ -324,37 +304,27 @@ def main():
           self.math_eval_dataset = math_val
           self.history = history_log
           self.trainer = None
-          # --- 【修复】---
-          # 添加一个 "锁" 来防止无限递归
           self.is_evaluating = False
-          # ----------------
-          # 记录初始状态 (Step 0)
           self.history["steps"].append(0)
           self.history["hotpot_loss"].append(start_metrics['hotpot_loss'])
           self.history["math_loss"].append(start_metrics['math_loss'])
           print("Initializing ForgettingTrackerCallback with starting metrics.")
       def set_trainer(self, trainer):
-          """在 Trainer 例化后, 注入对它的引用。"""
           self.trainer = trainer
           print("Trainer reference set in callback.")
 
       def on_log(self, args, state, control, **kwargs):
-          """在 'logging_steps' 触发时被调用。"""
-          # --- 【修复 1】---
-          # 如果我们已经在这个函数中 (因为递归调用), 立即退出。
           if self.is_evaluating:
               return
-          # --- 【修复 2】---
-          # "获取" 锁
           self.is_evaluating = True
-          # 确保 trainer 引用已被设置
+
           if not self.trainer:
               print("WARNING: Trainer reference not set in callback, skipping eval.")
-              self.is_evaluating = False # <-- 别忘了在这里释放锁
+              self.is_evaluating = False 
               return
           print(f"\n--- Custom Eval at Step {state.global_step} ---")
           print("Evaluating on Task B (HotpotQA)...")
-          # 使用 trainer 的 evaluate 方法
+
           hotpot_metrics = self.trainer.evaluate(eval_dataset=self.hotpot_eval_dataset)
           hotpot_loss = hotpot_metrics['eval_loss']
           print(f"  > Step {state.global_step} - HotpotQA Val Loss: {hotpot_loss:.4f} (LEARNING?)")
@@ -365,8 +335,7 @@ def main():
           self.history["steps"].append(state.global_step)
           self.history["hotpot_loss"].append(hotpot_loss)
           self.history["math_loss"].append(math_loss)
-          # --- 【修复 3】---
-          # "释放" 锁, 以便下一次 on_log 可以运行
+
           self.is_evaluating = False
           self.trainer.model.train()
 
@@ -379,12 +348,11 @@ def main():
         learning_rate=7e-5,
         logging_steps=10,
         save_strategy="no",
-        report_to=[],         # <-- 保持这个设置
-        # disable_tqdm=True,  # <-- 保持这个设置
+        report_to=[],         
         gradient_checkpointing=True,
     )
     seq_model.enable_input_require_grads()
-    # 【修复 2】: 实例化 *新* 的 Callback
+
     tracker_callback = ForgettingTrackerCallback(
         hotpot_val=hotpot_val_tokenized,
         math_val=math_val_tokenized,
@@ -394,24 +362,22 @@ def main():
             'math_loss': eval_math_phase1['eval_loss'],
         }
     )
-    # 【修复 3】: 实例化一个 *标准* Trainer, 并传入回调
+
     seq_trainer_b = Trainer(
         model=seq_model,
         args=seq_args_b,
         train_dataset=hotpot_train_tokenized,
         eval_dataset=hotpot_val_tokenized,
         data_collator=data_collator,
-        callbacks=[tracker_callback]  # <-- 在这里传入回调
+        callbacks=[tracker_callback]  
     )
-    # 【修复 4】: 将 trainer 实例链接回回调
-    # (回调需要这个引用来调用 self.trainer.evaluate())
+
     tracker_callback.set_trainer(seq_trainer_b)
     seq_trainer_b.train()
 
     # --- 5. Plot Results ---
     print("\n--- Saving History Data and Generating Plot ---")
 
-    # --- 保存 history data 到 JSON ---
     history_filename = os.path.join(RESULTS_DIR, "forgetting_history_MATH_to_HotpotQA_fp32.json")
     try:
         with open(history_filename, 'w') as f:
@@ -419,7 +385,7 @@ def main():
         print(f"History data saved to {history_filename}")
     except Exception as e:
         print(f"Error saving history to JSON: {e}")
-    # --- [END] ---
+
 
     plt.figure(figsize=(12, 6))
     plt.plot(history["steps"], history["hotpot_loss"], 'o-', label="Task B (HotpotQA) Loss", color="blue")
