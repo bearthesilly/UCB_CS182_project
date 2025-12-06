@@ -314,11 +314,13 @@ def run_sequential_training(loaders):
 
 def plot_results(joint_history, seq_history):
     """
-    Generates the 4-panel plot showing the difference between
-    Joint and Sequential (CF) training.
+    Plot two panels:
+      - Left: Accuracy (Task A and Task B)
+      - Right: Loss (Task A and Task B, log-scale)
+    Joint vs Sequential curves are shown together for each metric.
     """
     print("\n--- Generating Plots ---")
-    
+
     # Helper to extract data from history lists
     def get_metrics(history):
         epochs = [h['epoch'] for h in history]
@@ -331,59 +333,49 @@ def plot_results(joint_history, seq_history):
     j_epochs, j_acc_a, j_loss_a, j_acc_b, j_loss_b = get_metrics(joint_history)
     s_epochs, s_acc_a, s_loss_a, s_acc_b, s_loss_b = get_metrics(seq_history)
 
-    fig, axes = plt.subplots(2, 2, figsize=(16, 12))
-    fig.suptitle("Catastrophic Forgetting: Joint vs. Sequential Training on AG News", fontsize=16)
+    # Larger fonts
+    plt.rcParams['figure.figsize'] = (16, 8)
+    plt.rcParams['font.size'] = 16
+    plt.rcParams['axes.titlesize'] = 20
+    plt.rcParams['axes.labelsize'] = 18
+    plt.rcParams['legend.fontsize'] = 16
+    plt.rcParams['xtick.labelsize'] = 14
+    plt.rcParams['ytick.labelsize'] = 14
 
-    # --- Plot 1: Task A Accuracy (The Forgetting Curve) ---
-    ax1 = axes[0, 0]
-    ax1.plot(j_epochs, j_acc_a, 'o-', label="Joint Training (Control)")
-    ax1.plot(s_epochs, s_acc_a, 'o-', label="Sequential Training (CF)")
-    # Add a vertical line to show where Task B training begins
-    ax1.axvline(x=CONFIG["num_epochs_a"], color='r', linestyle='--', label="Task B Starts")
-    ax1.set_title("Task A (World/Sports) Accuracy")
-    ax1.set_ylabel("Accuracy")
+    fig, axes = plt.subplots(1, 2)
+
+    # Panel 1: Accuracy (Task A and Task B)
+    ax1 = axes[0]
+    ax1.plot(j_epochs, j_acc_a, 'o-', label="Task A Accuracy (Joint)", color="#1f77b4", linewidth=2, markersize=6)
+    ax1.plot(s_epochs, s_acc_a, 'o-', label="Task A Accuracy (Sequential)", color="#ff7f0e", linewidth=2, markersize=6)
+    ax1.plot(j_epochs, j_acc_b, 'o-', label="Task B Accuracy (Joint)", color="#2ca02c", linewidth=2, markersize=6)
+    ax1.plot(s_epochs, s_acc_b, 'o-', label="Task B Accuracy (Sequential)", color="#d62728", linewidth=2, markersize=6)
+    ax1.axvline(x=CONFIG["num_epochs_a"], color='gray', linestyle='--', linewidth=1.5, label="Task B starts")
+    ax1.set_title("Accuracy Comparison")
     ax1.set_xlabel("Epoch")
-    ax1.legend()
-    ax1.grid(True)
+    ax1.set_ylabel("Accuracy")
+    ax1.grid(True, alpha=0.3)
+    ax1.legend(loc="best")
 
-    # --- Plot 2: Task B Accuracy (The Learning Curve) ---
-    ax2 = axes[0, 1]
-    ax2.plot(j_epochs, j_acc_b, 'o-', label="Joint Training (Control)")
-    ax2.plot(s_epochs, s_acc_b, 'o-', label="Sequential Training (CF)")
-    ax2.axvline(x=CONFIG["num_epochs_a"], color='r', linestyle='--', label="Task B Starts")
-    ax2.set_title("Task B (Business/Sci) Accuracy")
-    ax2.set_ylabel("Accuracy")
+    # Panel 2: Loss (Task A and Task B)
+    ax2 = axes[1]
+    ax2.plot(j_epochs, j_loss_a, 'o-', label="Task A Loss (Joint)", color="#1f77b4", linewidth=2, markersize=6)
+    ax2.plot(s_epochs, s_loss_a, 'o-', label="Task A Loss (Sequential)", color="#ff7f0e", linewidth=2, markersize=6)
+    ax2.plot(j_epochs, j_loss_b, 'o-', label="Task B Loss (Joint)", color="#2ca02c", linewidth=2, markersize=6)
+    ax2.plot(s_epochs, s_loss_b, 'o-', label="Task B Loss (Sequential)", color="#d62728", linewidth=2, markersize=6)
+    ax2.axvline(x=CONFIG["num_epochs_a"], color='gray', linestyle='--', linewidth=1.5, label="Task B starts")
+    ax2.set_title("Loss Comparison (log scale)")
     ax2.set_xlabel("Epoch")
-    ax2.legend()
-    ax2.grid(True)
+    ax2.set_ylabel("Loss")
+    ax2.set_yscale('log')
+    ax2.grid(True, alpha=0.3)
+    ax2.legend(loc="best")
 
-    # --- Plot 3: Task A Loss (The Forgetting Curve) ---
-    ax3 = axes[1, 0]
-    ax3.plot(j_epochs, j_loss_a, 'o-', label="Joint Training (Control)")
-    ax3.plot(s_epochs, s_loss_a, 'o-', label="Sequential Training (CF)")
-    ax3.axvline(x=CONFIG["num_epochs_a"], color='r', linestyle='--', label="Task B Starts")
-    ax3.set_title("Task A (World/Sports) Loss")
-    ax3.set_ylabel("Loss")
-    ax3.set_xlabel("Epoch")
-    ax3.legend()
-    ax3.grid(True)
-    ax3.set_yscale('log') # Loss often explodes, log scale is better
-
-    # --- Plot 4: Task B Loss (The Learning Curve) ---
-    ax4 = axes[1, 1]
-    ax4.plot(j_epochs, j_loss_b, 'o-', label="Joint Training (Control)")
-    ax4.plot(s_epochs, s_loss_b, 'o-', label="Sequential Training (CF)")
-    ax4.axvline(x=CONFIG["num_epochs_a"], color='r', linestyle='--', label="Task B Starts")
-    ax4.set_title("Task B (Business/Sci) Loss")
-    ax4.set_ylabel("Loss")
-    ax4.set_xlabel("Epoch")
-    ax4.legend()
-    ax4.grid(True)
-    
-    plt.tight_layout(rect=[0, 0.03, 1, 0.95])
-    plt.savefig("catastrophic_forgetting_results.png")
-    print("\nResults saved to 'catastrophic_forgetting_results.png'")
+    plt.tight_layout()
+    plt.savefig("catastrophic_forgetting_results_compact.png", dpi=200)
+    print("\nResults saved to 'catastrophic_forgetting_results_compact.png'")
     plt.show()
+
 
 
 # --- 6. Main Execution ---

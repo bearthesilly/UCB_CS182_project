@@ -40,7 +40,7 @@ GRAD_ACC_STEPS = 1 # Kept for consistency, but manual loop handles 1 step at a t
 # --- Experiment Config ---
 N_TRAIN_EXAMPLES = 4000
 N_VAL_EXAMPLES = 400
-LEARNING_RATE = 7e-5       # Using the rate from the original Task A / Joint training
+LEARNING_RATE = 2e-4       # Using the rate from the original Task A / Joint training
 INTERLEAVE_EPOCHS = 4      # Doubled epochs (was 2 in baseline)
 LOGGING_STEPS = 10         # Evaluate every 10 *batches* (e.g., 5 MATH, 5 HotpotQA)
 
