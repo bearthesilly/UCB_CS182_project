@@ -2,6 +2,15 @@ import os
 import json
 import matplotlib.pyplot as plt
 
+plt.rcParams.update({
+    "font.size": 20,          
+    "axes.titlesize": 22,     
+    "axes.labelsize": 20,    
+    "xtick.labelsize": 16,    
+    "ytick.labelsize": 16,    
+    "legend.fontsize": 10     
+})
+
 # JSON directory
 JSON_DIR = "./json/"
 
