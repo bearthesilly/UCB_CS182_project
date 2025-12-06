@@ -10,10 +10,11 @@ from transformers import (
     DataCollatorForLanguageModeling,
     Trainer,
     TrainerCallback,
-    TrainingArguments
+    TrainingArguments,
+    BitsAndBytesConfig,
 )
 from datasets import load_dataset, concatenate_datasets
-from peft import LoraConfig, get_peft_model, PeftModel
+from peft import LoraConfig, get_peft_model, PeftModel, prepare_model_for_kbit_training
 from tqdm import tqdm
 import warnings
 from torch.utils.data import DataLoader
@@ -30,18 +31,20 @@ except ImportError:
 
 warnings.filterwarnings("ignore")
 
-MODEL_NAME = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+# MODEL_NAME = "learnanything/llama-7b-huggingface"
+# MODEL_NAME = "meta-llama/Llama-2-7b"
+MODEL_NAME = "meta-llama/Llama-2-7b-chat-hf"
 HOTPOT_DATASET_NAME = "hotpot_qa"
 HOTPOT_DATASET_CONFIG = "distractor"
 MATH_DATASET_NAME = "qwedsacf/competition_math"
-RESULTS_DIR = "results" if not is_colab else "/content/drive/MyDrive/cs182_experiments/results"
+RESULTS_DIR = "out"
 os.makedirs(RESULTS_DIR, exist_ok=True)
 TASK_A_ADAPTER_PATH = os.path.join(RESULTS_DIR, "math_adapter_llama_fp32")
-TASK_A_EPOCHS = 8
-TASK_B_EPOCHS = 8
+TASK_A_EPOCHS = 2
+TASK_B_EPOCHS = 2
 
 MAX_SEQ_LENGTH = 2048
-PER_DEVICE_BS = 4 # This will be the batch size for *each* task's DataLoader
+PER_DEVICE_BS = 2 # This will be the batch size for *each* task's DataLoader
 GRAD_ACC_STEPS = 1 # Kept for consistency, but manual loop handles 1 step at a time
 
 N_TRAIN_EXAMPLES = 4000
@@ -51,6 +54,15 @@ INTERLEAVE_EPOCHS = 4      # Doubled epochs (was 2 in baseline)
 LOGGING_STEPS = 10         # Evaluate every 10 *batches* (e.g., 5 MATH, 5 HotpotQA)
 SMOOTHING_COEFFS = [0, 0.05, 0.1, 0.15, 0.2]
 prev_loss = None
+
+
+# PREVENT CUDA OOM
+bnb_config = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_use_double_quant=True,
+    bnb_4bit_quant_type="nf4",
+    bnb_4bit_compute_dtype=torch.bfloat16,  # or torch.float16 if bf16 unsupported
+)
 
 import logging
 
@@ -139,16 +151,30 @@ def get_model_and_tokenizer_base():
     """
     model = AutoModelForCausalLM.from_pretrained(
         MODEL_NAME,
-        torch_dtype=torch.float16, # <-- 加载时仍然用 FP16 (节省 RAM)，但训练会是 FP32
+        #torch_dtype=torch.bfloat16, # <-- 加载时仍然用 FP16 (节省 RAM)，但训练会是 FP32
         device_map="auto",
         trust_remote_code=True,
+        quantization_config=bnb_config, # prevent CUDA OOM
     )
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+    model = prepare_model_for_kbit_training(model) 
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, legacy=False)
+    # assert not isinstance(tokenizer, bool), "Tokenizer is still bool somehow"
+
+    # import pdb
+    # pdb.set_trace()
     tokenizer.pad_token = tokenizer.eos_token
-    tokenizer.padding_side = "right"
+    # making padding token work 
+    # if tokenizer.eos_token is None:
+    #     tokenizer.add_special_tokens({"eos_token": "</s>"})
+    # # ensure PAD
+    # if tokenizer.pad_token is None:
+    #     tokenizer.pad_token = tokenizer.eos_token
+    # tokenizer.padding_side = "right"
+
 
     # 在基础模型上启用梯度检查点
     model.gradient_checkpointing_enable()
+    model.config.use_cache = False # memory 不出问题
 
     return model, tokenizer
 
@@ -164,6 +190,9 @@ def get_lora_config():
             "k_proj",
             "v_proj",
             "o_proj",
+            "gate_proj",
+            "up_proj",
+            "down_proj",
         ],
         lora_dropout=0.05,
         bias="none",
@@ -387,6 +416,7 @@ def main(alpha:float):
             save_strategy="no",
             report_to="none",
             gradient_checkpointing=True,
+            optim="paged_adamw_8bit",  # Prevent cuda OOM
     )
 
     seq_trainer_a = SmoothedLossTrainer(
@@ -457,6 +487,7 @@ def main(alpha:float):
         report_to=[],         # <-- 保持这个设置
         # disable_tqdm=True,  # <-- 保持这个设置
         gradient_checkpointing=True,
+        optim="paged_adamw_8bit", # Prevent cuda OOM
     )
 
     seq_model.enable_input_require_grads()

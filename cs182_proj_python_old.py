@@ -40,9 +40,9 @@ TASK_A_ADAPTER_PATH = os.path.join(RESULTS_DIR, "math_adapter_llama_fp32")
 TASK_A_EPOCHS = 8
 TASK_B_EPOCHS = 8
 
-MAX_SEQ_LENGTH = 2048
-PER_DEVICE_BS = 4 # This will be the batch size for *each* task's DataLoader
-GRAD_ACC_STEPS = 1 # Kept for consistency, but manual loop handles 1 step at a time
+MAX_SEQ_LENGTH = 512
+PER_DEVICE_BS = 32 # This will be the batch size for *each* task's DataLoader
+GRAD_ACC_STEPS = 4 # Kept for consistency, but manual loop handles 1 step at a time
 
 N_TRAIN_EXAMPLES = 4000
 N_VAL_EXAMPLES = 400
@@ -297,72 +297,58 @@ def main(alpha:float):
 
     # Custom Trainer to log forgetting
     class ForgettingTrackerCallback(TrainerCallback):
-      def __init__(self, hotpot_val, math_val, history_log, start_metrics):
-          super().__init__()
-          self.hotpot_eval_dataset = hotpot_val
-          self.math_eval_dataset = math_val
-          self.history = history_log
-          self.trainer = None
-          # --- 【修复】---
-          # 添加一个 "锁" 来防止无限递归
-          self.is_evaluating = False
-          # ----------------
-          # 记录初始状态 (Step 0)
-          self.history["steps"].append(0)
-          self.history["hotpot_loss"].append(start_metrics['hotpot_loss'])
-          self.history["math_loss"].append(start_metrics['math_loss'])
-          logger.info("Initializing ForgettingTrackerCallback with starting metrics.")
-          print("Initializing ForgettingTrackerCallback with starting metrics.")
+        """
+        Tracks catastrophic forgetting while training on Task B.
+        Computes validation loss on Task A (MATH) and Task B (Hotpot)
+        every `eval_every` optimizer steps and appends to `history`.
+        """
+        def __init__(self, math_val_dataloader, hotpot_val_dataloader, history, eval_every=200):
+            super().__init__()
+            self.math_val = math_val_dataloader
+            self.hotpot_val = hotpot_val_dataloader
+            self.history = history
+            self.eval_every = eval_every
+            self.trainer = None
 
-      def set_trainer(self, trainer):
-          """在 Trainer 例化后, 注入对它的引用。"""
-          self.trainer = trainer
-          logger.info("Trainer reference set in callback.")
-          print("Trainer reference set in callback.")
+        def set_trainer(self, trainer):
+            self.trainer = trainer
 
-      def on_log(self, args, state, control, **kwargs):
-          """在 'logging_steps' 触发时被调用。"""
-          # --- 【修复 1】---
-          # 如果我们已经在这个函数中 (因为递归调用), 立即退出。
-          if self.is_evaluating:
-              return
-          # --- 【修复 2】---
-          # "获取" 锁
-          self.is_evaluating = True
-          # 确保 trainer 引用已被设置
-          if not self.trainer:
-              logger.info("WARNING: Trainer reference not set in callback, skipping eval.")
-              print("WARNING: Trainer reference not set in callback, skipping eval.")
-              self.is_evaluating = False # <-- 别忘了在这里释放锁
-              return
+        @torch.no_grad()
+        def manual_loss_eval(self, dataloader):
+            model = self.trainer.model
+            model.eval()
+            total_loss = 0
+            count = 0
+            device = next(model.parameters()).device
 
-          logger.info(f"\n--- Custom Eval at Step {state.global_step} ---")
-          logger.info("Evaluating on Task B (HotpotQA)...")
-          print(f"\n--- Custom Eval at Step {state.global_step} ---")
-          print("Evaluating on Task B (HotpotQA)...")
+            for batch in dataloader:
+                batch = {k: v.to(device) for k, v in batch.items() if k in ["input_ids", "attention_mask", "labels"]}
+                loss = model(**batch).loss
+                total_loss += loss.item()
+                count += 1
 
-          # 使用 trainer 的 evaluate 方法
-          hotpot_metrics = self.trainer.evaluate(eval_dataset=self.hotpot_eval_dataset)
-          hotpot_loss = hotpot_metrics['eval_loss']
+            model.train()
+            return total_loss / count
 
-          logger.info(f"  > Step {state.global_step} - HotpotQA Val Loss: {hotpot_loss:.4f} (LEARNING?)")
-          logger.info("Evaluating on Task A (MATH)...")
-          print(f"  > Step {state.global_step} - HotpotQA Val Loss: {hotpot_loss:.4f} (LEARNING?)")
-          print("Evaluating on Task A (MATH)...")
+        def on_step_end(self, args, state, control, **kwargs):
+            """
+            Called every optimizer step. Run custom eval every `eval_every` steps.
+            """
+            if state.global_step == 0 or state.global_step % self.eval_every != 0:
+                return
 
-          math_metrics = self.trainer.evaluate(eval_dataset=self.math_eval_dataset)
-          math_loss = math_metrics['eval_loss']
+            print(f"\n[ForgettingTracker] Step {state.global_step}: running custom eval...")
 
-          logger.info(f"  > Step {state.global_step} - MATH Val Loss: {math_loss:.4f} (FORGETTING?)")
-          print(f"  > Step {state.global_step} - MATH Val Loss: {math_loss:.4f} (FORGETTING?)")
+            hotpot_loss = self.manual_loss_eval(self.hotpot_val)
+            math_loss   = self.manual_loss_eval(self.math_val)
 
-          self.history["steps"].append(state.global_step)
-          self.history["hotpot_loss"].append(hotpot_loss)
-          self.history["math_loss"].append(math_loss)
-          # --- 【修复 3】---
-          # "释放" 锁, 以便下一次 on_log 可以运行
-          self.is_evaluating = False
-          self.trainer.model.train()
+            print(f"  Hotpot val loss = {hotpot_loss:.4f}")
+            print(f"  Math   val loss = {math_loss:.4f}")
+
+            self.history["steps"].append(state.global_step)
+            self.history["hotpot_loss"].append(hotpot_loss)
+            self.history["math_loss"].append(math_loss)
+
 
 
     # --- Phase 1: Train on MATH (or load from checkpoint) ---
@@ -542,4 +528,5 @@ if __name__ == "__main__":
             print("WARNING: VRAM is less than 11GB. You may hit OOM errors. Try lowering MAX_SEQ_LENGTH.")
     for handler in logger.handlers:
         handler.flush()
-    main(0)
+    for alpha in SMOOTHING_COEFFS:
+        main(alpha)

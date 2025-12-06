@@ -1,0 +1,260 @@
+2025-11-19 04:05:30,852 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-11-19 04:05:30,852 - INFO - --- Loading Base Model & Tokenizer ---
+2025-11-19 04:05:33,169 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-11-19 04:05:34,152 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-11-19 04:05:40,645 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-11-19 04:05:50,431 - INFO - HotpotQA: 24 train, 3 val (after filtering)
+2025-11-19 04:05:51,532 - INFO - Tokenizing and Filtering Math... 
+2025-11-19 04:05:57,945 - INFO - MATH: 3330 train, 335 val (after filtering)
+2025-11-19 04:05:57,945 - INFO -   Phase1 training: 3330 samples
+2025-11-19 04:05:57,945 - INFO -   Phase2 training: 24 samples
+2025-11-19 04:05:57,945 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-11-19 04:05:57,946 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-11-19 04:11:55,911 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-11-19 04:11:55,911 - INFO - --- Loading Base Model & Tokenizer ---
+2025-11-19 04:11:56,289 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-11-19 04:11:56,928 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-11-19 04:11:57,329 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-11-19 04:11:58,315 - INFO - HotpotQA: 24 train, 3 val (after filtering)
+2025-11-19 04:11:58,551 - INFO - Tokenizing and Filtering Math... 
+2025-11-19 04:12:03,437 - INFO - MATH: 3330 train, 335 val (after filtering)
+2025-11-19 04:12:03,437 - INFO -   Phase1 training: 3330 samples
+2025-11-19 04:12:03,437 - INFO -   Phase2 training: 24 samples
+2025-11-19 04:12:03,437 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-11-19 04:12:03,437 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-11-19 04:16:00,196 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-11-19 04:16:00,197 - INFO - --- Loading Base Model & Tokenizer ---
+2025-11-19 04:16:00,393 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-11-19 04:16:01,026 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-11-19 04:16:01,470 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-11-19 04:16:11,345 - INFO - HotpotQA: 24 train, 3 val (after filtering)
+2025-11-19 04:16:11,731 - INFO - Tokenizing and Filtering Math... 
+2025-11-19 04:16:18,075 - INFO - MATH: 3330 train, 335 val (after filtering)
+2025-11-19 04:16:18,075 - INFO -   Phase1 training: 3330 samples
+2025-11-19 04:16:18,075 - INFO -   Phase2 training: 24 samples
+2025-11-19 04:16:18,075 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-11-19 04:16:18,075 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-11-19 05:08:58,323 - INFO - --- Phase 1 (MATH) training complete. Saving adapter to results/math_adapter_llama_fp32 ---
+2025-11-19 05:08:58,436 - INFO - Adapter saved.
+2025-11-19 05:08:58,468 - INFO - 
+--- Evaluating Model after Phase 1 (Task A Expert) ---
+2025-11-19 05:08:58,610 - INFO -   > Task B Expert - HotpotQA Val Loss: 2.3563
+2025-11-19 05:09:10,023 - INFO -   > Task A Expert - MATH Val Loss: 1.0045
+2025-11-19 05:09:10,052 - INFO - 
+  --- Phase 2: Training on Task B (HotpotQA) ---
+2025-11-19 05:09:10,070 - INFO - Initializing ForgettingTrackerCallback with starting metrics.
+2025-11-19 05:09:10,075 - INFO - Trainer reference set in callback.
+2025-11-19 05:09:24,503 - INFO - 
+--- Custom Eval at Step 10 ---
+2025-11-19 05:09:24,503 - INFO - Evaluating on Task B (HotpotQA)...
+2025-11-19 05:09:24,609 - INFO -   > Step 10 - HotpotQA Val Loss: 1.8319 (LEARNING?)
+2025-11-19 05:09:24,609 - INFO - Evaluating on Task A (MATH)...
+2025-11-19 05:09:35,606 - INFO -   > Step 10 - MATH Val Loss: 1.0095 (FORGETTING?)
+2025-11-19 05:09:44,146 - INFO - 
+--- Custom Eval at Step 16 ---
+2025-11-19 05:09:44,146 - INFO - Evaluating on Task B (HotpotQA)...
+2025-11-19 05:09:44,252 - INFO -   > Step 16 - HotpotQA Val Loss: 1.7963 (LEARNING?)
+2025-11-19 05:09:44,252 - INFO - Evaluating on Task A (MATH)...
+2025-11-19 05:09:55,245 - INFO -   > Step 16 - MATH Val Loss: 1.0142 (FORGETTING?)
+2025-11-19 05:09:55,249 - INFO - 
+--- Saving History Data and Generating Plot ---
+2025-11-19 05:09:55,249 - INFO - History data saved to results/forgetting_curve_MATH_alpha_0_percent.json
+2025-11-19 05:09:55,487 - INFO - Plot saved to results/sequential_forgetting_curve_MATH_to_HotpotQA_fp32_alpha_0.png
+2025-11-19 05:09:55,527 - INFO - Not in Colab, plot saved to file.
+2025-11-19 05:09:55,527 - INFO - --- Loading Base Model & Tokenizer ---
+2025-11-19 05:09:55,564 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-11-19 05:09:56,168 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-11-19 05:09:56,939 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-11-19 05:09:57,916 - INFO - HotpotQA: 24 train, 3 val (after filtering)
+2025-11-19 05:09:58,051 - INFO - Tokenizing and Filtering Math... 
+2025-11-19 05:10:02,889 - INFO - MATH: 3330 train, 335 val (after filtering)
+2025-11-19 05:10:02,889 - INFO -   Phase1 training: 3330 samples
+2025-11-19 05:10:02,889 - INFO -   Phase2 training: 24 samples
+2025-11-19 05:10:02,889 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-11-19 05:10:02,889 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-11-19 05:39:49,575 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-11-19 05:39:49,575 - INFO - --- Loading Base Model & Tokenizer ---
+2025-11-19 05:39:49,782 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-11-19 05:39:50,417 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-11-19 05:39:50,945 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-11-19 05:40:24,509 - INFO - HotpotQA: 3686 train, 367 val (after filtering)
+2025-11-19 05:40:24,755 - INFO - Tokenizing and Filtering Math... 
+2025-11-19 05:40:43,819 - INFO - MATH: 3994 train, 399 val (after filtering)
+2025-11-19 05:40:43,819 - INFO -   Phase1 training: 3994 samples
+2025-11-19 05:40:43,819 - INFO -   Phase2 training: 3686 samples
+2025-11-19 05:40:43,819 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-11-19 05:40:43,819 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-11-19 05:41:35,095 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-11-19 05:41:35,095 - INFO - --- Loading Base Model & Tokenizer ---
+2025-11-19 05:41:35,282 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-11-19 05:41:35,905 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-11-19 05:41:36,459 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-11-19 05:41:36,551 - INFO - HotpotQA: 24 train, 3 val (after filtering)
+2025-11-19 05:41:36,800 - INFO - Tokenizing and Filtering Math... 
+2025-11-19 05:41:42,589 - INFO - MATH: 3330 train, 335 val (after filtering)
+2025-11-19 05:41:42,589 - INFO -   Phase1 training: 3330 samples
+2025-11-19 05:41:42,589 - INFO -   Phase2 training: 24 samples
+2025-11-19 05:41:42,589 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-11-19 05:41:42,589 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-11-19 05:42:50,083 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-11-19 05:42:50,083 - INFO - --- Loading Base Model & Tokenizer ---
+2025-11-19 05:42:50,271 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-11-19 05:42:51,070 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-11-19 05:42:51,476 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-11-19 05:42:51,569 - INFO - HotpotQA: 24 train, 3 val (after filtering)
+2025-11-19 05:42:51,763 - INFO - Tokenizing and Filtering Math... 
+2025-11-19 05:42:52,440 - INFO - MATH: 3330 train, 335 val (after filtering)
+2025-11-19 05:42:52,440 - INFO -   Phase1 training: 3330 samples
+2025-11-19 05:42:52,440 - INFO -   Phase2 training: 24 samples
+2025-11-19 05:42:52,440 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-11-19 05:42:52,440 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-11-19 06:31:32,726 - INFO - --- Phase 1 (MATH) training complete. Saving adapter to results/math_adapter_llama_fp32 ---
+2025-11-19 06:31:32,832 - INFO - Adapter saved.
+2025-11-19 06:31:32,885 - INFO - 
+--- Evaluating Model after Phase 1 (Task A Expert) ---
+2025-11-19 06:31:33,036 - INFO -   > Task B Expert - HotpotQA Val Loss: 2.2956
+2025-11-19 06:31:43,521 - INFO -   > Task A Expert - MATH Val Loss: 1.0933
+2025-11-19 06:31:43,569 - INFO - 
+  --- Phase 2: Training on Task B (HotpotQA) ---
+2025-11-19 06:31:43,588 - INFO - Initializing ForgettingTrackerCallback with starting metrics.
+2025-11-19 06:31:43,593 - INFO - Trainer reference set in callback.
+2025-11-19 06:32:05,138 - INFO - 
+--- Custom Eval at Step 8 ---
+2025-11-19 06:32:05,138 - INFO - Evaluating on Task B (HotpotQA)...
+2025-11-19 06:32:05,245 - INFO -   > Step 8 - HotpotQA Val Loss: 1.8738 (LEARNING?)
+2025-11-19 06:32:05,245 - INFO - Evaluating on Task A (MATH)...
+2025-11-19 06:32:16,236 - INFO -   > Step 8 - MATH Val Loss: 1.1188 (FORGETTING?)
+2025-11-19 06:32:16,239 - INFO - 
+--- Saving History Data and Generating Plot ---
+2025-11-19 06:32:16,239 - INFO - History data saved to results/forgetting_curve_MATH_alpha_0_percent.json
+2025-11-19 06:32:16,456 - INFO - Plot saved to results/sequential_forgetting_curve_MATH_to_HotpotQA_fp32_alpha_0.png
+2025-11-19 06:32:16,514 - INFO - Not in Colab, plot saved to file.
+2025-11-19 06:32:16,515 - INFO - --- Loading Base Model & Tokenizer ---
+2025-11-19 06:32:16,544 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-11-19 06:32:17,199 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-11-19 06:32:17,503 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-11-19 06:32:17,596 - INFO - HotpotQA: 24 train, 3 val (after filtering)
+2025-11-19 06:32:17,724 - INFO - Tokenizing and Filtering Math... 
+2025-11-19 06:32:17,813 - INFO - MATH: 3330 train, 335 val (after filtering)
+2025-11-19 06:32:17,813 - INFO -   Phase1 training: 3330 samples
+2025-11-19 06:32:17,813 - INFO -   Phase2 training: 24 samples
+2025-11-19 06:32:17,813 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-11-19 06:32:17,813 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-11-19 07:20:57,561 - INFO - --- Phase 1 (MATH) training complete. Saving adapter to results/math_adapter_llama_fp32 ---
+2025-11-19 07:20:57,682 - INFO - Adapter saved.
+2025-11-19 07:20:57,732 - INFO - 
+--- Evaluating Model after Phase 1 (Task A Expert) ---
+2025-11-19 07:20:57,881 - INFO -   > Task B Expert - HotpotQA Val Loss: 2.3206
+2025-11-19 07:21:08,370 - INFO -   > Task A Expert - MATH Val Loss: 1.0998
+2025-11-19 07:21:08,413 - INFO - 
+  --- Phase 2: Training on Task B (HotpotQA) ---
+2025-11-19 07:21:08,431 - INFO - Initializing ForgettingTrackerCallback with starting metrics.
+2025-11-19 07:21:08,436 - INFO - Trainer reference set in callback.
+2025-11-19 07:21:29,993 - INFO - 
+--- Custom Eval at Step 8 ---
+2025-11-19 07:21:29,993 - INFO - Evaluating on Task B (HotpotQA)...
+2025-11-19 07:21:30,099 - INFO -   > Step 8 - HotpotQA Val Loss: 1.8961 (LEARNING?)
+2025-11-19 07:21:30,099 - INFO - Evaluating on Task A (MATH)...
+2025-11-19 07:21:41,100 - INFO -   > Step 8 - MATH Val Loss: 1.1259 (FORGETTING?)
+2025-11-19 07:21:41,103 - INFO - 
+--- Saving History Data and Generating Plot ---
+2025-11-19 07:21:41,103 - INFO - History data saved to results/forgetting_curve_MATH_alpha_5_percent.json
+2025-11-19 07:21:41,291 - INFO - Plot saved to results/sequential_forgetting_curve_MATH_to_HotpotQA_fp32_alpha_0.05.png
+2025-11-19 07:21:41,345 - INFO - Not in Colab, plot saved to file.
+2025-11-19 07:21:41,345 - INFO - --- Loading Base Model & Tokenizer ---
+2025-11-19 07:21:41,382 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-11-19 07:21:42,029 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-11-19 07:21:42,394 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-11-19 07:21:42,487 - INFO - HotpotQA: 24 train, 3 val (after filtering)
+2025-11-19 07:21:43,084 - INFO - Tokenizing and Filtering Math... 
+2025-11-19 07:21:43,172 - INFO - MATH: 3330 train, 335 val (after filtering)
+2025-11-19 07:21:43,172 - INFO -   Phase1 training: 3330 samples
+2025-11-19 07:21:43,173 - INFO -   Phase2 training: 24 samples
+2025-11-19 07:21:43,173 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-11-19 07:21:43,173 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-11-19 08:10:22,462 - INFO - --- Phase 1 (MATH) training complete. Saving adapter to results/math_adapter_llama_fp32 ---
+2025-11-19 08:10:22,568 - INFO - Adapter saved.
+2025-11-19 08:10:22,616 - INFO - 
+--- Evaluating Model after Phase 1 (Task A Expert) ---
+2025-11-19 08:10:22,761 - INFO -   > Task B Expert - HotpotQA Val Loss: 2.3470
+2025-11-19 08:10:33,252 - INFO -   > Task A Expert - MATH Val Loss: 1.1036
+2025-11-19 08:10:33,293 - INFO - 
+  --- Phase 2: Training on Task B (HotpotQA) ---
+2025-11-19 08:10:33,312 - INFO - Initializing ForgettingTrackerCallback with starting metrics.
+2025-11-19 08:10:33,317 - INFO - Trainer reference set in callback.
+2025-11-19 08:10:54,875 - INFO - 
+--- Custom Eval at Step 8 ---
+2025-11-19 08:10:54,875 - INFO - Evaluating on Task B (HotpotQA)...
+2025-11-19 08:10:54,981 - INFO -   > Step 8 - HotpotQA Val Loss: 1.8963 (LEARNING?)
+2025-11-19 08:10:54,982 - INFO - Evaluating on Task A (MATH)...
+2025-11-19 08:11:05,980 - INFO -   > Step 8 - MATH Val Loss: 1.1264 (FORGETTING?)
+2025-11-19 08:11:05,984 - INFO - 
+--- Saving History Data and Generating Plot ---
+2025-11-19 08:11:05,984 - INFO - History data saved to results/forgetting_curve_MATH_alpha_10_percent.json
+2025-11-19 08:11:06,170 - INFO - Plot saved to results/sequential_forgetting_curve_MATH_to_HotpotQA_fp32_alpha_0.1.png
+2025-11-19 08:11:06,224 - INFO - Not in Colab, plot saved to file.
+2025-11-19 08:11:06,224 - INFO - --- Loading Base Model & Tokenizer ---
+2025-11-19 08:11:06,254 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-11-19 08:11:06,920 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-11-19 08:11:07,191 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-11-19 08:11:07,285 - INFO - HotpotQA: 24 train, 3 val (after filtering)
+2025-11-19 08:11:07,397 - INFO - Tokenizing and Filtering Math... 
+2025-11-19 08:11:07,486 - INFO - MATH: 3330 train, 335 val (after filtering)
+2025-11-19 08:11:07,486 - INFO -   Phase1 training: 3330 samples
+2025-11-19 08:11:07,486 - INFO -   Phase2 training: 24 samples
+2025-11-19 08:11:07,486 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-11-19 08:11:07,486 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-11-19 08:59:46,821 - INFO - --- Phase 1 (MATH) training complete. Saving adapter to results/math_adapter_llama_fp32 ---
+2025-11-19 08:59:46,931 - INFO - Adapter saved.
+2025-11-19 08:59:46,976 - INFO - 
+--- Evaluating Model after Phase 1 (Task A Expert) ---
+2025-11-19 08:59:47,123 - INFO -   > Task B Expert - HotpotQA Val Loss: 2.3434
+2025-11-19 08:59:57,614 - INFO -   > Task A Expert - MATH Val Loss: 1.1079
+2025-11-19 08:59:57,653 - INFO - 
+  --- Phase 2: Training on Task B (HotpotQA) ---
+2025-11-19 08:59:57,671 - INFO - Initializing ForgettingTrackerCallback with starting metrics.
+2025-11-19 08:59:57,677 - INFO - Trainer reference set in callback.
+2025-11-19 09:00:19,230 - INFO - 
+--- Custom Eval at Step 8 ---
+2025-11-19 09:00:19,230 - INFO - Evaluating on Task B (HotpotQA)...
+2025-11-19 09:00:19,336 - INFO -   > Step 8 - HotpotQA Val Loss: 1.8890 (LEARNING?)
+2025-11-19 09:00:19,336 - INFO - Evaluating on Task A (MATH)...
+2025-11-19 09:00:30,330 - INFO -   > Step 8 - MATH Val Loss: 1.1367 (FORGETTING?)
+2025-11-19 09:00:30,334 - INFO - 
+--- Saving History Data and Generating Plot ---
+2025-11-19 09:00:30,334 - INFO - History data saved to results/forgetting_curve_MATH_alpha_15_percent.json
+2025-11-19 09:00:30,520 - INFO - Plot saved to results/sequential_forgetting_curve_MATH_to_HotpotQA_fp32_alpha_0.15.png
+2025-11-19 09:00:30,574 - INFO - Not in Colab, plot saved to file.
+2025-11-19 09:00:30,574 - INFO - --- Loading Base Model & Tokenizer ---
+2025-11-19 09:00:30,605 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-11-19 09:00:31,257 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-11-19 09:00:31,582 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-11-19 09:00:31,673 - INFO - HotpotQA: 24 train, 3 val (after filtering)
+2025-11-19 09:00:31,800 - INFO - Tokenizing and Filtering Math... 
+2025-11-19 09:00:31,887 - INFO - MATH: 3330 train, 335 val (after filtering)
+2025-11-19 09:00:31,887 - INFO -   Phase1 training: 3330 samples
+2025-11-19 09:00:31,887 - INFO -   Phase2 training: 24 samples
+2025-11-19 09:00:31,887 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-11-19 09:00:31,887 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---

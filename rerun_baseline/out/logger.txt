@@ -1,0 +1,510 @@
+2025-12-01 03:40:58,569 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-01 03:40:58,569 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-01 03:40:58,925 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-01 03:42:16,890 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-01 03:42:16,891 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-01 03:42:17,130 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-01 03:44:33,872 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-01 03:44:33,872 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-01 03:44:34,109 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-01 03:44:55,211 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-01 03:44:55,211 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-01 03:44:55,439 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-01 03:45:08,706 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-01 03:45:08,706 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-01 03:45:08,938 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-01 03:45:11,688 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-12-01 03:45:12,101 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-12-01 03:45:44,120 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-01 03:45:44,120 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-01 03:45:44,350 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-01 03:46:06,998 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-01 03:46:06,998 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-01 03:46:07,276 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-01 03:48:35,716 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-01 03:48:35,716 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-01 03:48:35,950 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-01 03:52:51,562 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-01 03:52:51,562 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-01 03:52:51,800 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-01 03:56:48,105 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-01 03:56:48,105 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-01 03:56:48,335 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-01 03:58:27,787 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-01 03:58:27,788 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-01 03:58:28,021 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-01 03:58:30,799 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-12-01 03:58:31,245 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-12-01 04:00:59,901 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-01 04:00:59,902 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-01 04:01:00,141 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-03 08:31:15,389 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-03 08:31:15,390 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-03 08:31:15,687 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-03 08:43:11,275 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-03 08:43:11,276 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-03 08:48:01,907 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-03 08:48:01,907 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-03 08:49:31,919 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-03 08:49:31,919 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-03 08:49:40,861 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-03 08:49:43,833 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-12-03 08:49:50,024 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-12-03 08:51:20,838 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-03 08:51:20,839 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-03 08:51:21,052 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-03 08:51:23,660 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-12-03 08:51:24,109 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-12-03 08:51:58,084 - INFO - HotpotQA: 3686 train, 367 val (after filtering)
+2025-12-03 08:51:58,456 - INFO - Tokenizing and Filtering Math... 
+2025-12-03 08:52:17,652 - INFO - MATH: 3994 train, 399 val (after filtering)
+2025-12-03 08:52:17,652 - INFO -   Phase1 training: 3994 samples
+2025-12-03 08:52:17,652 - INFO -   Phase2 training: 3686 samples
+2025-12-03 08:52:17,652 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-12-03 08:52:17,652 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-12-03 08:54:47,893 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-03 08:54:47,893 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-03 08:54:48,112 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-03 08:54:50,731 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-12-03 08:54:51,278 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-12-03 08:54:54,399 - INFO - HotpotQA: 3686 train, 367 val (after filtering)
+2025-12-03 08:54:54,597 - INFO - Tokenizing and Filtering Math... 
+2025-12-03 08:55:12,257 - INFO - MATH: 3994 train, 399 val (after filtering)
+2025-12-03 08:55:12,257 - INFO -   Phase1 training: 3994 samples
+2025-12-03 08:55:12,257 - INFO -   Phase2 training: 3686 samples
+2025-12-03 08:55:12,257 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-12-03 08:55:12,258 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-12-03 08:56:40,444 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-03 08:56:40,444 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-03 08:56:40,653 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-03 08:56:43,242 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-12-03 08:56:43,705 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-12-03 08:56:43,801 - INFO - HotpotQA: 3686 train, 367 val (after filtering)
+2025-12-03 08:56:44,129 - INFO - Tokenizing and Filtering Math... 
+2025-12-03 08:57:01,761 - INFO - MATH: 3994 train, 399 val (after filtering)
+2025-12-03 08:57:01,761 - INFO -   Phase1 training: 3994 samples
+2025-12-03 08:57:01,761 - INFO -   Phase2 training: 3686 samples
+2025-12-03 08:57:01,761 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-12-03 08:57:01,761 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-12-03 08:57:42,165 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-03 08:57:42,166 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-03 08:57:42,380 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-03 08:57:42,808 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-03 08:57:42,808 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-03 08:57:43,032 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-03 08:57:45,318 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-12-03 08:57:45,871 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-12-03 08:57:45,998 - INFO - HotpotQA: 3686 train, 367 val (after filtering)
+2025-12-03 08:57:46,337 - WARNING - Some parameters are on the meta device because they were offloaded to the cpu.
+2025-12-03 08:57:46,415 - INFO - Tokenizing and Filtering Math... 
+2025-12-03 08:57:46,515 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-12-03 08:57:46,929 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-12-03 08:57:47,023 - INFO - HotpotQA: 3686 train, 367 val (after filtering)
+2025-12-03 08:57:47,252 - INFO - Tokenizing and Filtering Math... 
+2025-12-03 08:57:48,259 - INFO - MATH: 3994 train, 399 val (after filtering)
+2025-12-03 08:57:48,259 - INFO -   Phase1 training: 3994 samples
+2025-12-03 08:57:48,259 - INFO -   Phase2 training: 3686 samples
+2025-12-03 08:57:48,259 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-12-03 08:57:48,259 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-12-03 08:57:48,336 - INFO - MATH: 3994 train, 399 val (after filtering)
+2025-12-03 08:57:48,336 - INFO -   Phase1 training: 3994 samples
+2025-12-03 08:57:48,336 - INFO -   Phase2 training: 3686 samples
+2025-12-03 08:57:48,336 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-12-03 08:57:48,336 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-12-03 08:58:22,171 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-03 08:58:22,171 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-03 08:58:22,384 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-03 08:58:24,972 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-12-03 08:58:25,664 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-12-03 08:58:25,760 - INFO - HotpotQA: 3686 train, 367 val (after filtering)
+2025-12-03 08:58:26,054 - INFO - Tokenizing and Filtering Math... 
+2025-12-03 08:58:26,143 - INFO - MATH: 3994 train, 399 val (after filtering)
+2025-12-03 08:58:26,143 - INFO -   Phase1 training: 3994 samples
+2025-12-03 08:58:26,143 - INFO -   Phase2 training: 3686 samples
+2025-12-03 08:58:26,143 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-12-03 08:58:26,143 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-12-03 15:19:24,388 - INFO - --- Phase 1 (MATH) training complete. Saving adapter to out/math_adapter_llama_fp32 ---
+2025-12-03 15:19:24,549 - INFO - Adapter saved.
+2025-12-03 15:19:24,584 - INFO - 
+--- Evaluating Model after Phase 1 (Task A Expert) ---
+2025-12-03 15:23:38,727 - INFO -   > Task B Expert - HotpotQA Val Loss: 1.6838
+2025-12-03 15:28:15,002 - INFO -   > Task A Expert - MATH Val Loss: 0.8133
+2025-12-03 15:28:15,028 - INFO - 
+  --- Phase 2: Training on Task B (HotpotQA) ---
+2025-12-03 15:28:15,046 - INFO - Initializing ForgettingTrackerCallback with starting metrics.
+2025-12-03 15:28:15,053 - INFO - Trainer reference set in callback.
+2025-12-03 15:28:43,905 - INFO - 
+--- Custom Eval at Step 10 ---
+2025-12-03 15:28:43,905 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 05:57:38,133 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-04 05:57:38,133 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-04 05:57:39,835 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-04 05:57:46,042 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-12-04 05:57:46,612 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-12-04 05:57:46,706 - INFO - HotpotQA: 3686 train, 367 val (after filtering)
+2025-12-04 05:57:46,906 - INFO - Tokenizing and Filtering Math... 
+2025-12-04 05:57:46,994 - INFO - MATH: 3994 train, 399 val (after filtering)
+2025-12-04 05:57:46,994 - INFO -   Phase1 training: 3994 samples
+2025-12-04 05:57:46,994 - INFO -   Phase2 training: 3686 samples
+2025-12-04 05:57:46,994 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-12-04 05:57:46,994 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-12-04 15:30:49,300 - INFO - --- Phase 1 (MATH) training complete. Saving adapter to out/math_adapter_llama_fp32 ---
+2025-12-04 15:30:49,635 - INFO - Adapter saved.
+2025-12-04 15:30:49,708 - INFO - 
+--- Evaluating Model after Phase 1 (Task A Expert) ---
+2025-12-04 15:37:46,348 - INFO -   > Task B Expert - HotpotQA Val Loss: 1.7025
+2025-12-04 15:45:19,137 - INFO -   > Task A Expert - MATH Val Loss: 0.8023
+2025-12-04 15:45:19,138 - INFO - 
+  --- Phase 2: Training on Task B (HotpotQA) ---
+2025-12-04 15:45:19,156 - INFO - Initializing ForgettingTrackerCallback with starting metrics.
+2025-12-04 15:45:19,164 - INFO - Trainer reference set in callback.
+2025-12-04 15:46:45,542 - INFO - 
+--- Custom Eval at Step 10 ---
+2025-12-04 15:46:45,542 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 15:53:16,795 - INFO -   > Step 10 - HotpotQA Val Loss: 1.5920 (LEARNING?)
+2025-12-04 15:53:16,795 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 16:00:22,041 - INFO -   > Step 10 - MATH Val Loss: 0.8183 (FORGETTING?)
+2025-12-04 16:01:48,118 - INFO - 
+--- Custom Eval at Step 20 ---
+2025-12-04 16:01:48,118 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 16:08:19,366 - INFO -   > Step 20 - HotpotQA Val Loss: 1.5663 (LEARNING?)
+2025-12-04 16:08:19,366 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 16:15:24,625 - INFO -   > Step 20 - MATH Val Loss: 0.8462 (FORGETTING?)
+2025-12-04 16:16:50,705 - INFO - 
+--- Custom Eval at Step 30 ---
+2025-12-04 16:16:50,706 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 16:23:21,955 - INFO -   > Step 30 - HotpotQA Val Loss: 1.5526 (LEARNING?)
+2025-12-04 16:23:21,955 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 16:30:27,213 - INFO -   > Step 30 - MATH Val Loss: 0.8527 (FORGETTING?)
+2025-12-04 16:31:53,288 - INFO - 
+--- Custom Eval at Step 40 ---
+2025-12-04 16:31:53,288 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 16:38:24,544 - INFO -   > Step 40 - HotpotQA Val Loss: 1.5435 (LEARNING?)
+2025-12-04 16:38:24,544 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 16:45:29,802 - INFO -   > Step 40 - MATH Val Loss: 0.8559 (FORGETTING?)
+2025-12-04 16:46:55,882 - INFO - 
+--- Custom Eval at Step 50 ---
+2025-12-04 16:46:55,882 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 16:53:27,138 - INFO -   > Step 50 - HotpotQA Val Loss: 1.5361 (LEARNING?)
+2025-12-04 16:53:27,138 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 17:00:32,394 - INFO -   > Step 50 - MATH Val Loss: 0.8579 (FORGETTING?)
+2025-12-04 17:01:58,484 - INFO - 
+--- Custom Eval at Step 60 ---
+2025-12-04 17:01:58,484 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 17:08:29,737 - INFO -   > Step 60 - HotpotQA Val Loss: 1.5306 (LEARNING?)
+2025-12-04 17:08:29,737 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 17:15:34,987 - INFO -   > Step 60 - MATH Val Loss: 0.8587 (FORGETTING?)
+2025-12-04 17:17:01,064 - INFO - 
+--- Custom Eval at Step 70 ---
+2025-12-04 17:17:01,064 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 17:23:32,303 - INFO -   > Step 70 - HotpotQA Val Loss: 1.5259 (LEARNING?)
+2025-12-04 17:23:32,303 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 17:30:37,531 - INFO -   > Step 70 - MATH Val Loss: 0.8570 (FORGETTING?)
+2025-12-04 17:32:03,609 - INFO - 
+--- Custom Eval at Step 80 ---
+2025-12-04 17:32:03,609 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 17:38:34,854 - INFO -   > Step 80 - HotpotQA Val Loss: 1.5221 (LEARNING?)
+2025-12-04 17:38:34,854 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 17:45:40,091 - INFO -   > Step 80 - MATH Val Loss: 0.8569 (FORGETTING?)
+2025-12-04 17:47:06,168 - INFO - 
+--- Custom Eval at Step 90 ---
+2025-12-04 17:47:06,168 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 17:53:37,416 - INFO -   > Step 90 - HotpotQA Val Loss: 1.5192 (LEARNING?)
+2025-12-04 17:53:37,416 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 18:00:42,655 - INFO -   > Step 90 - MATH Val Loss: 0.8584 (FORGETTING?)
+2025-12-04 18:02:08,731 - INFO - 
+--- Custom Eval at Step 100 ---
+2025-12-04 18:02:08,732 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 18:08:39,985 - INFO -   > Step 100 - HotpotQA Val Loss: 1.5167 (LEARNING?)
+2025-12-04 18:08:39,986 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 18:15:45,216 - INFO -   > Step 100 - MATH Val Loss: 0.8588 (FORGETTING?)
+2025-12-04 18:17:11,295 - INFO - 
+--- Custom Eval at Step 110 ---
+2025-12-04 18:17:11,295 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 18:23:42,546 - INFO -   > Step 110 - HotpotQA Val Loss: 1.5144 (LEARNING?)
+2025-12-04 18:23:42,546 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 18:30:47,792 - INFO -   > Step 110 - MATH Val Loss: 0.8580 (FORGETTING?)
+2025-12-04 18:32:13,875 - INFO - 
+--- Custom Eval at Step 120 ---
+2025-12-04 18:32:13,876 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 18:38:45,122 - INFO -   > Step 120 - HotpotQA Val Loss: 1.5120 (LEARNING?)
+2025-12-04 18:38:45,122 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 18:45:50,370 - INFO -   > Step 120 - MATH Val Loss: 0.8591 (FORGETTING?)
+2025-12-04 18:47:16,443 - INFO - 
+--- Custom Eval at Step 130 ---
+2025-12-04 18:47:16,443 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 18:53:47,704 - INFO -   > Step 130 - HotpotQA Val Loss: 1.5104 (LEARNING?)
+2025-12-04 18:53:47,704 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 19:00:52,944 - INFO -   > Step 130 - MATH Val Loss: 0.8593 (FORGETTING?)
+2025-12-04 19:02:19,027 - INFO - 
+--- Custom Eval at Step 140 ---
+2025-12-04 19:02:19,027 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 19:08:50,291 - INFO -   > Step 140 - HotpotQA Val Loss: 1.5085 (LEARNING?)
+2025-12-04 19:08:50,291 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 19:15:55,546 - INFO -   > Step 140 - MATH Val Loss: 0.8593 (FORGETTING?)
+2025-12-04 19:17:21,624 - INFO - 
+--- Custom Eval at Step 150 ---
+2025-12-04 19:17:21,624 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 19:23:52,863 - INFO -   > Step 150 - HotpotQA Val Loss: 1.5067 (LEARNING?)
+2025-12-04 19:23:52,864 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 19:30:58,107 - INFO -   > Step 150 - MATH Val Loss: 0.8602 (FORGETTING?)
+2025-12-04 19:32:24,182 - INFO - 
+--- Custom Eval at Step 160 ---
+2025-12-04 19:32:24,183 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 19:38:55,441 - INFO -   > Step 160 - HotpotQA Val Loss: 1.5051 (LEARNING?)
+2025-12-04 19:38:55,441 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 19:46:00,693 - INFO -   > Step 160 - MATH Val Loss: 0.8596 (FORGETTING?)
+2025-12-04 19:47:26,774 - INFO - 
+--- Custom Eval at Step 170 ---
+2025-12-04 19:47:26,774 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 19:53:58,020 - INFO -   > Step 170 - HotpotQA Val Loss: 1.5038 (LEARNING?)
+2025-12-04 19:53:58,020 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 20:01:03,275 - INFO -   > Step 170 - MATH Val Loss: 0.8597 (FORGETTING?)
+2025-12-04 20:02:29,355 - INFO - 
+--- Custom Eval at Step 180 ---
+2025-12-04 20:02:29,355 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 20:09:00,607 - INFO -   > Step 180 - HotpotQA Val Loss: 1.5028 (LEARNING?)
+2025-12-04 20:09:00,607 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 20:16:05,860 - INFO -   > Step 180 - MATH Val Loss: 0.8606 (FORGETTING?)
+2025-12-04 20:17:31,942 - INFO - 
+--- Custom Eval at Step 190 ---
+2025-12-04 20:17:31,942 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 20:24:03,198 - INFO -   > Step 190 - HotpotQA Val Loss: 1.5015 (LEARNING?)
+2025-12-04 20:24:03,198 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 20:31:08,449 - INFO -   > Step 190 - MATH Val Loss: 0.8605 (FORGETTING?)
+2025-12-04 20:32:34,527 - INFO - 
+--- Custom Eval at Step 200 ---
+2025-12-04 20:32:34,527 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 20:39:05,779 - INFO -   > Step 200 - HotpotQA Val Loss: 1.5004 (LEARNING?)
+2025-12-04 20:39:05,779 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 20:46:11,024 - INFO -   > Step 200 - MATH Val Loss: 0.8613 (FORGETTING?)
+2025-12-04 20:47:37,108 - INFO - 
+--- Custom Eval at Step 210 ---
+2025-12-04 20:47:37,108 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 20:54:08,347 - INFO -   > Step 210 - HotpotQA Val Loss: 1.4990 (LEARNING?)
+2025-12-04 20:54:08,347 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 21:01:13,588 - INFO -   > Step 210 - MATH Val Loss: 0.8614 (FORGETTING?)
+2025-12-04 21:02:39,672 - INFO - 
+--- Custom Eval at Step 220 ---
+2025-12-04 21:02:39,672 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 21:09:10,906 - INFO -   > Step 220 - HotpotQA Val Loss: 1.4982 (LEARNING?)
+2025-12-04 21:09:10,906 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 21:16:16,137 - INFO -   > Step 220 - MATH Val Loss: 0.8627 (FORGETTING?)
+2025-12-04 21:17:42,215 - INFO - 
+--- Custom Eval at Step 230 ---
+2025-12-04 21:17:42,215 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 21:24:13,422 - INFO -   > Step 230 - HotpotQA Val Loss: 1.4973 (LEARNING?)
+2025-12-04 21:24:13,422 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 21:31:18,634 - INFO -   > Step 230 - MATH Val Loss: 0.8620 (FORGETTING?)
+2025-12-04 21:32:44,708 - INFO - 
+--- Custom Eval at Step 240 ---
+2025-12-04 21:32:44,708 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 21:39:15,930 - INFO -   > Step 240 - HotpotQA Val Loss: 1.4964 (LEARNING?)
+2025-12-04 21:39:15,930 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 21:46:21,162 - INFO -   > Step 240 - MATH Val Loss: 0.8616 (FORGETTING?)
+2025-12-04 21:47:47,240 - INFO - 
+--- Custom Eval at Step 250 ---
+2025-12-04 21:47:47,240 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 21:54:18,469 - INFO -   > Step 250 - HotpotQA Val Loss: 1.4956 (LEARNING?)
+2025-12-04 21:54:18,469 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 22:01:23,698 - INFO -   > Step 250 - MATH Val Loss: 0.8620 (FORGETTING?)
+2025-12-04 22:02:49,779 - INFO - 
+--- Custom Eval at Step 260 ---
+2025-12-04 22:02:49,779 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 22:09:21,017 - INFO -   > Step 260 - HotpotQA Val Loss: 1.4942 (LEARNING?)
+2025-12-04 22:09:21,017 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 22:16:26,250 - INFO -   > Step 260 - MATH Val Loss: 0.8624 (FORGETTING?)
+2025-12-04 22:17:52,331 - INFO - 
+--- Custom Eval at Step 270 ---
+2025-12-04 22:17:52,332 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 22:24:23,568 - INFO -   > Step 270 - HotpotQA Val Loss: 1.4933 (LEARNING?)
+2025-12-04 22:24:23,568 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 22:31:28,799 - INFO -   > Step 270 - MATH Val Loss: 0.8602 (FORGETTING?)
+2025-12-04 22:32:54,879 - INFO - 
+--- Custom Eval at Step 280 ---
+2025-12-04 22:32:54,880 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 22:39:26,118 - INFO -   > Step 280 - HotpotQA Val Loss: 1.4927 (LEARNING?)
+2025-12-04 22:39:26,118 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 22:46:31,345 - INFO -   > Step 280 - MATH Val Loss: 0.8593 (FORGETTING?)
+2025-12-04 22:47:57,424 - INFO - 
+--- Custom Eval at Step 290 ---
+2025-12-04 22:47:57,424 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 22:54:28,656 - INFO -   > Step 290 - HotpotQA Val Loss: 1.4920 (LEARNING?)
+2025-12-04 22:54:28,656 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 23:01:33,878 - INFO -   > Step 290 - MATH Val Loss: 0.8580 (FORGETTING?)
+2025-12-04 23:02:59,956 - INFO - 
+--- Custom Eval at Step 300 ---
+2025-12-04 23:02:59,956 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 23:09:31,181 - INFO -   > Step 300 - HotpotQA Val Loss: 1.4908 (LEARNING?)
+2025-12-04 23:09:31,181 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 23:16:36,401 - INFO -   > Step 300 - MATH Val Loss: 0.8581 (FORGETTING?)
+2025-12-04 23:18:02,480 - INFO - 
+--- Custom Eval at Step 310 ---
+2025-12-04 23:18:02,480 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 23:24:33,705 - INFO -   > Step 310 - HotpotQA Val Loss: 1.4901 (LEARNING?)
+2025-12-04 23:24:33,705 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 23:31:38,928 - INFO -   > Step 310 - MATH Val Loss: 0.8609 (FORGETTING?)
+2025-12-04 23:33:05,012 - INFO - 
+--- Custom Eval at Step 320 ---
+2025-12-04 23:33:05,012 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 23:39:36,240 - INFO -   > Step 320 - HotpotQA Val Loss: 1.4898 (LEARNING?)
+2025-12-04 23:39:36,240 - INFO - Evaluating on Task A (MATH)...
+2025-12-04 23:46:41,471 - INFO -   > Step 320 - MATH Val Loss: 0.8620 (FORGETTING?)
+2025-12-04 23:48:07,552 - INFO - 
+--- Custom Eval at Step 330 ---
+2025-12-04 23:48:07,552 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-04 23:54:38,777 - INFO -   > Step 330 - HotpotQA Val Loss: 1.4887 (LEARNING?)
+2025-12-04 23:54:38,777 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 00:01:43,997 - INFO -   > Step 330 - MATH Val Loss: 0.8631 (FORGETTING?)
+2025-12-05 00:03:10,078 - INFO - 
+--- Custom Eval at Step 340 ---
+2025-12-05 00:03:10,078 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 00:09:41,305 - INFO -   > Step 340 - HotpotQA Val Loss: 1.4881 (LEARNING?)
+2025-12-05 00:09:41,305 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 00:16:46,526 - INFO -   > Step 340 - MATH Val Loss: 0.8630 (FORGETTING?)
+2025-12-05 00:18:12,606 - INFO - 
+--- Custom Eval at Step 350 ---
+2025-12-05 00:18:12,606 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 00:24:43,828 - INFO -   > Step 350 - HotpotQA Val Loss: 1.4878 (LEARNING?)
+2025-12-05 00:24:43,828 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 00:31:49,052 - INFO -   > Step 350 - MATH Val Loss: 0.8612 (FORGETTING?)
+2025-12-05 00:33:15,132 - INFO - 
+--- Custom Eval at Step 360 ---
+2025-12-05 00:33:15,132 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 00:39:46,363 - INFO -   > Step 360 - HotpotQA Val Loss: 1.4873 (LEARNING?)
+2025-12-05 00:39:46,363 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 00:46:51,591 - INFO -   > Step 360 - MATH Val Loss: 0.8619 (FORGETTING?)
+2025-12-05 00:48:17,674 - INFO - 
+--- Custom Eval at Step 370 ---
+2025-12-05 00:48:17,674 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 00:54:48,891 - INFO -   > Step 370 - HotpotQA Val Loss: 1.4864 (LEARNING?)
+2025-12-05 00:54:48,891 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 01:01:54,112 - INFO -   > Step 370 - MATH Val Loss: 0.8584 (FORGETTING?)
+2025-12-05 01:03:20,193 - INFO - 
+--- Custom Eval at Step 380 ---
+2025-12-05 01:03:20,193 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 01:09:51,394 - INFO -   > Step 380 - HotpotQA Val Loss: 1.4861 (LEARNING?)
+2025-12-05 01:09:51,394 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 01:16:56,603 - INFO -   > Step 380 - MATH Val Loss: 0.8579 (FORGETTING?)
+2025-12-05 01:18:22,683 - INFO - 
+--- Custom Eval at Step 390 ---
+2025-12-05 01:18:22,683 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 01:24:53,916 - INFO -   > Step 390 - HotpotQA Val Loss: 1.4860 (LEARNING?)
+2025-12-05 01:24:53,916 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 01:31:59,134 - INFO -   > Step 390 - MATH Val Loss: 0.8614 (FORGETTING?)
+2025-12-05 01:33:25,215 - INFO - 
+--- Custom Eval at Step 400 ---
+2025-12-05 01:33:25,215 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 01:39:56,446 - INFO -   > Step 400 - HotpotQA Val Loss: 1.4849 (LEARNING?)
+2025-12-05 01:39:56,446 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 01:47:01,684 - INFO -   > Step 400 - MATH Val Loss: 0.8602 (FORGETTING?)
+2025-12-05 01:48:27,764 - INFO - 
+--- Custom Eval at Step 410 ---
+2025-12-05 01:48:27,765 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 01:54:59,004 - INFO -   > Step 410 - HotpotQA Val Loss: 1.4844 (LEARNING?)
+2025-12-05 01:54:59,004 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 02:02:04,232 - INFO -   > Step 410 - MATH Val Loss: 0.8616 (FORGETTING?)
+2025-12-05 02:03:30,308 - INFO - 
+--- Custom Eval at Step 420 ---
+2025-12-05 02:03:30,308 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 02:10:01,543 - INFO -   > Step 420 - HotpotQA Val Loss: 1.4842 (LEARNING?)
+2025-12-05 02:10:01,543 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 02:17:06,776 - INFO -   > Step 420 - MATH Val Loss: 0.8622 (FORGETTING?)
+2025-12-05 02:18:32,856 - INFO - 
+--- Custom Eval at Step 430 ---
+2025-12-05 02:18:32,856 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 02:25:04,102 - INFO -   > Step 430 - HotpotQA Val Loss: 1.4836 (LEARNING?)
+2025-12-05 02:25:04,102 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 02:32:09,505 - INFO -   > Step 430 - MATH Val Loss: 0.8621 (FORGETTING?)
+2025-12-05 02:33:35,582 - INFO - 
+--- Custom Eval at Step 440 ---
+2025-12-05 02:33:35,582 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 02:40:06,819 - INFO -   > Step 440 - HotpotQA Val Loss: 1.4829 (LEARNING?)
+2025-12-05 02:40:06,819 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 02:47:12,056 - INFO -   > Step 440 - MATH Val Loss: 0.8621 (FORGETTING?)
+2025-12-05 02:48:38,133 - INFO - 
+--- Custom Eval at Step 450 ---
+2025-12-05 02:48:38,133 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 02:55:09,367 - INFO -   > Step 450 - HotpotQA Val Loss: 1.4823 (LEARNING?)
+2025-12-05 02:55:09,367 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 03:02:14,604 - INFO -   > Step 450 - MATH Val Loss: 0.8622 (FORGETTING?)
+2025-12-05 03:03:40,677 - INFO - 
+--- Custom Eval at Step 460 ---
+2025-12-05 03:03:40,677 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 03:10:11,922 - INFO -   > Step 460 - HotpotQA Val Loss: 1.4820 (LEARNING?)
+2025-12-05 03:10:11,922 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 03:17:17,176 - INFO -   > Step 460 - MATH Val Loss: 0.8635 (FORGETTING?)
+2025-12-05 03:18:43,266 - INFO - 
+--- Custom Eval at Step 470 ---
+2025-12-05 03:18:43,266 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 03:25:14,507 - INFO -   > Step 470 - HotpotQA Val Loss: 1.4817 (LEARNING?)
+2025-12-05 03:25:14,507 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 03:32:19,733 - INFO -   > Step 470 - MATH Val Loss: 0.8612 (FORGETTING?)
+2025-12-05 03:33:45,825 - INFO - 
+--- Custom Eval at Step 480 ---
+2025-12-05 03:33:45,825 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 03:40:17,041 - INFO -   > Step 480 - HotpotQA Val Loss: 1.4814 (LEARNING?)
+2025-12-05 03:40:17,041 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 03:47:22,283 - INFO -   > Step 480 - MATH Val Loss: 0.8625 (FORGETTING?)
+2025-12-05 03:48:48,378 - INFO - 
+--- Custom Eval at Step 490 ---
+2025-12-05 03:48:48,378 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 03:55:19,622 - INFO -   > Step 490 - HotpotQA Val Loss: 1.4811 (LEARNING?)
+2025-12-05 03:55:19,622 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 04:02:24,847 - INFO -   > Step 490 - MATH Val Loss: 0.8624 (FORGETTING?)
+2025-12-05 04:03:50,940 - INFO - 
+--- Custom Eval at Step 500 ---
+2025-12-05 04:03:50,940 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 04:10:22,178 - INFO -   > Step 500 - HotpotQA Val Loss: 1.4806 (LEARNING?)
+2025-12-05 04:10:22,178 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 04:17:27,412 - INFO -   > Step 500 - MATH Val Loss: 0.8622 (FORGETTING?)
+2025-12-05 04:18:53,500 - INFO - 
+--- Custom Eval at Step 510 ---
+2025-12-05 04:18:53,500 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 04:25:24,739 - INFO -   > Step 510 - HotpotQA Val Loss: 1.4799 (LEARNING?)
+2025-12-05 04:25:24,739 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 04:32:29,970 - INFO -   > Step 510 - MATH Val Loss: 0.8623 (FORGETTING?)
+2025-12-05 04:33:56,064 - INFO - 
+--- Custom Eval at Step 520 ---
+2025-12-05 04:33:56,064 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 04:40:27,298 - INFO -   > Step 520 - HotpotQA Val Loss: 1.4794 (LEARNING?)
+2025-12-05 04:40:27,298 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 04:47:32,534 - INFO -   > Step 520 - MATH Val Loss: 0.8612 (FORGETTING?)
+2025-12-05 04:48:58,614 - INFO - 
+--- Custom Eval at Step 530 ---
+2025-12-05 04:48:58,614 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 04:55:29,861 - INFO -   > Step 530 - HotpotQA Val Loss: 1.4791 (LEARNING?)
+2025-12-05 04:55:29,861 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 05:02:35,107 - INFO -   > Step 530 - MATH Val Loss: 0.8616 (FORGETTING?)
+2025-12-05 05:04:01,188 - INFO - 
+--- Custom Eval at Step 540 ---
+2025-12-05 05:04:01,188 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 05:10:32,424 - INFO -   > Step 540 - HotpotQA Val Loss: 1.4784 (LEARNING?)
+2025-12-05 05:10:32,424 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 05:17:37,655 - INFO -   > Step 540 - MATH Val Loss: 0.8600 (FORGETTING?)
+2025-12-05 05:19:03,740 - INFO - 
+--- Custom Eval at Step 550 ---
+2025-12-05 05:19:03,741 - INFO - Evaluating on Task B (HotpotQA)...
+2025-12-05 05:25:34,981 - INFO -   > Step 550 - HotpotQA Val Loss: 1.4783 (LEARNING?)
+2025-12-05 05:25:34,981 - INFO - Evaluating on Task A (MATH)...
+2025-12-05 05:32:40,208 - INFO -   > Step 550 - MATH Val Loss: 0.8597 (FORGETTING?)
+2025-12-05 05:34:06,291 - INFO - 
+--- Custom Eval at Step 560 ---
+2025-12-05 05:34:06,291 - INFO - Evaluating on Task B (HotpotQA)...

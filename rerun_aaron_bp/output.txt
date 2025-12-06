@@ -1,0 +1,1337 @@
+INFO: Running on GPU. VRAM: 23.68 GB
+--- Loading Base Model & Tokenizer ---
+
+--- Loading and Preprocessing Datasets (This may take a while) ---
+Tokenizing and filtering HotpotQA...
+HotpotQA: 3686 train, 367 val (after filtering)
+Tokenizing and filtering MATH...
+MATH: 3994 train, 399 val (after filtering)
+
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+trainable params: 2,252,800 || all params: 1,102,301,184 || trainable%: 0.2044
+{'loss': 1.4389, 'grad_norm': 0.4258038103580475, 'learning_rate': 0.0001928, 'epoch': 0.08}
+{'loss': 1.1795, 'grad_norm': 0.33008867502212524, 'learning_rate': 0.00018480000000000002, 'epoch': 0.16}
+{'loss': 1.1035, 'grad_norm': 0.24818888306617737, 'learning_rate': 0.00017680000000000001, 'epoch': 0.24}
+{'loss': 1.0662, 'grad_norm': 0.2744581997394562, 'learning_rate': 0.0001688, 'epoch': 0.32}
+{'loss': 1.0379, 'grad_norm': 0.23023641109466553, 'learning_rate': 0.0001608, 'epoch': 0.4}
+{'loss': 1.0118, 'grad_norm': 0.2604007124900818, 'learning_rate': 0.0001528, 'epoch': 0.48}
+{'loss': 1.027, 'grad_norm': 0.23632065951824188, 'learning_rate': 0.0001448, 'epoch': 0.56}
+{'loss': 0.9888, 'grad_norm': 0.23237550258636475, 'learning_rate': 0.00013680000000000002, 'epoch': 0.64}
+{'loss': 1.0313, 'grad_norm': 0.26915135979652405, 'learning_rate': 0.00012880000000000001, 'epoch': 0.72}
+{'loss': 0.986, 'grad_norm': 0.30784663558006287, 'learning_rate': 0.0001208, 'epoch': 0.8}
+{'loss': 1.0191, 'grad_norm': 0.26405978202819824, 'learning_rate': 0.00011279999999999999, 'epoch': 0.88}
+{'loss': 0.9698, 'grad_norm': 0.2880290150642395, 'learning_rate': 0.00010480000000000001, 'epoch': 0.96}
+{'loss': 1.0078, 'grad_norm': 0.3140103220939636, 'learning_rate': 9.680000000000001e-05, 'epoch': 1.04}
+{'loss': 1.0043, 'grad_norm': 0.3005601167678833, 'learning_rate': 8.88e-05, 'epoch': 1.12}
+{'loss': 0.9482, 'grad_norm': 0.3035515248775482, 'learning_rate': 8.080000000000001e-05, 'epoch': 1.2}
+{'loss': 0.969, 'grad_norm': 0.3363906741142273, 'learning_rate': 7.280000000000001e-05, 'epoch': 1.28}
+{'loss': 0.9784, 'grad_norm': 0.3556690514087677, 'learning_rate': 6.48e-05, 'epoch': 1.36}
+{'loss': 0.9796, 'grad_norm': 0.3296329975128174, 'learning_rate': 5.68e-05, 'epoch': 1.44}
+{'loss': 1.0009, 'grad_norm': 0.3687070608139038, 'learning_rate': 4.88e-05, 'epoch': 1.52}
+{'loss': 0.9735, 'grad_norm': 0.3330930471420288, 'learning_rate': 4.08e-05, 'epoch': 1.6}
+{'loss': 0.944, 'grad_norm': 0.3364540934562683, 'learning_rate': 3.2800000000000004e-05, 'epoch': 1.68}
+{'loss': 1.0104, 'grad_norm': 0.3613607883453369, 'learning_rate': 2.48e-05, 'epoch': 1.76}
+{'loss': 0.9477, 'grad_norm': 0.3466843366622925, 'learning_rate': 1.6800000000000002e-05, 'epoch': 1.84}
+{'loss': 0.9696, 'grad_norm': 0.34686484932899475, 'learning_rate': 8.8e-06, 'epoch': 1.92}
+{'loss': 0.997, 'grad_norm': 0.43981918692588806, 'learning_rate': 8.000000000000001e-07, 'epoch': 2.0}
+{'train_runtime': 4056.6138, 'train_samples_per_second': 1.969, 'train_steps_per_second': 0.062, 'train_loss': 1.0236077461242676, 'epoch': 2.0}
+--- Phase 1 (MATH) training complete. Saving adapter to out/math_adapter_llama_fp32_alpha_0_ ---
+Adapter saved.
+
+--- Evaluating Model after Phase 1 (Task A Expert) ---
+  > Task B Expert - HotpotQA Val Loss: 1.9176
+  > Task A Expert - MATH Val Loss: 1.0079
+
+  --- Phase 2: Training on Task B (HotpotQA) ---
+Initializing ForgettingTrackerCallback with starting metrics.
+Trainer reference set in callback.
+
+--- Custom Eval at Step 10 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8229151964187622, 'eval_runtime': 50.5718, 'eval_samples_per_second': 7.257, 'eval_steps_per_second': 0.91, 'epoch': 0.09}
+  > Step 10 - HotpotQA Val Loss: 1.8229 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.0631718635559082, 'eval_runtime': 54.9022, 'eval_samples_per_second': 7.267, 'eval_steps_per_second': 0.911, 'epoch': 0.09}
+  > Step 10 - MATH Val Loss: 1.0632 (FORGETTING?)
+{'loss': 1.8234, 'grad_norm': 0.2925369143486023, 'learning_rate': 6.728448275862068e-05, 'epoch': 0.09}
+
+--- Custom Eval at Step 20 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8106991052627563, 'eval_runtime': 50.5594, 'eval_samples_per_second': 7.259, 'eval_steps_per_second': 0.91, 'epoch': 0.17}
+  > Step 20 - HotpotQA Val Loss: 1.8107 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.114851713180542, 'eval_runtime': 54.9085, 'eval_samples_per_second': 7.267, 'eval_steps_per_second': 0.911, 'epoch': 0.17}
+  > Step 20 - MATH Val Loss: 1.1149 (FORGETTING?)
+{'loss': 1.7888, 'grad_norm': 0.2172190546989441, 'learning_rate': 6.426724137931034e-05, 'epoch': 0.17}
+
+--- Custom Eval at Step 30 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8181580305099487, 'eval_runtime': 50.5683, 'eval_samples_per_second': 7.258, 'eval_steps_per_second': 0.91, 'epoch': 0.26}
+  > Step 30 - HotpotQA Val Loss: 1.8182 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.173209547996521, 'eval_runtime': 54.9039, 'eval_samples_per_second': 7.267, 'eval_steps_per_second': 0.911, 'epoch': 0.26}
+  > Step 30 - MATH Val Loss: 1.1732 (FORGETTING?)
+{'loss': 1.8119, 'grad_norm': 0.19961433112621307, 'learning_rate': 6.125e-05, 'epoch': 0.26}
+
+--- Custom Eval at Step 40 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8325375318527222, 'eval_runtime': 50.5712, 'eval_samples_per_second': 7.257, 'eval_steps_per_second': 0.91, 'epoch': 0.35}
+  > Step 40 - HotpotQA Val Loss: 1.8325 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.2641767263412476, 'eval_runtime': 54.9042, 'eval_samples_per_second': 7.267, 'eval_steps_per_second': 0.911, 'epoch': 0.35}
+  > Step 40 - MATH Val Loss: 1.2642 (FORGETTING?)
+{'loss': 1.8174, 'grad_norm': 0.19181731343269348, 'learning_rate': 5.823275862068965e-05, 'epoch': 0.35}
+
+--- Custom Eval at Step 50 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8471027612686157, 'eval_runtime': 50.5759, 'eval_samples_per_second': 7.256, 'eval_steps_per_second': 0.91, 'epoch': 0.43}
+  > Step 50 - HotpotQA Val Loss: 1.8471 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.381138563156128, 'eval_runtime': 54.9006, 'eval_samples_per_second': 7.268, 'eval_steps_per_second': 0.911, 'epoch': 0.43}
+  > Step 50 - MATH Val Loss: 1.3811 (FORGETTING?)
+{'loss': 1.824, 'grad_norm': 0.2131582498550415, 'learning_rate': 5.521551724137931e-05, 'epoch': 0.43}
+
+--- Custom Eval at Step 60 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8576579093933105, 'eval_runtime': 50.5725, 'eval_samples_per_second': 7.257, 'eval_steps_per_second': 0.91, 'epoch': 0.52}
+  > Step 60 - HotpotQA Val Loss: 1.8577 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.4934746026992798, 'eval_runtime': 54.8979, 'eval_samples_per_second': 7.268, 'eval_steps_per_second': 0.911, 'epoch': 0.52}
+  > Step 60 - MATH Val Loss: 1.4935 (FORGETTING?)
+{'loss': 1.8446, 'grad_norm': 0.21465981006622314, 'learning_rate': 5.2198275862068964e-05, 'epoch': 0.52}
+
+--- Custom Eval at Step 70 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8670752048492432, 'eval_runtime': 50.5671, 'eval_samples_per_second': 7.258, 'eval_steps_per_second': 0.91, 'epoch': 0.61}
+  > Step 70 - HotpotQA Val Loss: 1.8671 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.613962173461914, 'eval_runtime': 54.8956, 'eval_samples_per_second': 7.268, 'eval_steps_per_second': 0.911, 'epoch': 0.61}
+  > Step 70 - MATH Val Loss: 1.6140 (FORGETTING?)
+{'loss': 1.8362, 'grad_norm': 0.21716326475143433, 'learning_rate': 4.918103448275862e-05, 'epoch': 0.61}
+
+--- Custom Eval at Step 80 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8851150274276733, 'eval_runtime': 50.5725, 'eval_samples_per_second': 7.257, 'eval_steps_per_second': 0.91, 'epoch': 0.69}
+  > Step 80 - HotpotQA Val Loss: 1.8851 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.7728248834609985, 'eval_runtime': 54.8983, 'eval_samples_per_second': 7.268, 'eval_steps_per_second': 0.911, 'epoch': 0.69}
+  > Step 80 - MATH Val Loss: 1.7728 (FORGETTING?)
+{'loss': 1.8506, 'grad_norm': 0.2318875789642334, 'learning_rate': 4.616379310344827e-05, 'epoch': 0.69}
+
+--- Custom Eval at Step 90 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.894956350326538, 'eval_runtime': 50.5538, 'eval_samples_per_second': 7.26, 'eval_steps_per_second': 0.91, 'epoch': 0.78}
+  > Step 90 - HotpotQA Val Loss: 1.8950 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.8655023574829102, 'eval_runtime': 54.8869, 'eval_samples_per_second': 7.269, 'eval_steps_per_second': 0.911, 'epoch': 0.78}
+  > Step 90 - MATH Val Loss: 1.8655 (FORGETTING?)
+{'loss': 1.8616, 'grad_norm': 0.27966204285621643, 'learning_rate': 4.314655172413793e-05, 'epoch': 0.78}
+
+--- Custom Eval at Step 100 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9144052267074585, 'eval_runtime': 50.535, 'eval_samples_per_second': 7.262, 'eval_steps_per_second': 0.91, 'epoch': 0.87}
+  > Step 100 - HotpotQA Val Loss: 1.9144 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.983482003211975, 'eval_runtime': 54.8864, 'eval_samples_per_second': 7.27, 'eval_steps_per_second': 0.911, 'epoch': 0.87}
+  > Step 100 - MATH Val Loss: 1.9835 (FORGETTING?)
+{'loss': 1.9053, 'grad_norm': 0.3073861002922058, 'learning_rate': 4.012931034482758e-05, 'epoch': 0.87}
+
+--- Custom Eval at Step 110 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9178341627120972, 'eval_runtime': 50.7033, 'eval_samples_per_second': 7.238, 'eval_steps_per_second': 0.907, 'epoch': 0.95}
+  > Step 110 - HotpotQA Val Loss: 1.9178 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.9955050945281982, 'eval_runtime': 54.9049, 'eval_samples_per_second': 7.267, 'eval_steps_per_second': 0.911, 'epoch': 0.95}
+  > Step 110 - MATH Val Loss: 1.9955 (FORGETTING?)
+{'loss': 1.9175, 'grad_norm': 0.30406641960144043, 'learning_rate': 3.7112068965517236e-05, 'epoch': 0.95}
+
+--- Custom Eval at Step 120 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9002434015274048, 'eval_runtime': 50.6956, 'eval_samples_per_second': 7.239, 'eval_steps_per_second': 0.907, 'epoch': 1.03}
+  > Step 120 - HotpotQA Val Loss: 1.9002 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.912795901298523, 'eval_runtime': 54.9113, 'eval_samples_per_second': 7.266, 'eval_steps_per_second': 0.911, 'epoch': 1.03}
+  > Step 120 - MATH Val Loss: 1.9128 (FORGETTING?)
+{'loss': 1.9037, 'grad_norm': 0.3116230070590973, 'learning_rate': 3.4094827586206896e-05, 'epoch': 1.03}
+
+--- Custom Eval at Step 130 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.923940896987915, 'eval_runtime': 50.6958, 'eval_samples_per_second': 7.239, 'eval_steps_per_second': 0.907, 'epoch': 1.12}
+  > Step 130 - HotpotQA Val Loss: 1.9239 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.002992630004883, 'eval_runtime': 54.905, 'eval_samples_per_second': 7.267, 'eval_steps_per_second': 0.911, 'epoch': 1.12}
+  > Step 130 - MATH Val Loss: 2.0030 (FORGETTING?)
+{'loss': 1.8902, 'grad_norm': 0.3248743414878845, 'learning_rate': 3.107758620689655e-05, 'epoch': 1.12}
+
+--- Custom Eval at Step 140 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9365406036376953, 'eval_runtime': 50.692, 'eval_samples_per_second': 7.24, 'eval_steps_per_second': 0.907, 'epoch': 1.21}
+  > Step 140 - HotpotQA Val Loss: 1.9365 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.050546646118164, 'eval_runtime': 54.9075, 'eval_samples_per_second': 7.267, 'eval_steps_per_second': 0.911, 'epoch': 1.21}
+  > Step 140 - MATH Val Loss: 2.0505 (FORGETTING?)
+{'loss': 1.9214, 'grad_norm': 0.3156846761703491, 'learning_rate': 2.8060344827586206e-05, 'epoch': 1.21}
+
+--- Custom Eval at Step 150 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9343295097351074, 'eval_runtime': 50.6955, 'eval_samples_per_second': 7.239, 'eval_steps_per_second': 0.907, 'epoch': 1.3}
+  > Step 150 - HotpotQA Val Loss: 1.9343 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.0449793338775635, 'eval_runtime': 54.9012, 'eval_samples_per_second': 7.268, 'eval_steps_per_second': 0.911, 'epoch': 1.3}
+  > Step 150 - MATH Val Loss: 2.0450 (FORGETTING?)
+{'loss': 1.9077, 'grad_norm': 0.33832451701164246, 'learning_rate': 2.5043103448275862e-05, 'epoch': 1.3}
+
+--- Custom Eval at Step 160 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9330250024795532, 'eval_runtime': 50.6804, 'eval_samples_per_second': 7.241, 'eval_steps_per_second': 0.908, 'epoch': 1.38}
+  > Step 160 - HotpotQA Val Loss: 1.9330 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.029019594192505, 'eval_runtime': 54.9063, 'eval_samples_per_second': 7.267, 'eval_steps_per_second': 0.911, 'epoch': 1.38}
+  > Step 160 - MATH Val Loss: 2.0290 (FORGETTING?)
+{'loss': 1.9231, 'grad_norm': 0.33134615421295166, 'learning_rate': 2.2025862068965515e-05, 'epoch': 1.38}
+
+--- Custom Eval at Step 170 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.926700472831726, 'eval_runtime': 50.6973, 'eval_samples_per_second': 7.239, 'eval_steps_per_second': 0.907, 'epoch': 1.47}
+  > Step 170 - HotpotQA Val Loss: 1.9267 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.9947237968444824, 'eval_runtime': 54.9077, 'eval_samples_per_second': 7.267, 'eval_steps_per_second': 0.911, 'epoch': 1.47}
+  > Step 170 - MATH Val Loss: 1.9947 (FORGETTING?)
+{'loss': 1.8857, 'grad_norm': 0.3190009593963623, 'learning_rate': 1.9008620689655172e-05, 'epoch': 1.47}
+
+--- Custom Eval at Step 180 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9280476570129395, 'eval_runtime': 50.6957, 'eval_samples_per_second': 7.239, 'eval_steps_per_second': 0.907, 'epoch': 1.56}
+  > Step 180 - HotpotQA Val Loss: 1.9280 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.0086143016815186, 'eval_runtime': 54.9103, 'eval_samples_per_second': 7.266, 'eval_steps_per_second': 0.911, 'epoch': 1.56}
+  > Step 180 - MATH Val Loss: 2.0086 (FORGETTING?)
+{'loss': 1.9109, 'grad_norm': 0.3362651467323303, 'learning_rate': 1.599137931034483e-05, 'epoch': 1.56}
+
+--- Custom Eval at Step 190 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9412003755569458, 'eval_runtime': 50.5706, 'eval_samples_per_second': 7.257, 'eval_steps_per_second': 0.91, 'epoch': 1.64}
+  > Step 190 - HotpotQA Val Loss: 1.9412 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.0468966960906982, 'eval_runtime': 54.9012, 'eval_samples_per_second': 7.268, 'eval_steps_per_second': 0.911, 'epoch': 1.64}
+  > Step 190 - MATH Val Loss: 2.0469 (FORGETTING?)
+{'loss': 1.9041, 'grad_norm': 0.4081995487213135, 'learning_rate': 1.2974137931034482e-05, 'epoch': 1.64}
+
+--- Custom Eval at Step 200 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9384503364562988, 'eval_runtime': 50.5804, 'eval_samples_per_second': 7.256, 'eval_steps_per_second': 0.909, 'epoch': 1.73}
+  > Step 200 - HotpotQA Val Loss: 1.9385 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.0273404121398926, 'eval_runtime': 54.9028, 'eval_samples_per_second': 7.267, 'eval_steps_per_second': 0.911, 'epoch': 1.73}
+  > Step 200 - MATH Val Loss: 2.0273 (FORGETTING?)
+{'loss': 1.9425, 'grad_norm': 0.36120298504829407, 'learning_rate': 9.956896551724138e-06, 'epoch': 1.73}
+
+--- Custom Eval at Step 210 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9300569295883179, 'eval_runtime': 50.5919, 'eval_samples_per_second': 7.254, 'eval_steps_per_second': 0.909, 'epoch': 1.82}
+  > Step 210 - HotpotQA Val Loss: 1.9301 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.9942725896835327, 'eval_runtime': 54.9127, 'eval_samples_per_second': 7.266, 'eval_steps_per_second': 0.911, 'epoch': 1.82}
+  > Step 210 - MATH Val Loss: 1.9943 (FORGETTING?)
+{'loss': 1.9155, 'grad_norm': 0.3177049458026886, 'learning_rate': 6.939655172413793e-06, 'epoch': 1.82}
+
+--- Custom Eval at Step 220 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9319196939468384, 'eval_runtime': 50.5788, 'eval_samples_per_second': 7.256, 'eval_steps_per_second': 0.909, 'epoch': 1.9}
+  > Step 220 - HotpotQA Val Loss: 1.9319 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.0006349086761475, 'eval_runtime': 54.9077, 'eval_samples_per_second': 7.267, 'eval_steps_per_second': 0.911, 'epoch': 1.9}
+  > Step 220 - MATH Val Loss: 2.0006 (FORGETTING?)
+{'loss': 1.9308, 'grad_norm': 0.310173362493515, 'learning_rate': 3.922413793103448e-06, 'epoch': 1.9}
+
+--- Custom Eval at Step 230 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.933528184890747, 'eval_runtime': 50.5872, 'eval_samples_per_second': 7.255, 'eval_steps_per_second': 0.909, 'epoch': 1.99}
+  > Step 230 - HotpotQA Val Loss: 1.9335 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.0083394050598145, 'eval_runtime': 54.9138, 'eval_samples_per_second': 7.266, 'eval_steps_per_second': 0.911, 'epoch': 1.99}
+  > Step 230 - MATH Val Loss: 2.0083 (FORGETTING?)
+{'loss': 1.9088, 'grad_norm': 0.35345667600631714, 'learning_rate': 9.051724137931033e-07, 'epoch': 1.99}
+
+--- Custom Eval at Step 232 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9334583282470703, 'eval_runtime': 50.5726, 'eval_samples_per_second': 7.257, 'eval_steps_per_second': 0.91, 'epoch': 2.0}
+  > Step 232 - HotpotQA Val Loss: 1.9335 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.0079944133758545, 'eval_runtime': 54.9016, 'eval_samples_per_second': 7.268, 'eval_steps_per_second': 0.911, 'epoch': 2.0}
+  > Step 232 - MATH Val Loss: 2.0080 (FORGETTING?)
+{'train_runtime': 6174.3793, 'train_samples_per_second': 1.194, 'train_steps_per_second': 0.038, 'train_loss': 1.8799584148258999, 'epoch': 2.0}
+
+--- Saving History Data and Generating Plot ---
+History data saved to out/forgetting_history_MATH_to_HotpotQA_fp32_alpha_0.json
+Plot saved to out/sequential_forgetting_curve_MATH_to_HotpotQA_fp32_for_alpha_0.png
+Not in Colab, plot saved to file.
+--- Loading Base Model & Tokenizer ---
+
+--- Loading and Preprocessing Datasets (This may take a while) ---
+Tokenizing and filtering HotpotQA...
+HotpotQA: 3686 train, 367 val (after filtering)
+Tokenizing and filtering MATH...
+MATH: 3994 train, 399 val (after filtering)
+
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+trainable params: 2,252,800 || all params: 1,102,301,184 || trainable%: 0.2044
+{'loss': 1.4382, 'grad_norm': 0.4667132496833801, 'learning_rate': 0.0001928, 'epoch': 0.08}
+{'loss': 1.1792, 'grad_norm': 0.33735018968582153, 'learning_rate': 0.00018480000000000002, 'epoch': 0.16}
+{'loss': 1.1039, 'grad_norm': 0.2586979269981384, 'learning_rate': 0.00017680000000000001, 'epoch': 0.24}
+{'loss': 1.0657, 'grad_norm': 0.2794058620929718, 'learning_rate': 0.0001688, 'epoch': 0.32}
+{'loss': 1.0383, 'grad_norm': 0.2344350516796112, 'learning_rate': 0.0001608, 'epoch': 0.4}
+{'loss': 1.0116, 'grad_norm': 0.2637326419353485, 'learning_rate': 0.0001528, 'epoch': 0.48}
+{'loss': 1.0266, 'grad_norm': 0.2340291142463684, 'learning_rate': 0.0001448, 'epoch': 0.56}
+{'loss': 0.9887, 'grad_norm': 0.23352190852165222, 'learning_rate': 0.00013680000000000002, 'epoch': 0.64}
+{'loss': 1.0311, 'grad_norm': 0.2649654746055603, 'learning_rate': 0.00012880000000000001, 'epoch': 0.72}
+{'loss': 0.9857, 'grad_norm': 0.30668380856513977, 'learning_rate': 0.0001208, 'epoch': 0.8}
+{'loss': 1.0189, 'grad_norm': 0.26437175273895264, 'learning_rate': 0.00011279999999999999, 'epoch': 0.88}
+{'loss': 0.9694, 'grad_norm': 0.2861979901790619, 'learning_rate': 0.00010480000000000001, 'epoch': 0.96}
+{'loss': 1.0072, 'grad_norm': 0.3101375102996826, 'learning_rate': 9.680000000000001e-05, 'epoch': 1.04}
+{'loss': 1.0037, 'grad_norm': 0.2948084771633148, 'learning_rate': 8.88e-05, 'epoch': 1.12}
+{'loss': 0.9478, 'grad_norm': 0.300626665353775, 'learning_rate': 8.080000000000001e-05, 'epoch': 1.2}
+{'loss': 0.9679, 'grad_norm': 0.3376672565937042, 'learning_rate': 7.280000000000001e-05, 'epoch': 1.28}
+{'loss': 0.9778, 'grad_norm': 0.3540038764476776, 'learning_rate': 6.48e-05, 'epoch': 1.36}
+{'loss': 0.9788, 'grad_norm': 0.3286871910095215, 'learning_rate': 5.68e-05, 'epoch': 1.44}
+{'loss': 1.0002, 'grad_norm': 0.36494842171669006, 'learning_rate': 4.88e-05, 'epoch': 1.52}
+{'loss': 0.9727, 'grad_norm': 0.3320353925228119, 'learning_rate': 4.08e-05, 'epoch': 1.6}
+{'loss': 0.9432, 'grad_norm': 0.336950421333313, 'learning_rate': 3.2800000000000004e-05, 'epoch': 1.68}
+{'loss': 1.0098, 'grad_norm': 0.36009901762008667, 'learning_rate': 2.48e-05, 'epoch': 1.76}
+{'loss': 0.947, 'grad_norm': 0.3421715199947357, 'learning_rate': 1.6800000000000002e-05, 'epoch': 1.84}
+{'loss': 0.9694, 'grad_norm': 0.347490519285202, 'learning_rate': 8.8e-06, 'epoch': 1.92}
+{'loss': 0.9964, 'grad_norm': 0.4380530118942261, 'learning_rate': 8.000000000000001e-07, 'epoch': 2.0}
+{'train_runtime': 4056.9989, 'train_samples_per_second': 1.969, 'train_steps_per_second': 0.062, 'train_loss': 1.023171573638916, 'epoch': 2.0}
+--- Phase 1 (MATH) training complete. Saving adapter to out/math_adapter_llama_fp32_alpha_0.05_ ---
+Adapter saved.
+
+--- Evaluating Model after Phase 1 (Task A Expert) ---
+  > Task B Expert - HotpotQA Val Loss: 1.9091
+  > Task A Expert - MATH Val Loss: 1.0072
+
+  --- Phase 2: Training on Task B (HotpotQA) ---
+Initializing ForgettingTrackerCallback with starting metrics.
+Trainer reference set in callback.
+
+--- Custom Eval at Step 10 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8194202184677124, 'eval_runtime': 50.5903, 'eval_samples_per_second': 7.254, 'eval_steps_per_second': 0.909, 'epoch': 0.09}
+  > Step 10 - HotpotQA Val Loss: 1.8194 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.0635014772415161, 'eval_runtime': 54.9183, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 0.09}
+  > Step 10 - MATH Val Loss: 1.0635 (FORGETTING?)
+{'loss': 1.8198, 'grad_norm': 0.3072744905948639, 'learning_rate': 6.728448275862068e-05, 'epoch': 0.09}
+
+--- Custom Eval at Step 20 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.809504508972168, 'eval_runtime': 50.5979, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 0.17}
+  > Step 20 - HotpotQA Val Loss: 1.8095 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.1224337816238403, 'eval_runtime': 54.9229, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 0.17}
+  > Step 20 - MATH Val Loss: 1.1224 (FORGETTING?)
+{'loss': 1.7917, 'grad_norm': 0.2112453728914261, 'learning_rate': 6.426724137931034e-05, 'epoch': 0.17}
+
+--- Custom Eval at Step 30 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8202629089355469, 'eval_runtime': 50.5973, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 0.26}
+  > Step 30 - HotpotQA Val Loss: 1.8203 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.2053953409194946, 'eval_runtime': 54.9143, 'eval_samples_per_second': 7.266, 'eval_steps_per_second': 0.911, 'epoch': 0.26}
+  > Step 30 - MATH Val Loss: 1.2054 (FORGETTING?)
+{'loss': 1.8178, 'grad_norm': 0.18811190128326416, 'learning_rate': 6.125e-05, 'epoch': 0.26}
+
+--- Custom Eval at Step 40 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8379572629928589, 'eval_runtime': 50.5985, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 0.35}
+  > Step 40 - HotpotQA Val Loss: 1.8380 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.3341176509857178, 'eval_runtime': 54.9238, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 0.35}
+  > Step 40 - MATH Val Loss: 1.3341 (FORGETTING?)
+{'loss': 1.8269, 'grad_norm': 0.18294283747673035, 'learning_rate': 5.823275862068965e-05, 'epoch': 0.35}
+
+--- Custom Eval at Step 50 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8532103300094604, 'eval_runtime': 50.6032, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 0.43}
+  > Step 50 - HotpotQA Val Loss: 1.8532 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.4861918687820435, 'eval_runtime': 54.9232, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 0.43}
+  > Step 50 - MATH Val Loss: 1.4862 (FORGETTING?)
+{'loss': 1.8376, 'grad_norm': 0.20834100246429443, 'learning_rate': 5.521551724137931e-05, 'epoch': 0.43}
+
+--- Custom Eval at Step 60 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8625041246414185, 'eval_runtime': 50.6013, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 0.52}
+  > Step 60 - HotpotQA Val Loss: 1.8625 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.6169451475143433, 'eval_runtime': 54.9186, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 0.52}
+  > Step 60 - MATH Val Loss: 1.6169 (FORGETTING?)
+{'loss': 1.8579, 'grad_norm': 0.20646291971206665, 'learning_rate': 5.2198275862068964e-05, 'epoch': 0.52}
+
+--- Custom Eval at Step 70 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8726099729537964, 'eval_runtime': 50.6038, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 0.61}
+  > Step 70 - HotpotQA Val Loss: 1.8726 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.764337420463562, 'eval_runtime': 54.9283, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 0.61}
+  > Step 70 - MATH Val Loss: 1.7643 (FORGETTING?)
+{'loss': 1.8498, 'grad_norm': 0.2075781524181366, 'learning_rate': 4.918103448275862e-05, 'epoch': 0.61}
+
+--- Custom Eval at Step 80 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8898489475250244, 'eval_runtime': 50.6188, 'eval_samples_per_second': 7.25, 'eval_steps_per_second': 0.909, 'epoch': 0.69}
+  > Step 80 - HotpotQA Val Loss: 1.8898 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.9296088218688965, 'eval_runtime': 54.93, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 0.69}
+  > Step 80 - MATH Val Loss: 1.9296 (FORGETTING?)
+{'loss': 1.8657, 'grad_norm': 0.22087225317955017, 'learning_rate': 4.616379310344827e-05, 'epoch': 0.69}
+
+--- Custom Eval at Step 90 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.896208643913269, 'eval_runtime': 50.6113, 'eval_samples_per_second': 7.251, 'eval_steps_per_second': 0.909, 'epoch': 0.78}
+  > Step 90 - HotpotQA Val Loss: 1.8962 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.9708499908447266, 'eval_runtime': 54.9367, 'eval_samples_per_second': 7.263, 'eval_steps_per_second': 0.91, 'epoch': 0.78}
+  > Step 90 - MATH Val Loss: 1.9708 (FORGETTING?)
+{'loss': 1.8752, 'grad_norm': 0.25658687949180603, 'learning_rate': 4.314655172413793e-05, 'epoch': 0.78}
+
+--- Custom Eval at Step 100 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9158985614776611, 'eval_runtime': 50.6081, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 0.87}
+  > Step 100 - HotpotQA Val Loss: 1.9159 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.079235315322876, 'eval_runtime': 54.9232, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 0.87}
+  > Step 100 - MATH Val Loss: 2.0792 (FORGETTING?)
+{'loss': 1.9158, 'grad_norm': 0.28702405095100403, 'learning_rate': 4.012931034482758e-05, 'epoch': 0.87}
+
+--- Custom Eval at Step 110 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9195560216903687, 'eval_runtime': 50.6096, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 0.95}
+  > Step 110 - HotpotQA Val Loss: 1.9196 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.082747459411621, 'eval_runtime': 54.9277, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 0.95}
+  > Step 110 - MATH Val Loss: 2.0827 (FORGETTING?)
+{'loss': 1.9316, 'grad_norm': 0.28413230180740356, 'learning_rate': 3.7112068965517236e-05, 'epoch': 0.95}
+
+--- Custom Eval at Step 120 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9016386270523071, 'eval_runtime': 50.5986, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 1.03}
+  > Step 120 - HotpotQA Val Loss: 1.9016 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.9639456272125244, 'eval_runtime': 54.9207, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 1.03}
+  > Step 120 - MATH Val Loss: 1.9639 (FORGETTING?)
+{'loss': 1.916, 'grad_norm': 0.2807657718658447, 'learning_rate': 3.4094827586206896e-05, 'epoch': 1.03}
+
+--- Custom Eval at Step 130 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9282681941986084, 'eval_runtime': 50.604, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 1.12}
+  > Step 130 - HotpotQA Val Loss: 1.9283 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.085688829421997, 'eval_runtime': 54.9174, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 1.12}
+  > Step 130 - MATH Val Loss: 2.0857 (FORGETTING?)
+{'loss': 1.9033, 'grad_norm': 0.30178120732307434, 'learning_rate': 3.107758620689655e-05, 'epoch': 1.12}
+
+--- Custom Eval at Step 140 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9425188302993774, 'eval_runtime': 50.5912, 'eval_samples_per_second': 7.254, 'eval_steps_per_second': 0.909, 'epoch': 1.21}
+  > Step 140 - HotpotQA Val Loss: 1.9425 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1451802253723145, 'eval_runtime': 54.9183, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 1.21}
+  > Step 140 - MATH Val Loss: 2.1452 (FORGETTING?)
+{'loss': 1.9379, 'grad_norm': 0.29219767451286316, 'learning_rate': 2.8060344827586206e-05, 'epoch': 1.21}
+
+--- Custom Eval at Step 150 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9378551244735718, 'eval_runtime': 50.5983, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 1.3}
+  > Step 150 - HotpotQA Val Loss: 1.9379 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.135484457015991, 'eval_runtime': 54.9218, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 1.3}
+  > Step 150 - MATH Val Loss: 2.1355 (FORGETTING?)
+{'loss': 1.9234, 'grad_norm': 0.3164284825325012, 'learning_rate': 2.5043103448275862e-05, 'epoch': 1.3}
+
+--- Custom Eval at Step 160 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9356660842895508, 'eval_runtime': 50.5915, 'eval_samples_per_second': 7.254, 'eval_steps_per_second': 0.909, 'epoch': 1.38}
+  > Step 160 - HotpotQA Val Loss: 1.9357 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1107969284057617, 'eval_runtime': 54.9208, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 1.38}
+  > Step 160 - MATH Val Loss: 2.1108 (FORGETTING?)
+{'loss': 1.9379, 'grad_norm': 0.30359962582588196, 'learning_rate': 2.2025862068965515e-05, 'epoch': 1.38}
+
+--- Custom Eval at Step 170 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9296362400054932, 'eval_runtime': 50.5911, 'eval_samples_per_second': 7.254, 'eval_steps_per_second': 0.909, 'epoch': 1.47}
+  > Step 170 - HotpotQA Val Loss: 1.9296 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.085911750793457, 'eval_runtime': 54.9176, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 1.47}
+  > Step 170 - MATH Val Loss: 2.0859 (FORGETTING?)
+{'loss': 1.8987, 'grad_norm': 0.29245391488075256, 'learning_rate': 1.9008620689655172e-05, 'epoch': 1.47}
+
+--- Custom Eval at Step 180 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9303284883499146, 'eval_runtime': 50.5957, 'eval_samples_per_second': 7.254, 'eval_steps_per_second': 0.909, 'epoch': 1.56}
+  > Step 180 - HotpotQA Val Loss: 1.9303 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.0999507904052734, 'eval_runtime': 54.9149, 'eval_samples_per_second': 7.266, 'eval_steps_per_second': 0.911, 'epoch': 1.56}
+  > Step 180 - MATH Val Loss: 2.1000 (FORGETTING?)
+{'loss': 1.9261, 'grad_norm': 0.31163114309310913, 'learning_rate': 1.599137931034483e-05, 'epoch': 1.56}
+
+--- Custom Eval at Step 190 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9406296014785767, 'eval_runtime': 50.5996, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 1.64}
+  > Step 190 - HotpotQA Val Loss: 1.9406 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.141479253768921, 'eval_runtime': 54.9183, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 1.64}
+  > Step 190 - MATH Val Loss: 2.1415 (FORGETTING?)
+{'loss': 1.9154, 'grad_norm': 0.34361639618873596, 'learning_rate': 1.2974137931034482e-05, 'epoch': 1.64}
+
+--- Custom Eval at Step 200 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9381077289581299, 'eval_runtime': 50.6046, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 1.73}
+  > Step 200 - HotpotQA Val Loss: 1.9381 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.125661611557007, 'eval_runtime': 54.9226, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 1.73}
+  > Step 200 - MATH Val Loss: 2.1257 (FORGETTING?)
+{'loss': 1.9541, 'grad_norm': 0.33804282546043396, 'learning_rate': 9.956896551724138e-06, 'epoch': 1.73}
+
+--- Custom Eval at Step 210 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9300457239151, 'eval_runtime': 50.6022, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 1.82}
+  > Step 210 - HotpotQA Val Loss: 1.9300 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.0878493785858154, 'eval_runtime': 54.916, 'eval_samples_per_second': 7.266, 'eval_steps_per_second': 0.91, 'epoch': 1.82}
+  > Step 210 - MATH Val Loss: 2.0878 (FORGETTING?)
+{'loss': 1.9262, 'grad_norm': 0.29593366384506226, 'learning_rate': 6.939655172413793e-06, 'epoch': 1.82}
+
+--- Custom Eval at Step 220 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.93255615234375, 'eval_runtime': 50.6052, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 1.9}
+  > Step 220 - HotpotQA Val Loss: 1.9326 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.100682020187378, 'eval_runtime': 54.9221, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 1.9}
+  > Step 220 - MATH Val Loss: 2.1007 (FORGETTING?)
+{'loss': 1.9421, 'grad_norm': 0.28950902819633484, 'learning_rate': 3.922413793103448e-06, 'epoch': 1.9}
+
+--- Custom Eval at Step 230 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9345009326934814, 'eval_runtime': 50.5973, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 1.99}
+  > Step 230 - HotpotQA Val Loss: 1.9345 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1110904216766357, 'eval_runtime': 54.9222, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 1.99}
+  > Step 230 - MATH Val Loss: 2.1111 (FORGETTING?)
+{'loss': 1.9215, 'grad_norm': 0.32347050309181213, 'learning_rate': 9.051724137931033e-07, 'epoch': 1.99}
+
+--- Custom Eval at Step 232 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9359182119369507, 'eval_runtime': 50.5968, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 2.0}
+  > Step 232 - HotpotQA Val Loss: 1.9359 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1109390258789062, 'eval_runtime': 54.9267, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 2.0}
+  > Step 232 - MATH Val Loss: 2.1109 (FORGETTING?)
+{'train_runtime': 6174.1566, 'train_samples_per_second': 1.194, 'train_steps_per_second': 0.038, 'train_loss': 1.8915679968636612, 'epoch': 2.0}
+
+--- Saving History Data and Generating Plot ---
+History data saved to out/forgetting_history_MATH_to_HotpotQA_fp32_alpha_0.05.json
+Plot saved to out/sequential_forgetting_curve_MATH_to_HotpotQA_fp32_for_alpha_0.05.png
+Not in Colab, plot saved to file.
+--- Loading Base Model & Tokenizer ---
+
+--- Loading and Preprocessing Datasets (This may take a while) ---
+Tokenizing and filtering HotpotQA...
+HotpotQA: 3686 train, 367 val (after filtering)
+Tokenizing and filtering MATH...
+MATH: 3994 train, 399 val (after filtering)
+
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+trainable params: 2,252,800 || all params: 1,102,301,184 || trainable%: 0.2044
+{'loss': 1.4382, 'grad_norm': 0.4717780649662018, 'learning_rate': 0.0001928, 'epoch': 0.08}
+{'loss': 1.1791, 'grad_norm': 0.3389792740345001, 'learning_rate': 0.00018480000000000002, 'epoch': 0.16}
+{'loss': 1.1039, 'grad_norm': 0.25894856452941895, 'learning_rate': 0.00017680000000000001, 'epoch': 0.24}
+{'loss': 1.0657, 'grad_norm': 0.27910947799682617, 'learning_rate': 0.0001688, 'epoch': 0.32}
+{'loss': 1.0383, 'grad_norm': 0.23417241871356964, 'learning_rate': 0.0001608, 'epoch': 0.4}
+{'loss': 1.0116, 'grad_norm': 0.2638271749019623, 'learning_rate': 0.0001528, 'epoch': 0.48}
+{'loss': 1.0267, 'grad_norm': 0.2331395149230957, 'learning_rate': 0.0001448, 'epoch': 0.56}
+{'loss': 0.9887, 'grad_norm': 0.23355625569820404, 'learning_rate': 0.00013680000000000002, 'epoch': 0.64}
+{'loss': 1.0311, 'grad_norm': 0.2653716504573822, 'learning_rate': 0.00012880000000000001, 'epoch': 0.72}
+{'loss': 0.9857, 'grad_norm': 0.3076026439666748, 'learning_rate': 0.0001208, 'epoch': 0.8}
+{'loss': 1.0189, 'grad_norm': 0.2650688886642456, 'learning_rate': 0.00011279999999999999, 'epoch': 0.88}
+{'loss': 0.9694, 'grad_norm': 0.28628847002983093, 'learning_rate': 0.00010480000000000001, 'epoch': 0.96}
+{'loss': 1.0072, 'grad_norm': 0.31054550409317017, 'learning_rate': 9.680000000000001e-05, 'epoch': 1.04}
+{'loss': 1.0037, 'grad_norm': 0.29521018266677856, 'learning_rate': 8.88e-05, 'epoch': 1.12}
+{'loss': 0.9478, 'grad_norm': 0.3016218841075897, 'learning_rate': 8.080000000000001e-05, 'epoch': 1.2}
+{'loss': 0.968, 'grad_norm': 0.3357637822628021, 'learning_rate': 7.280000000000001e-05, 'epoch': 1.28}
+{'loss': 0.9779, 'grad_norm': 0.35399365425109863, 'learning_rate': 6.48e-05, 'epoch': 1.36}
+{'loss': 0.9789, 'grad_norm': 0.3279676139354706, 'learning_rate': 5.68e-05, 'epoch': 1.44}
+{'loss': 1.0001, 'grad_norm': 0.36431702971458435, 'learning_rate': 4.88e-05, 'epoch': 1.52}
+{'loss': 0.9727, 'grad_norm': 0.3319726884365082, 'learning_rate': 4.08e-05, 'epoch': 1.6}
+{'loss': 0.9432, 'grad_norm': 0.33542513847351074, 'learning_rate': 3.2800000000000004e-05, 'epoch': 1.68}
+{'loss': 1.0099, 'grad_norm': 0.35817059874534607, 'learning_rate': 2.48e-05, 'epoch': 1.76}
+{'loss': 0.9471, 'grad_norm': 0.3414260149002075, 'learning_rate': 1.6800000000000002e-05, 'epoch': 1.84}
+{'loss': 0.9695, 'grad_norm': 0.3464002013206482, 'learning_rate': 8.8e-06, 'epoch': 1.92}
+{'loss': 0.9965, 'grad_norm': 0.43901827931404114, 'learning_rate': 8.000000000000001e-07, 'epoch': 2.0}
+{'train_runtime': 4056.2102, 'train_samples_per_second': 1.969, 'train_steps_per_second': 0.062, 'train_loss': 1.0231908721923828, 'epoch': 2.0}
+--- Phase 1 (MATH) training complete. Saving adapter to out/math_adapter_llama_fp32_alpha_0.1_ ---
+Adapter saved.
+
+--- Evaluating Model after Phase 1 (Task A Expert) ---
+  > Task B Expert - HotpotQA Val Loss: 1.9095
+  > Task A Expert - MATH Val Loss: 1.0072
+
+  --- Phase 2: Training on Task B (HotpotQA) ---
+Initializing ForgettingTrackerCallback with starting metrics.
+Trainer reference set in callback.
+
+--- Custom Eval at Step 10 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8188190460205078, 'eval_runtime': 50.6022, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 0.09}
+  > Step 10 - HotpotQA Val Loss: 1.8188 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.0574904680252075, 'eval_runtime': 54.9264, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 0.09}
+  > Step 10 - MATH Val Loss: 1.0575 (FORGETTING?)
+{'loss': 1.8203, 'grad_norm': 0.2840876579284668, 'learning_rate': 6.728448275862068e-05, 'epoch': 0.09}
+
+--- Custom Eval at Step 20 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8088537454605103, 'eval_runtime': 50.6081, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 0.17}
+  > Step 20 - HotpotQA Val Loss: 1.8089 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.122301459312439, 'eval_runtime': 54.9309, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 0.17}
+  > Step 20 - MATH Val Loss: 1.1223 (FORGETTING?)
+{'loss': 1.7964, 'grad_norm': 0.20352444052696228, 'learning_rate': 6.426724137931034e-05, 'epoch': 0.17}
+
+--- Custom Eval at Step 30 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8199665546417236, 'eval_runtime': 50.5886, 'eval_samples_per_second': 7.255, 'eval_steps_per_second': 0.909, 'epoch': 0.26}
+  > Step 30 - HotpotQA Val Loss: 1.8200 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.2104021310806274, 'eval_runtime': 54.9207, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 0.26}
+  > Step 30 - MATH Val Loss: 1.2104 (FORGETTING?)
+{'loss': 1.823, 'grad_norm': 0.18071697652339935, 'learning_rate': 6.125e-05, 'epoch': 0.26}
+
+--- Custom Eval at Step 40 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8391475677490234, 'eval_runtime': 50.5477, 'eval_samples_per_second': 7.26, 'eval_steps_per_second': 0.91, 'epoch': 0.35}
+  > Step 40 - HotpotQA Val Loss: 1.8391 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.343161702156067, 'eval_runtime': 54.9228, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 0.35}
+  > Step 40 - MATH Val Loss: 1.3432 (FORGETTING?)
+{'loss': 1.8336, 'grad_norm': 0.17616982758045197, 'learning_rate': 5.823275862068965e-05, 'epoch': 0.35}
+
+--- Custom Eval at Step 50 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8551973104476929, 'eval_runtime': 50.5451, 'eval_samples_per_second': 7.261, 'eval_steps_per_second': 0.91, 'epoch': 0.43}
+  > Step 50 - HotpotQA Val Loss: 1.8552 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.5024664402008057, 'eval_runtime': 54.9203, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 0.43}
+  > Step 50 - MATH Val Loss: 1.5025 (FORGETTING?)
+{'loss': 1.8463, 'grad_norm': 0.20118889212608337, 'learning_rate': 5.521551724137931e-05, 'epoch': 0.43}
+
+--- Custom Eval at Step 60 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8647031784057617, 'eval_runtime': 50.5442, 'eval_samples_per_second': 7.261, 'eval_steps_per_second': 0.91, 'epoch': 0.52}
+  > Step 60 - HotpotQA Val Loss: 1.8647 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.632860541343689, 'eval_runtime': 54.9194, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 0.52}
+  > Step 60 - MATH Val Loss: 1.6329 (FORGETTING?)
+{'loss': 1.8681, 'grad_norm': 0.20081250369548798, 'learning_rate': 5.2198275862068964e-05, 'epoch': 0.52}
+
+--- Custom Eval at Step 70 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8749666213989258, 'eval_runtime': 50.7586, 'eval_samples_per_second': 7.23, 'eval_steps_per_second': 0.906, 'epoch': 0.61}
+  > Step 70 - HotpotQA Val Loss: 1.8750 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.7808183431625366, 'eval_runtime': 54.9434, 'eval_samples_per_second': 7.262, 'eval_steps_per_second': 0.91, 'epoch': 0.61}
+  > Step 70 - MATH Val Loss: 1.7808 (FORGETTING?)
+{'loss': 1.861, 'grad_norm': 0.19987940788269043, 'learning_rate': 4.918103448275862e-05, 'epoch': 0.61}
+
+--- Custom Eval at Step 80 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8933446407318115, 'eval_runtime': 50.6205, 'eval_samples_per_second': 7.25, 'eval_steps_per_second': 0.909, 'epoch': 0.69}
+  > Step 80 - HotpotQA Val Loss: 1.8933 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.944454312324524, 'eval_runtime': 54.931, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 0.69}
+  > Step 80 - MATH Val Loss: 1.9445 (FORGETTING?)
+{'loss': 1.8779, 'grad_norm': 0.21359285712242126, 'learning_rate': 4.616379310344827e-05, 'epoch': 0.69}
+
+--- Custom Eval at Step 90 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.901491641998291, 'eval_runtime': 50.6043, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 0.78}
+  > Step 90 - HotpotQA Val Loss: 1.9015 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.9941014051437378, 'eval_runtime': 54.9223, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 0.78}
+  > Step 90 - MATH Val Loss: 1.9941 (FORGETTING?)
+{'loss': 1.8897, 'grad_norm': 0.24806512892246246, 'learning_rate': 4.314655172413793e-05, 'epoch': 0.78}
+
+--- Custom Eval at Step 100 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.919291615486145, 'eval_runtime': 50.6042, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 0.87}
+  > Step 100 - HotpotQA Val Loss: 1.9193 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.0814638137817383, 'eval_runtime': 54.9321, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 0.87}
+  > Step 100 - MATH Val Loss: 2.0815 (FORGETTING?)
+{'loss': 1.9308, 'grad_norm': 0.2751706540584564, 'learning_rate': 4.012931034482758e-05, 'epoch': 0.87}
+
+--- Custom Eval at Step 110 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9249317646026611, 'eval_runtime': 50.6012, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 0.95}
+  > Step 110 - HotpotQA Val Loss: 1.9249 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.086664915084839, 'eval_runtime': 54.9249, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 0.95}
+  > Step 110 - MATH Val Loss: 2.0867 (FORGETTING?)
+{'loss': 1.9468, 'grad_norm': 0.26987549662590027, 'learning_rate': 3.7112068965517236e-05, 'epoch': 0.95}
+
+--- Custom Eval at Step 120 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9038691520690918, 'eval_runtime': 50.6067, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 1.03}
+  > Step 120 - HotpotQA Val Loss: 1.9039 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.959608793258667, 'eval_runtime': 54.9342, 'eval_samples_per_second': 7.263, 'eval_steps_per_second': 0.91, 'epoch': 1.03}
+  > Step 120 - MATH Val Loss: 1.9596 (FORGETTING?)
+{'loss': 1.9311, 'grad_norm': 0.27899420261383057, 'learning_rate': 3.4094827586206896e-05, 'epoch': 1.03}
+
+--- Custom Eval at Step 130 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.933368444442749, 'eval_runtime': 50.6081, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 1.12}
+  > Step 130 - HotpotQA Val Loss: 1.9334 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.0893170833587646, 'eval_runtime': 54.9263, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 1.12}
+  > Step 130 - MATH Val Loss: 2.0893 (FORGETTING?)
+{'loss': 1.9168, 'grad_norm': 0.3003588616847992, 'learning_rate': 3.107758620689655e-05, 'epoch': 1.12}
+
+--- Custom Eval at Step 140 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9466147422790527, 'eval_runtime': 50.6076, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 1.21}
+  > Step 140 - HotpotQA Val Loss: 1.9466 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1414284706115723, 'eval_runtime': 54.9257, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 1.21}
+  > Step 140 - MATH Val Loss: 2.1414 (FORGETTING?)
+{'loss': 1.9539, 'grad_norm': 0.28470122814178467, 'learning_rate': 2.8060344827586206e-05, 'epoch': 1.21}
+
+--- Custom Eval at Step 150 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9442832469940186, 'eval_runtime': 50.6081, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 1.3}
+  > Step 150 - HotpotQA Val Loss: 1.9443 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1367428302764893, 'eval_runtime': 54.9292, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 1.3}
+  > Step 150 - MATH Val Loss: 2.1367 (FORGETTING?)
+{'loss': 1.9394, 'grad_norm': 0.3076482117176056, 'learning_rate': 2.5043103448275862e-05, 'epoch': 1.3}
+
+--- Custom Eval at Step 160 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9410580396652222, 'eval_runtime': 50.6062, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 1.38}
+  > Step 160 - HotpotQA Val Loss: 1.9411 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.109661817550659, 'eval_runtime': 54.9281, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 1.38}
+  > Step 160 - MATH Val Loss: 2.1097 (FORGETTING?)
+{'loss': 1.955, 'grad_norm': 0.29707109928131104, 'learning_rate': 2.2025862068965515e-05, 'epoch': 1.38}
+
+--- Custom Eval at Step 170 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9338159561157227, 'eval_runtime': 50.6039, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 1.47}
+  > Step 170 - HotpotQA Val Loss: 1.9338 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.0832231044769287, 'eval_runtime': 54.925, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 1.47}
+  > Step 170 - MATH Val Loss: 2.0832 (FORGETTING?)
+{'loss': 1.9149, 'grad_norm': 0.281733900308609, 'learning_rate': 1.9008620689655172e-05, 'epoch': 1.47}
+
+--- Custom Eval at Step 180 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9359632730484009, 'eval_runtime': 50.6115, 'eval_samples_per_second': 7.251, 'eval_steps_per_second': 0.909, 'epoch': 1.56}
+  > Step 180 - HotpotQA Val Loss: 1.9360 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.0990521907806396, 'eval_runtime': 54.9304, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 1.56}
+  > Step 180 - MATH Val Loss: 2.0991 (FORGETTING?)
+{'loss': 1.9414, 'grad_norm': 0.2908497452735901, 'learning_rate': 1.599137931034483e-05, 'epoch': 1.56}
+
+--- Custom Eval at Step 190 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9477921724319458, 'eval_runtime': 50.6109, 'eval_samples_per_second': 7.251, 'eval_steps_per_second': 0.909, 'epoch': 1.64}
+  > Step 190 - HotpotQA Val Loss: 1.9478 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.142021894454956, 'eval_runtime': 54.9271, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 1.64}
+  > Step 190 - MATH Val Loss: 2.1420 (FORGETTING?)
+{'loss': 1.9329, 'grad_norm': 0.34043195843696594, 'learning_rate': 1.2974137931034482e-05, 'epoch': 1.64}
+
+--- Custom Eval at Step 200 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9440594911575317, 'eval_runtime': 50.613, 'eval_samples_per_second': 7.251, 'eval_steps_per_second': 0.909, 'epoch': 1.73}
+  > Step 200 - HotpotQA Val Loss: 1.9441 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1201376914978027, 'eval_runtime': 54.924, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 1.73}
+  > Step 200 - MATH Val Loss: 2.1201 (FORGETTING?)
+{'loss': 1.9719, 'grad_norm': 0.3292976915836334, 'learning_rate': 9.956896551724138e-06, 'epoch': 1.73}
+
+--- Custom Eval at Step 210 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.935718297958374, 'eval_runtime': 50.6094, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 1.82}
+  > Step 210 - HotpotQA Val Loss: 1.9357 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.085282564163208, 'eval_runtime': 54.9308, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 1.82}
+  > Step 210 - MATH Val Loss: 2.0853 (FORGETTING?)
+{'loss': 1.9426, 'grad_norm': 0.2904278337955475, 'learning_rate': 6.939655172413793e-06, 'epoch': 1.82}
+
+--- Custom Eval at Step 220 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9384472370147705, 'eval_runtime': 50.6082, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 1.9}
+  > Step 220 - HotpotQA Val Loss: 1.9384 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.0979156494140625, 'eval_runtime': 54.9344, 'eval_samples_per_second': 7.263, 'eval_steps_per_second': 0.91, 'epoch': 1.9}
+  > Step 220 - MATH Val Loss: 2.0979 (FORGETTING?)
+{'loss': 1.9586, 'grad_norm': 0.2788318693637848, 'learning_rate': 3.922413793103448e-06, 'epoch': 1.9}
+
+--- Custom Eval at Step 230 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9406107664108276, 'eval_runtime': 50.6029, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 1.99}
+  > Step 230 - HotpotQA Val Loss: 1.9406 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.107901096343994, 'eval_runtime': 54.921, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 1.99}
+  > Step 230 - MATH Val Loss: 2.1079 (FORGETTING?)
+{'loss': 1.9382, 'grad_norm': 0.31726184487342834, 'learning_rate': 9.051724137931033e-07, 'epoch': 1.99}
+
+--- Custom Eval at Step 232 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.943528175354004, 'eval_runtime': 50.6047, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 2.0}
+  > Step 232 - HotpotQA Val Loss: 1.9435 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1075665950775146, 'eval_runtime': 54.9356, 'eval_samples_per_second': 7.263, 'eval_steps_per_second': 0.91, 'epoch': 2.0}
+  > Step 232 - MATH Val Loss: 2.1076 (FORGETTING?)
+{'train_runtime': 6174.2952, 'train_samples_per_second': 1.194, 'train_steps_per_second': 0.038, 'train_loss': 1.9045868639288277, 'epoch': 2.0}
+
+--- Saving History Data and Generating Plot ---
+History data saved to out/forgetting_history_MATH_to_HotpotQA_fp32_alpha_0.1.json
+Plot saved to out/sequential_forgetting_curve_MATH_to_HotpotQA_fp32_for_alpha_0.1.png
+Not in Colab, plot saved to file.
+--- Loading Base Model & Tokenizer ---
+
+--- Loading and Preprocessing Datasets (This may take a while) ---
+Tokenizing and filtering HotpotQA...
+HotpotQA: 3686 train, 367 val (after filtering)
+Tokenizing and filtering MATH...
+MATH: 3994 train, 399 val (after filtering)
+
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+trainable params: 2,252,800 || all params: 1,102,301,184 || trainable%: 0.2044
+{'loss': 1.4382, 'grad_norm': 0.47007492184638977, 'learning_rate': 0.0001928, 'epoch': 0.08}
+{'loss': 1.1791, 'grad_norm': 0.33790042996406555, 'learning_rate': 0.00018480000000000002, 'epoch': 0.16}
+{'loss': 1.1039, 'grad_norm': 0.2594384551048279, 'learning_rate': 0.00017680000000000001, 'epoch': 0.24}
+{'loss': 1.0657, 'grad_norm': 0.27980098128318787, 'learning_rate': 0.0001688, 'epoch': 0.32}
+{'loss': 1.0384, 'grad_norm': 0.2337309867143631, 'learning_rate': 0.0001608, 'epoch': 0.4}
+{'loss': 1.0116, 'grad_norm': 0.26225119829177856, 'learning_rate': 0.0001528, 'epoch': 0.48}
+{'loss': 1.0266, 'grad_norm': 0.2335776388645172, 'learning_rate': 0.0001448, 'epoch': 0.56}
+{'loss': 0.9887, 'grad_norm': 0.23425817489624023, 'learning_rate': 0.00013680000000000002, 'epoch': 0.64}
+{'loss': 1.0311, 'grad_norm': 0.2638235092163086, 'learning_rate': 0.00012880000000000001, 'epoch': 0.72}
+{'loss': 0.9857, 'grad_norm': 0.3081594407558441, 'learning_rate': 0.0001208, 'epoch': 0.8}
+{'loss': 1.0189, 'grad_norm': 0.26541242003440857, 'learning_rate': 0.00011279999999999999, 'epoch': 0.88}
+{'loss': 0.9695, 'grad_norm': 0.28610241413116455, 'learning_rate': 0.00010480000000000001, 'epoch': 0.96}
+{'loss': 1.0073, 'grad_norm': 0.3107461631298065, 'learning_rate': 9.680000000000001e-05, 'epoch': 1.04}
+{'loss': 1.0037, 'grad_norm': 0.29670244455337524, 'learning_rate': 8.88e-05, 'epoch': 1.12}
+{'loss': 0.9479, 'grad_norm': 0.3019367754459381, 'learning_rate': 8.080000000000001e-05, 'epoch': 1.2}
+{'loss': 0.968, 'grad_norm': 0.3369057774543762, 'learning_rate': 7.280000000000001e-05, 'epoch': 1.28}
+{'loss': 0.9778, 'grad_norm': 0.35281139612197876, 'learning_rate': 6.48e-05, 'epoch': 1.36}
+{'loss': 0.9789, 'grad_norm': 0.3291020691394806, 'learning_rate': 5.68e-05, 'epoch': 1.44}
+{'loss': 1.0002, 'grad_norm': 0.36379274725914, 'learning_rate': 4.88e-05, 'epoch': 1.52}
+{'loss': 0.9726, 'grad_norm': 0.33181047439575195, 'learning_rate': 4.08e-05, 'epoch': 1.6}
+{'loss': 0.9431, 'grad_norm': 0.3366794288158417, 'learning_rate': 3.2800000000000004e-05, 'epoch': 1.68}
+{'loss': 1.0099, 'grad_norm': 0.3575938045978546, 'learning_rate': 2.48e-05, 'epoch': 1.76}
+{'loss': 0.9471, 'grad_norm': 0.3413894474506378, 'learning_rate': 1.6800000000000002e-05, 'epoch': 1.84}
+{'loss': 0.9694, 'grad_norm': 0.34595009684562683, 'learning_rate': 8.8e-06, 'epoch': 1.92}
+{'loss': 0.9964, 'grad_norm': 0.43850603699684143, 'learning_rate': 8.000000000000001e-07, 'epoch': 2.0}
+{'train_runtime': 4056.9971, 'train_samples_per_second': 1.969, 'train_steps_per_second': 0.062, 'train_loss': 1.0231881294250489, 'epoch': 2.0}
+--- Phase 1 (MATH) training complete. Saving adapter to out/math_adapter_llama_fp32_alpha_0.15_ ---
+Adapter saved.
+
+--- Evaluating Model after Phase 1 (Task A Expert) ---
+  > Task B Expert - HotpotQA Val Loss: 1.9096
+  > Task A Expert - MATH Val Loss: 1.0071
+
+  --- Phase 2: Training on Task B (HotpotQA) ---
+Initializing ForgettingTrackerCallback with starting metrics.
+Trainer reference set in callback.
+
+--- Custom Eval at Step 10 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8173199892044067, 'eval_runtime': 50.5988, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 0.09}
+  > Step 10 - HotpotQA Val Loss: 1.8173 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.063806414604187, 'eval_runtime': 54.9198, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 0.09}
+  > Step 10 - MATH Val Loss: 1.0638 (FORGETTING?)
+{'loss': 1.8205, 'grad_norm': 0.2740744650363922, 'learning_rate': 6.728448275862068e-05, 'epoch': 0.09}
+
+--- Custom Eval at Step 20 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8080044984817505, 'eval_runtime': 50.6018, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 0.17}
+  > Step 20 - HotpotQA Val Loss: 1.8080 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.1260147094726562, 'eval_runtime': 54.926, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 0.17}
+  > Step 20 - MATH Val Loss: 1.1260 (FORGETTING?)
+{'loss': 1.8009, 'grad_norm': 0.19396467506885529, 'learning_rate': 6.426724137931034e-05, 'epoch': 0.17}
+
+--- Custom Eval at Step 30 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.820059895515442, 'eval_runtime': 50.6059, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 0.26}
+  > Step 30 - HotpotQA Val Loss: 1.8201 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.2136240005493164, 'eval_runtime': 54.9314, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 0.26}
+  > Step 30 - MATH Val Loss: 1.2136 (FORGETTING?)
+{'loss': 1.8283, 'grad_norm': 0.17430846393108368, 'learning_rate': 6.125e-05, 'epoch': 0.26}
+
+--- Custom Eval at Step 40 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8407288789749146, 'eval_runtime': 50.6018, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 0.35}
+  > Step 40 - HotpotQA Val Loss: 1.8407 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.352239966392517, 'eval_runtime': 54.9237, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 0.35}
+  > Step 40 - MATH Val Loss: 1.3522 (FORGETTING?)
+{'loss': 1.8411, 'grad_norm': 0.1701379418373108, 'learning_rate': 5.823275862068965e-05, 'epoch': 0.35}
+
+--- Custom Eval at Step 50 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.85627281665802, 'eval_runtime': 50.6081, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 0.43}
+  > Step 50 - HotpotQA Val Loss: 1.8563 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.5099350214004517, 'eval_runtime': 54.9246, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 0.43}
+  > Step 50 - MATH Val Loss: 1.5099 (FORGETTING?)
+{'loss': 1.8552, 'grad_norm': 0.1933317929506302, 'learning_rate': 5.521551724137931e-05, 'epoch': 0.43}
+
+--- Custom Eval at Step 60 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8678420782089233, 'eval_runtime': 50.6019, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 0.52}
+  > Step 60 - HotpotQA Val Loss: 1.8678 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.6510945558547974, 'eval_runtime': 54.9288, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 0.52}
+  > Step 60 - MATH Val Loss: 1.6511 (FORGETTING?)
+{'loss': 1.8779, 'grad_norm': 0.19570457935333252, 'learning_rate': 5.2198275862068964e-05, 'epoch': 0.52}
+
+--- Custom Eval at Step 70 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8799240589141846, 'eval_runtime': 50.6125, 'eval_samples_per_second': 7.251, 'eval_steps_per_second': 0.909, 'epoch': 0.61}
+  > Step 70 - HotpotQA Val Loss: 1.8799 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.80929434299469, 'eval_runtime': 54.926, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 0.61}
+  > Step 70 - MATH Val Loss: 1.8093 (FORGETTING?)
+{'loss': 1.8744, 'grad_norm': 0.19600853323936462, 'learning_rate': 4.918103448275862e-05, 'epoch': 0.61}
+
+--- Custom Eval at Step 80 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8978166580200195, 'eval_runtime': 50.6075, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 0.69}
+  > Step 80 - HotpotQA Val Loss: 1.8978 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.9730538129806519, 'eval_runtime': 54.9255, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 0.69}
+  > Step 80 - MATH Val Loss: 1.9731 (FORGETTING?)
+{'loss': 1.8927, 'grad_norm': 0.21026065945625305, 'learning_rate': 4.616379310344827e-05, 'epoch': 0.69}
+
+--- Custom Eval at Step 90 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9055421352386475, 'eval_runtime': 50.618, 'eval_samples_per_second': 7.25, 'eval_steps_per_second': 0.909, 'epoch': 0.78}
+  > Step 90 - HotpotQA Val Loss: 1.9055 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.0157485008239746, 'eval_runtime': 54.9367, 'eval_samples_per_second': 7.263, 'eval_steps_per_second': 0.91, 'epoch': 0.78}
+  > Step 90 - MATH Val Loss: 2.0157 (FORGETTING?)
+{'loss': 1.9045, 'grad_norm': 0.23641782999038696, 'learning_rate': 4.314655172413793e-05, 'epoch': 0.78}
+
+--- Custom Eval at Step 100 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9251137971878052, 'eval_runtime': 50.6114, 'eval_samples_per_second': 7.251, 'eval_steps_per_second': 0.909, 'epoch': 0.87}
+  > Step 100 - HotpotQA Val Loss: 1.9251 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1044118404388428, 'eval_runtime': 54.9247, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 0.87}
+  > Step 100 - MATH Val Loss: 2.1044 (FORGETTING?)
+{'loss': 1.9464, 'grad_norm': 0.2659217417240143, 'learning_rate': 4.012931034482758e-05, 'epoch': 0.87}
+
+--- Custom Eval at Step 110 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.929630994796753, 'eval_runtime': 50.5977, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 0.95}
+  > Step 110 - HotpotQA Val Loss: 1.9296 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1087563037872314, 'eval_runtime': 54.9242, 'eval_samples_per_second': 7.265, 'eval_steps_per_second': 0.91, 'epoch': 0.95}
+  > Step 110 - MATH Val Loss: 2.1088 (FORGETTING?)
+{'loss': 1.9634, 'grad_norm': 0.2644779682159424, 'learning_rate': 3.7112068965517236e-05, 'epoch': 0.95}
+
+--- Custom Eval at Step 120 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9075610637664795, 'eval_runtime': 50.6098, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 1.03}
+  > Step 120 - HotpotQA Val Loss: 1.9076 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.975074291229248, 'eval_runtime': 54.9281, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 1.03}
+  > Step 120 - MATH Val Loss: 1.9751 (FORGETTING?)
+{'loss': 1.947, 'grad_norm': 0.2638205885887146, 'learning_rate': 3.4094827586206896e-05, 'epoch': 1.03}
+
+--- Custom Eval at Step 130 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9388231039047241, 'eval_runtime': 50.6126, 'eval_samples_per_second': 7.251, 'eval_steps_per_second': 0.909, 'epoch': 1.12}
+  > Step 130 - HotpotQA Val Loss: 1.9388 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1116831302642822, 'eval_runtime': 54.928, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 1.12}
+  > Step 130 - MATH Val Loss: 2.1117 (FORGETTING?)
+{'loss': 1.9307, 'grad_norm': 0.2843985855579376, 'learning_rate': 3.107758620689655e-05, 'epoch': 1.12}
+
+--- Custom Eval at Step 140 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9566923379898071, 'eval_runtime': 50.6042, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 1.21}
+  > Step 140 - HotpotQA Val Loss: 1.9567 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.179015874862671, 'eval_runtime': 54.9301, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 1.21}
+  > Step 140 - MATH Val Loss: 2.1790 (FORGETTING?)
+{'loss': 1.9732, 'grad_norm': 0.28828296065330505, 'learning_rate': 2.8060344827586206e-05, 'epoch': 1.21}
+
+--- Custom Eval at Step 150 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9520487785339355, 'eval_runtime': 50.6015, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 1.3}
+  > Step 150 - HotpotQA Val Loss: 1.9520 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.172165632247925, 'eval_runtime': 54.9286, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 1.3}
+  > Step 150 - MATH Val Loss: 2.1722 (FORGETTING?)
+{'loss': 1.9594, 'grad_norm': 0.3062354028224945, 'learning_rate': 2.5043103448275862e-05, 'epoch': 1.3}
+
+--- Custom Eval at Step 160 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.948087215423584, 'eval_runtime': 50.6062, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 1.38}
+  > Step 160 - HotpotQA Val Loss: 1.9481 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.132174491882324, 'eval_runtime': 54.9318, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 1.38}
+  > Step 160 - MATH Val Loss: 2.1322 (FORGETTING?)
+{'loss': 1.9742, 'grad_norm': 0.2914987802505493, 'learning_rate': 2.2025862068965515e-05, 'epoch': 1.38}
+
+--- Custom Eval at Step 170 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.940442681312561, 'eval_runtime': 50.6074, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 1.47}
+  > Step 170 - HotpotQA Val Loss: 1.9404 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1081225872039795, 'eval_runtime': 54.9268, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 1.47}
+  > Step 170 - MATH Val Loss: 2.1081 (FORGETTING?)
+{'loss': 1.9333, 'grad_norm': 0.26941820979118347, 'learning_rate': 1.9008620689655172e-05, 'epoch': 1.47}
+
+--- Custom Eval at Step 180 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9436464309692383, 'eval_runtime': 50.6061, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 1.56}
+  > Step 180 - HotpotQA Val Loss: 1.9436 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.129734516143799, 'eval_runtime': 54.9359, 'eval_samples_per_second': 7.263, 'eval_steps_per_second': 0.91, 'epoch': 1.56}
+  > Step 180 - MATH Val Loss: 2.1297 (FORGETTING?)
+{'loss': 1.9597, 'grad_norm': 0.28927990794181824, 'learning_rate': 1.599137931034483e-05, 'epoch': 1.56}
+
+--- Custom Eval at Step 190 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.957638144493103, 'eval_runtime': 50.6059, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 1.64}
+  > Step 190 - HotpotQA Val Loss: 1.9576 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.18155837059021, 'eval_runtime': 54.9277, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 1.64}
+  > Step 190 - MATH Val Loss: 2.1816 (FORGETTING?)
+{'loss': 1.9531, 'grad_norm': 0.3340562880039215, 'learning_rate': 1.2974137931034482e-05, 'epoch': 1.64}
+
+--- Custom Eval at Step 200 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.953067660331726, 'eval_runtime': 50.6116, 'eval_samples_per_second': 7.251, 'eval_steps_per_second': 0.909, 'epoch': 1.73}
+  > Step 200 - HotpotQA Val Loss: 1.9531 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.157710313796997, 'eval_runtime': 54.9289, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 1.73}
+  > Step 200 - MATH Val Loss: 2.1577 (FORGETTING?)
+{'loss': 1.993, 'grad_norm': 0.3314455449581146, 'learning_rate': 9.956896551724138e-06, 'epoch': 1.73}
+
+--- Custom Eval at Step 210 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.943646788597107, 'eval_runtime': 50.6099, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 1.82}
+  > Step 210 - HotpotQA Val Loss: 1.9436 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.116812229156494, 'eval_runtime': 54.9305, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 1.82}
+  > Step 210 - MATH Val Loss: 2.1168 (FORGETTING?)
+{'loss': 1.9623, 'grad_norm': 0.2842341959476471, 'learning_rate': 6.939655172413793e-06, 'epoch': 1.82}
+
+--- Custom Eval at Step 220 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9457099437713623, 'eval_runtime': 50.6058, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 1.9}
+  > Step 220 - HotpotQA Val Loss: 1.9457 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1273794174194336, 'eval_runtime': 54.9301, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 1.9}
+  > Step 220 - MATH Val Loss: 2.1274 (FORGETTING?)
+{'loss': 1.9776, 'grad_norm': 0.27268683910369873, 'learning_rate': 3.922413793103448e-06, 'epoch': 1.9}
+
+--- Custom Eval at Step 230 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9478716850280762, 'eval_runtime': 50.603, 'eval_samples_per_second': 7.253, 'eval_steps_per_second': 0.909, 'epoch': 1.99}
+  > Step 230 - HotpotQA Val Loss: 1.9479 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1385610103607178, 'eval_runtime': 54.9259, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 1.99}
+  > Step 230 - MATH Val Loss: 2.1386 (FORGETTING?)
+{'loss': 1.9566, 'grad_norm': 0.3052651286125183, 'learning_rate': 9.051724137931033e-07, 'epoch': 1.99}
+
+--- Custom Eval at Step 232 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9523429870605469, 'eval_runtime': 50.6038, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.909, 'epoch': 2.0}
+  > Step 232 - HotpotQA Val Loss: 1.9523 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1384568214416504, 'eval_runtime': 54.9283, 'eval_samples_per_second': 7.264, 'eval_steps_per_second': 0.91, 'epoch': 2.0}
+  > Step 232 - MATH Val Loss: 2.1385 (FORGETTING?)
+{'train_runtime': 6174.5733, 'train_samples_per_second': 1.194, 'train_steps_per_second': 0.038, 'train_loss': 1.919203285513253, 'epoch': 2.0}
+
+--- Saving History Data and Generating Plot ---
+History data saved to out/forgetting_history_MATH_to_HotpotQA_fp32_alpha_0.15.json
+Plot saved to out/sequential_forgetting_curve_MATH_to_HotpotQA_fp32_for_alpha_0.15.png
+Not in Colab, plot saved to file.
+--- Loading Base Model & Tokenizer ---
+
+--- Loading and Preprocessing Datasets (This may take a while) ---
+Tokenizing and filtering HotpotQA...
+HotpotQA: 3686 train, 367 val (after filtering)
+Tokenizing and filtering MATH...
+MATH: 3994 train, 399 val (after filtering)
+
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+trainable params: 2,252,800 || all params: 1,102,301,184 || trainable%: 0.2044
+{'loss': 1.4382, 'grad_norm': 0.4689922332763672, 'learning_rate': 0.0001928, 'epoch': 0.08}
+{'loss': 1.1792, 'grad_norm': 0.3366941511631012, 'learning_rate': 0.00018480000000000002, 'epoch': 0.16}
+{'loss': 1.1039, 'grad_norm': 0.25950783491134644, 'learning_rate': 0.00017680000000000001, 'epoch': 0.24}
+{'loss': 1.0657, 'grad_norm': 0.27947115898132324, 'learning_rate': 0.0001688, 'epoch': 0.32}
+{'loss': 1.0383, 'grad_norm': 0.23344968259334564, 'learning_rate': 0.0001608, 'epoch': 0.4}
+{'loss': 1.0117, 'grad_norm': 0.26376867294311523, 'learning_rate': 0.0001528, 'epoch': 0.48}
+{'loss': 1.0267, 'grad_norm': 0.23407399654388428, 'learning_rate': 0.0001448, 'epoch': 0.56}
+{'loss': 0.9887, 'grad_norm': 0.23418757319450378, 'learning_rate': 0.00013680000000000002, 'epoch': 0.64}
+{'loss': 1.0312, 'grad_norm': 0.2641984522342682, 'learning_rate': 0.00012880000000000001, 'epoch': 0.72}
+{'loss': 0.9857, 'grad_norm': 0.3078434467315674, 'learning_rate': 0.0001208, 'epoch': 0.8}
+{'loss': 1.019, 'grad_norm': 0.26537296175956726, 'learning_rate': 0.00011279999999999999, 'epoch': 0.88}
+{'loss': 0.9695, 'grad_norm': 0.2865558862686157, 'learning_rate': 0.00010480000000000001, 'epoch': 0.96}
+{'loss': 1.0072, 'grad_norm': 0.31054848432540894, 'learning_rate': 9.680000000000001e-05, 'epoch': 1.04}
+{'loss': 1.0037, 'grad_norm': 0.29659003019332886, 'learning_rate': 8.88e-05, 'epoch': 1.12}
+{'loss': 0.9479, 'grad_norm': 0.30109643936157227, 'learning_rate': 8.080000000000001e-05, 'epoch': 1.2}
+{'loss': 0.968, 'grad_norm': 0.3369065523147583, 'learning_rate': 7.280000000000001e-05, 'epoch': 1.28}
+{'loss': 0.9779, 'grad_norm': 0.35364866256713867, 'learning_rate': 6.48e-05, 'epoch': 1.36}
+{'loss': 0.9789, 'grad_norm': 0.3288556635379791, 'learning_rate': 5.68e-05, 'epoch': 1.44}
+{'loss': 1.0003, 'grad_norm': 0.36337193846702576, 'learning_rate': 4.88e-05, 'epoch': 1.52}
+{'loss': 0.9727, 'grad_norm': 0.33122125267982483, 'learning_rate': 4.08e-05, 'epoch': 1.6}
+{'loss': 0.9432, 'grad_norm': 0.33713027834892273, 'learning_rate': 3.2800000000000004e-05, 'epoch': 1.68}
+{'loss': 1.0099, 'grad_norm': 0.35788577795028687, 'learning_rate': 2.48e-05, 'epoch': 1.76}
+{'loss': 0.9471, 'grad_norm': 0.3424883484840393, 'learning_rate': 1.6800000000000002e-05, 'epoch': 1.84}
+{'loss': 0.9696, 'grad_norm': 0.3479194641113281, 'learning_rate': 8.8e-06, 'epoch': 1.92}
+{'loss': 0.9965, 'grad_norm': 0.4390300512313843, 'learning_rate': 8.000000000000001e-07, 'epoch': 2.0}
+{'train_runtime': 4057.025, 'train_samples_per_second': 1.969, 'train_steps_per_second': 0.062, 'train_loss': 1.0232224960327148, 'epoch': 2.0}
+--- Phase 1 (MATH) training complete. Saving adapter to out/math_adapter_llama_fp32_alpha_0.2_ ---
+Adapter saved.
+
+--- Evaluating Model after Phase 1 (Task A Expert) ---
+  > Task B Expert - HotpotQA Val Loss: 1.9093
+  > Task A Expert - MATH Val Loss: 1.0072
+
+  --- Phase 2: Training on Task B (HotpotQA) ---
+Initializing ForgettingTrackerCallback with starting metrics.
+Trainer reference set in callback.
+
+--- Custom Eval at Step 10 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8160526752471924, 'eval_runtime': 50.6249, 'eval_samples_per_second': 7.249, 'eval_steps_per_second': 0.909, 'epoch': 0.09}
+  > Step 10 - HotpotQA Val Loss: 1.8161 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.0645369291305542, 'eval_runtime': 54.9524, 'eval_samples_per_second': 7.261, 'eval_steps_per_second': 0.91, 'epoch': 0.09}
+  > Step 10 - MATH Val Loss: 1.0645 (FORGETTING?)
+{'loss': 1.8204, 'grad_norm': 0.25397640466690063, 'learning_rate': 6.728448275862068e-05, 'epoch': 0.09}
+
+--- Custom Eval at Step 20 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8067728281021118, 'eval_runtime': 50.6306, 'eval_samples_per_second': 7.249, 'eval_steps_per_second': 0.909, 'epoch': 0.17}
+  > Step 20 - HotpotQA Val Loss: 1.8068 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.1295416355133057, 'eval_runtime': 54.9522, 'eval_samples_per_second': 7.261, 'eval_steps_per_second': 0.91, 'epoch': 0.17}
+  > Step 20 - MATH Val Loss: 1.1295 (FORGETTING?)
+{'loss': 1.8051, 'grad_norm': 0.18350902199745178, 'learning_rate': 6.426724137931034e-05, 'epoch': 0.17}
+
+--- Custom Eval at Step 30 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8195507526397705, 'eval_runtime': 50.6268, 'eval_samples_per_second': 7.249, 'eval_steps_per_second': 0.909, 'epoch': 0.26}
+  > Step 30 - HotpotQA Val Loss: 1.8196 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.2193232774734497, 'eval_runtime': 54.9579, 'eval_samples_per_second': 7.26, 'eval_steps_per_second': 0.91, 'epoch': 0.26}
+  > Step 30 - MATH Val Loss: 1.2193 (FORGETTING?)
+{'loss': 1.8332, 'grad_norm': 0.16526293754577637, 'learning_rate': 6.125e-05, 'epoch': 0.26}
+
+--- Custom Eval at Step 40 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8415989875793457, 'eval_runtime': 50.7643, 'eval_samples_per_second': 7.229, 'eval_steps_per_second': 0.906, 'epoch': 0.35}
+  > Step 40 - HotpotQA Val Loss: 1.8416 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.3590831756591797, 'eval_runtime': 54.9855, 'eval_samples_per_second': 7.256, 'eval_steps_per_second': 0.909, 'epoch': 0.35}
+  > Step 40 - MATH Val Loss: 1.3591 (FORGETTING?)
+{'loss': 1.8477, 'grad_norm': 0.16300766170024872, 'learning_rate': 5.823275862068965e-05, 'epoch': 0.35}
+
+--- Custom Eval at Step 50 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.858926773071289, 'eval_runtime': 50.7762, 'eval_samples_per_second': 7.228, 'eval_steps_per_second': 0.906, 'epoch': 0.43}
+  > Step 50 - HotpotQA Val Loss: 1.8589 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.5222806930541992, 'eval_runtime': 54.9856, 'eval_samples_per_second': 7.256, 'eval_steps_per_second': 0.909, 'epoch': 0.43}
+  > Step 50 - MATH Val Loss: 1.5223 (FORGETTING?)
+{'loss': 1.8645, 'grad_norm': 0.18522214889526367, 'learning_rate': 5.521551724137931e-05, 'epoch': 0.43}
+
+--- Custom Eval at Step 60 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8702977895736694, 'eval_runtime': 50.7821, 'eval_samples_per_second': 7.227, 'eval_steps_per_second': 0.906, 'epoch': 0.52}
+  > Step 60 - HotpotQA Val Loss: 1.8703 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.664035677909851, 'eval_runtime': 54.9748, 'eval_samples_per_second': 7.258, 'eval_steps_per_second': 0.91, 'epoch': 0.52}
+  > Step 60 - MATH Val Loss: 1.6640 (FORGETTING?)
+{'loss': 1.8887, 'grad_norm': 0.18668986856937408, 'learning_rate': 5.2198275862068964e-05, 'epoch': 0.52}
+
+--- Custom Eval at Step 70 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.8837193250656128, 'eval_runtime': 50.7842, 'eval_samples_per_second': 7.227, 'eval_steps_per_second': 0.906, 'epoch': 0.61}
+  > Step 70 - HotpotQA Val Loss: 1.8837 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.8323781490325928, 'eval_runtime': 54.9694, 'eval_samples_per_second': 7.259, 'eval_steps_per_second': 0.91, 'epoch': 0.61}
+  > Step 70 - MATH Val Loss: 1.8324 (FORGETTING?)
+{'loss': 1.887, 'grad_norm': 0.18732276558876038, 'learning_rate': 4.918103448275862e-05, 'epoch': 0.61}
+
+--- Custom Eval at Step 80 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9025896787643433, 'eval_runtime': 50.7815, 'eval_samples_per_second': 7.227, 'eval_steps_per_second': 0.906, 'epoch': 0.69}
+  > Step 80 - HotpotQA Val Loss: 1.9026 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.0017545223236084, 'eval_runtime': 54.977, 'eval_samples_per_second': 7.258, 'eval_steps_per_second': 0.909, 'epoch': 0.69}
+  > Step 80 - MATH Val Loss: 2.0018 (FORGETTING?)
+{'loss': 1.9066, 'grad_norm': 0.2044144570827484, 'learning_rate': 4.616379310344827e-05, 'epoch': 0.69}
+
+--- Custom Eval at Step 90 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9107486009597778, 'eval_runtime': 50.7905, 'eval_samples_per_second': 7.226, 'eval_steps_per_second': 0.906, 'epoch': 0.78}
+  > Step 90 - HotpotQA Val Loss: 1.9107 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.045651912689209, 'eval_runtime': 54.9787, 'eval_samples_per_second': 7.257, 'eval_steps_per_second': 0.909, 'epoch': 0.78}
+  > Step 90 - MATH Val Loss: 2.0457 (FORGETTING?)
+{'loss': 1.92, 'grad_norm': 0.2286880761384964, 'learning_rate': 4.314655172413793e-05, 'epoch': 0.78}
+
+--- Custom Eval at Step 100 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.930706262588501, 'eval_runtime': 50.7854, 'eval_samples_per_second': 7.226, 'eval_steps_per_second': 0.906, 'epoch': 0.87}
+  > Step 100 - HotpotQA Val Loss: 1.9307 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1301896572113037, 'eval_runtime': 54.9872, 'eval_samples_per_second': 7.256, 'eval_steps_per_second': 0.909, 'epoch': 0.87}
+  > Step 100 - MATH Val Loss: 2.1302 (FORGETTING?)
+{'loss': 1.9628, 'grad_norm': 0.2596953511238098, 'learning_rate': 4.012931034482758e-05, 'epoch': 0.87}
+
+--- Custom Eval at Step 110 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9348241090774536, 'eval_runtime': 50.7921, 'eval_samples_per_second': 7.226, 'eval_steps_per_second': 0.906, 'epoch': 0.95}
+  > Step 110 - HotpotQA Val Loss: 1.9348 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1337783336639404, 'eval_runtime': 54.9781, 'eval_samples_per_second': 7.257, 'eval_steps_per_second': 0.909, 'epoch': 0.95}
+  > Step 110 - MATH Val Loss: 2.1338 (FORGETTING?)
+{'loss': 1.9804, 'grad_norm': 0.24630305171012878, 'learning_rate': 3.7112068965517236e-05, 'epoch': 0.95}
+
+--- Custom Eval at Step 120 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9111534357070923, 'eval_runtime': 50.6326, 'eval_samples_per_second': 7.248, 'eval_steps_per_second': 0.909, 'epoch': 1.03}
+  > Step 120 - HotpotQA Val Loss: 1.9112 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 1.9970767498016357, 'eval_runtime': 54.9586, 'eval_samples_per_second': 7.26, 'eval_steps_per_second': 0.91, 'epoch': 1.03}
+  > Step 120 - MATH Val Loss: 1.9971 (FORGETTING?)
+{'loss': 1.9629, 'grad_norm': 0.2627517580986023, 'learning_rate': 3.4094827586206896e-05, 'epoch': 1.03}
+
+--- Custom Eval at Step 130 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9457095861434937, 'eval_runtime': 50.6277, 'eval_samples_per_second': 7.249, 'eval_steps_per_second': 0.909, 'epoch': 1.12}
+  > Step 130 - HotpotQA Val Loss: 1.9457 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1471869945526123, 'eval_runtime': 54.9517, 'eval_samples_per_second': 7.261, 'eval_steps_per_second': 0.91, 'epoch': 1.12}
+  > Step 130 - MATH Val Loss: 2.1472 (FORGETTING?)
+{'loss': 1.9468, 'grad_norm': 0.2756138741970062, 'learning_rate': 3.107758620689655e-05, 'epoch': 1.12}
+
+--- Custom Eval at Step 140 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9630405902862549, 'eval_runtime': 50.6272, 'eval_samples_per_second': 7.249, 'eval_steps_per_second': 0.909, 'epoch': 1.21}
+  > Step 140 - HotpotQA Val Loss: 1.9630 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.2043039798736572, 'eval_runtime': 54.9472, 'eval_samples_per_second': 7.262, 'eval_steps_per_second': 0.91, 'epoch': 1.21}
+  > Step 140 - MATH Val Loss: 2.2043 (FORGETTING?)
+{'loss': 1.9907, 'grad_norm': 0.2747049629688263, 'learning_rate': 2.8060344827586206e-05, 'epoch': 1.21}
+
+--- Custom Eval at Step 150 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9616010189056396, 'eval_runtime': 50.625, 'eval_samples_per_second': 7.249, 'eval_steps_per_second': 0.909, 'epoch': 1.3}
+  > Step 150 - HotpotQA Val Loss: 1.9616 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.2047066688537598, 'eval_runtime': 54.9523, 'eval_samples_per_second': 7.261, 'eval_steps_per_second': 0.91, 'epoch': 1.3}
+  > Step 150 - MATH Val Loss: 2.2047 (FORGETTING?)
+{'loss': 1.9798, 'grad_norm': 0.3002685308456421, 'learning_rate': 2.5043103448275862e-05, 'epoch': 1.3}
+
+--- Custom Eval at Step 160 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.954350471496582, 'eval_runtime': 50.6298, 'eval_samples_per_second': 7.249, 'eval_steps_per_second': 0.909, 'epoch': 1.38}
+  > Step 160 - HotpotQA Val Loss: 1.9544 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1584525108337402, 'eval_runtime': 54.9536, 'eval_samples_per_second': 7.261, 'eval_steps_per_second': 0.91, 'epoch': 1.38}
+  > Step 160 - MATH Val Loss: 2.1585 (FORGETTING?)
+{'loss': 1.9937, 'grad_norm': 0.2771095931529999, 'learning_rate': 2.2025862068965515e-05, 'epoch': 1.38}
+
+--- Custom Eval at Step 170 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9504269361495972, 'eval_runtime': 50.6263, 'eval_samples_per_second': 7.249, 'eval_steps_per_second': 0.909, 'epoch': 1.47}
+  > Step 170 - HotpotQA Val Loss: 1.9504 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.148012399673462, 'eval_runtime': 54.9493, 'eval_samples_per_second': 7.261, 'eval_steps_per_second': 0.91, 'epoch': 1.47}
+  > Step 170 - MATH Val Loss: 2.1480 (FORGETTING?)
+{'loss': 1.9532, 'grad_norm': 0.2644274830818176, 'learning_rate': 1.9008620689655172e-05, 'epoch': 1.47}
+
+--- Custom Eval at Step 180 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9492369890213013, 'eval_runtime': 50.6179, 'eval_samples_per_second': 7.25, 'eval_steps_per_second': 0.909, 'epoch': 1.56}
+  > Step 180 - HotpotQA Val Loss: 1.9492 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1505134105682373, 'eval_runtime': 54.9486, 'eval_samples_per_second': 7.261, 'eval_steps_per_second': 0.91, 'epoch': 1.56}
+  > Step 180 - MATH Val Loss: 2.1505 (FORGETTING?)
+{'loss': 1.9795, 'grad_norm': 0.288789302110672, 'learning_rate': 1.599137931034483e-05, 'epoch': 1.56}
+
+--- Custom Eval at Step 190 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9660719633102417, 'eval_runtime': 50.6296, 'eval_samples_per_second': 7.249, 'eval_steps_per_second': 0.909, 'epoch': 1.64}
+  > Step 190 - HotpotQA Val Loss: 1.9661 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.2143642902374268, 'eval_runtime': 54.9536, 'eval_samples_per_second': 7.261, 'eval_steps_per_second': 0.91, 'epoch': 1.64}
+  > Step 190 - MATH Val Loss: 2.2144 (FORGETTING?)
+{'loss': 1.971, 'grad_norm': 0.319821298122406, 'learning_rate': 1.2974137931034482e-05, 'epoch': 1.64}
+
+--- Custom Eval at Step 200 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9612804651260376, 'eval_runtime': 50.6272, 'eval_samples_per_second': 7.249, 'eval_steps_per_second': 0.909, 'epoch': 1.73}
+  > Step 200 - HotpotQA Val Loss: 1.9613 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1895570755004883, 'eval_runtime': 54.9489, 'eval_samples_per_second': 7.261, 'eval_steps_per_second': 0.91, 'epoch': 1.73}
+  > Step 200 - MATH Val Loss: 2.1896 (FORGETTING?)
+{'loss': 2.0139, 'grad_norm': 0.3200928270816803, 'learning_rate': 9.956896551724138e-06, 'epoch': 1.73}
+
+--- Custom Eval at Step 210 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9511692523956299, 'eval_runtime': 50.6292, 'eval_samples_per_second': 7.249, 'eval_steps_per_second': 0.909, 'epoch': 1.82}
+  > Step 210 - HotpotQA Val Loss: 1.9512 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.150327205657959, 'eval_runtime': 54.9536, 'eval_samples_per_second': 7.261, 'eval_steps_per_second': 0.91, 'epoch': 1.82}
+  > Step 210 - MATH Val Loss: 2.1503 (FORGETTING?)
+{'loss': 1.9816, 'grad_norm': 0.2748968005180359, 'learning_rate': 6.939655172413793e-06, 'epoch': 1.82}
+
+--- Custom Eval at Step 220 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.953665852546692, 'eval_runtime': 50.6244, 'eval_samples_per_second': 7.249, 'eval_steps_per_second': 0.909, 'epoch': 1.9}
+  > Step 220 - HotpotQA Val Loss: 1.9537 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.163350820541382, 'eval_runtime': 54.9483, 'eval_samples_per_second': 7.261, 'eval_steps_per_second': 0.91, 'epoch': 1.9}
+  > Step 220 - MATH Val Loss: 2.1634 (FORGETTING?)
+{'loss': 1.9972, 'grad_norm': 0.2626712918281555, 'learning_rate': 3.922413793103448e-06, 'epoch': 1.9}
+
+--- Custom Eval at Step 230 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9558742046356201, 'eval_runtime': 50.6258, 'eval_samples_per_second': 7.249, 'eval_steps_per_second': 0.909, 'epoch': 1.99}
+  > Step 230 - HotpotQA Val Loss: 1.9559 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.1740176677703857, 'eval_runtime': 54.9533, 'eval_samples_per_second': 7.261, 'eval_steps_per_second': 0.91, 'epoch': 1.99}
+  > Step 230 - MATH Val Loss: 2.1740 (FORGETTING?)
+{'loss': 1.9763, 'grad_norm': 0.29657673835754395, 'learning_rate': 9.051724137931033e-07, 'epoch': 1.99}
+
+--- Custom Eval at Step 232 ---
+Evaluating on Task B (HotpotQA)...
+{'eval_loss': 1.9619266986846924, 'eval_runtime': 50.6317, 'eval_samples_per_second': 7.248, 'eval_steps_per_second': 0.909, 'epoch': 2.0}
+  > Step 232 - HotpotQA Val Loss: 1.9619 (LEARNING?)
+Evaluating on Task A (MATH)...
+{'eval_loss': 2.173469305038452, 'eval_runtime': 54.9554, 'eval_samples_per_second': 7.26, 'eval_steps_per_second': 0.91, 'epoch': 2.0}
+  > Step 232 - MATH Val Loss: 2.1735 (FORGETTING?)
+{'train_runtime': 6179.1048, 'train_samples_per_second': 1.193, 'train_steps_per_second': 0.038, 'train_loss': 1.9339612599076896, 'epoch': 2.0}
+
+--- Saving History Data and Generating Plot ---
+History data saved to out/forgetting_history_MATH_to_HotpotQA_fp32_alpha_0.2.json
+Plot saved to out/sequential_forgetting_curve_MATH_to_HotpotQA_fp32_for_alpha_0.2.png
+Not in Colab, plot saved to file.
+Plot saved to out/sequential_forgetting_curve_MATH_to_HotpotQA_fp32.png

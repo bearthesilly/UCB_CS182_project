@@ -1,0 +1,70 @@
+2025-12-01 03:17:51,953 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-01 03:17:51,953 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-01 03:17:52,228 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-01 03:18:10,153 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-12-01 03:18:15,918 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-12-01 03:18:25,882 - INFO - HotpotQA: 24 train, 3 val (after filtering)
+2025-12-01 03:18:26,329 - INFO - Tokenizing and Filtering Math... 
+2025-12-01 03:18:32,695 - INFO - MATH: 3330 train, 335 val (after filtering)
+2025-12-01 03:18:32,695 - INFO -   Phase1 training: 3330 samples
+2025-12-01 03:18:32,695 - INFO -   Phase2 training: 24 samples
+2025-12-01 03:18:32,695 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-12-01 03:18:32,695 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-12-01 03:22:10,699 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-01 03:22:10,699 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-01 03:22:10,900 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-01 03:22:11,503 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-12-01 03:22:12,064 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-12-01 03:22:45,563 - INFO - HotpotQA: 3686 train, 367 val (after filtering)
+2025-12-01 03:22:45,773 - INFO - Tokenizing and Filtering Math... 
+2025-12-01 03:23:04,700 - INFO - MATH: 3994 train, 399 val (after filtering)
+2025-12-01 03:23:04,701 - INFO -   Phase1 training: 3994 samples
+2025-12-01 03:23:04,701 - INFO -   Phase2 training: 3686 samples
+2025-12-01 03:23:04,701 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-12-01 03:23:04,701 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-12-01 03:30:17,731 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-01 03:30:17,732 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-01 03:30:17,952 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-01 03:30:18,576 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-12-01 03:30:19,002 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-12-01 03:30:22,128 - INFO - HotpotQA: 3686 train, 367 val (after filtering)
+2025-12-01 03:30:22,320 - INFO - Tokenizing and Filtering Math... 
+2025-12-01 03:30:39,931 - INFO - MATH: 3994 train, 399 val (after filtering)
+2025-12-01 03:30:39,931 - INFO -   Phase1 training: 3994 samples
+2025-12-01 03:30:39,931 - INFO -   Phase2 training: 3686 samples
+2025-12-01 03:30:39,931 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-12-01 03:30:39,931 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-12-01 03:35:13,559 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-01 03:35:13,559 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-01 03:35:13,756 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-01 03:35:14,368 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-12-01 03:35:14,787 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-12-01 03:35:14,881 - INFO - HotpotQA: 3686 train, 367 val (after filtering)
+2025-12-01 03:35:15,064 - INFO - Tokenizing and Filtering Math... 
+2025-12-01 03:35:32,347 - INFO - MATH: 3994 train, 399 val (after filtering)
+2025-12-01 03:35:32,347 - INFO -   Phase1 training: 3994 samples
+2025-12-01 03:35:32,347 - INFO -   Phase2 training: 3686 samples
+2025-12-01 03:35:32,347 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-12-01 03:35:32,347 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
+2025-12-01 03:36:37,775 - INFO - INFO: Running on GPU. VRAM: 23.68 GB
+2025-12-01 03:36:37,775 - INFO - --- Loading Base Model & Tokenizer ---
+2025-12-01 03:36:37,978 - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-12-01 03:36:38,582 - INFO - 
+--- Loading and Preprocessing Datasets (This may take a while) ---
+2025-12-01 03:36:38,996 - INFO - Tokenize and filter the HotPotQA dataset... 
+2025-12-01 03:36:39,091 - INFO - HotpotQA: 3686 train, 367 val (after filtering)
+2025-12-01 03:36:39,415 - INFO - Tokenizing and Filtering Math... 
+2025-12-01 03:36:41,233 - INFO - MATH: 3994 train, 399 val (after filtering)
+2025-12-01 03:36:41,233 - INFO -   Phase1 training: 3994 samples
+2025-12-01 03:36:41,233 - INFO -   Phase2 training: 3686 samples
+2025-12-01 03:36:41,233 - INFO - 
+--- Starting Experiment 2: Sequential Training (CF) [MATH -> HotpotQA] ---
+2025-12-01 03:36:41,233 - INFO - --- Going to begin Phase 1: Training on Task A (MATH) ---
