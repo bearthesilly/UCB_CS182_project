@@ -1,0 +1,7 @@
+# UCB_CS182_project
+
+This experiment is called the ratio-ing strategy. In this experiment, the fine-tuning process is divided into two phases, allowing a small ratio of ’data swapping and mixing’. In the phase 1, the data consists of mostly Task 1 samples (e.g., 80% Task 1 and 20% Task 2), while in phase 2, the ratio is inverted (20%Task 1 and 80% Task 2). This setup allows us to test how mixing in Task 2 data into the task 1 training step (and vice versa in task 2’s training) increases or reduces the threshold for Catastrophic Forgetting (CF). In this strategy, we can intuitively interpret the small proportion of Task B data in phase 1 as ’preview’ and the small proportion of Task A in phase 2 as ’review’.
+
+In our experiments, we selected ratio of 10%, 20% and 50% to conduct controlled experiments, and also did experiments with ratio of 0% for reference.  In phase 2, introducing mixing ratios can help mitigate this issue. At a 10% ratio, despite a slight initial rise, the loss growth was much flatter, ending at 1.03. It substantially mitigates catastrophic forgetting compared to reference.  Increasing the ratio to 20% further improved retention, resulting in a final loss of 1.02. In contrast, the 50 % ratio does not cause an increase in loss; instead, the loss decreases by approximately 0.02. Above all, increasing the mixing ratio will increase the initial loss in phase 2, but the loss increment after phase 2 will be lower, which confirm the effectiveness of Ratio-ing Strategy.
+
+Simply run the jupyter notebook to reproduce the result.
