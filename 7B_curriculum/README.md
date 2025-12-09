@@ -1,0 +1,3 @@
+This experiment is for running the 7B curriculum experiment. We divide training into Phase 1 and Phase 2. Here we train on A MIXTURE of MATH dataset and the HotPotQA dataset for both phases. In the first phase, we mix MATH with HotPotQA at a ratio of 80/20. Then for the second phase, we mix the datasets with ratio 20/80. Finally, we measure the loss as we are training the second phase on both HotPotQA and MATH. We hope to see that catastrophic forgetting has been mitigated relative to baseline experiment. 
+
+Run the `curriculum_file.py`. This will output all the files into the relevant folder defined as RESULTS_DIR: ("out"). Run it simply with `python curriculum_file.py`.

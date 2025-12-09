@@ -1,0 +1,9 @@
+datasets==4.0.0
+matplotlib==3.8.3
+numpy==1.21.6
+peft==0.18.0
+protobuf==3.20.3
+scikit_learn==1.2.2
+torch==2.8.0+cu126
+tqdm==4.67.1
+transformers==4.56.0
